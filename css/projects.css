@@ -1,0 +1,21 @@
+.pac_wrapper{
+    display: flex;
+    gap: 4rem;
+    padding-left: 2rem;
+}
+.projects{
+    width: 50%;
+}
+.achievements{
+    width: 50%;
+}
+.achievements-list{
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+}
+.certificates-list {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+}

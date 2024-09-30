@@ -1,0 +1,18 @@
+.header{
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+    gap: 5rem;
+}
+.profile-image {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.light-text{
+    color: gray;
+}
+.description{
+    max-width: 90%;
+}

@@ -1,0 +1,23 @@
+.we_lang_wrapper{
+    display: flex;
+    gap: 4rem;
+    padding-left: 2rem;
+}
+.work_exp_wrapper{
+    width: 50%;
+}
+.lang_intrest_wrapper{
+    width: 50%;
+}
+.intrest_badge {
+    display: flex;
+    border: 2px solid #989da6;
+    border-radius: 8px;
+    font-size: medium;
+    padding: 5px 15px;
+    background-color: #f7f7f7;
+    color: #333;
+}
+.intrest_container {
+    max-width: 80%;
+}

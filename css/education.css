@@ -1,0 +1,27 @@
+.education_skills_wrapper {
+    padding-left: 2rem;
+    display: flex;
+    gap: 4rem;
+}
+.education{
+    width: 50%;
+}
+.skills{
+    width: 50%;
+}
+.education-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.skill_badge {
+    display: flex;
+    background-color: #989da6;
+    color: white;
+    border-radius: 8px;
+    font-size: medium;
+    padding: 5px 15px;
+}
+.badge_container{
+    max-width: 80%;
+}

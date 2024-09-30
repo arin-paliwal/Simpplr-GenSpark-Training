@@ -1,0 +1,20 @@
+.contact-info {
+    background-color: #313c4e;
+    color: white;
+    padding: 20px;
+    border-radius: 0 0 10px 10px;
+    padding-left: 5rem;
+}
+
+.contact-info a {
+    color: white;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+.icon {
+    margin-right: 8px;
+}
