@@ -17,10 +17,16 @@
 .skill_badge {
     display: flex;
     background-color: #989da6;
+    border: 2px solid #989da6;
     color: white;
     border-radius: 8px;
     font-size: medium;
     padding: 5px 15px;
+    cursor: pointer;
+}
+.skill_badge:hover {
+    border: #000;
+    border: 2px solid #313c4e;
 }
 .badge_container{
     max-width: 80%;
