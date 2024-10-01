@@ -25,22 +25,22 @@
 
 <body class="page_wrapper">
     <!-- Header image and description -->
-    <div class="align-items-center header">
+    <header class="align-items-center header">
         <div class="text-center">
             <img src="assets/images/arin.jpg" alt="Profile Image" class="profile-image">
         </div>
         <div class="">
-            <h2>Arin Paliwal</h2>
-            <h6 class="light-text">Engineering Student</h6>
+            <h1>Arin Paliwal</h1>
+            <h2 class="light-text">Engineering Student</h2>
             <p class="description">Motivated and skilled engineering student with a proven track record of achieving
                 goals and exceeding
                 expectations. I bring a strong foundation in programming concepts and a passion for creating functional
                 and visually appealing websites and applications. I am excited to learn and grow in a dynamic work
                 environment, and am eager to contribute with my skills.</p>
         </div>
-    </div>
-    <!-- contact links -->
-    <div class="contact-info row">
+    </header>
+    <!-- Contact links -->
+    <section class="contact-info row">
         <div class="col-md-6">
             <p><i class="icon bi bi-envelope"></i> paliwalarin09@gmail.com</p>
         </div>
@@ -60,99 +60,84 @@
         </div>
         <div class="col-md-6">
             <p><i class="icon bi bi-github"></i> <a href="https://github.com/arin-paliwal"
-                    target="_blank">github.com/arin-paliwal</a>
-            </p>
+                    target="_blank">github.com/arin-paliwal</a></p>
         </div>
-    </div>
+    </section>
     <!-- Education and Skills Section -->
-    <div class="education_skills_wrapper">
+    <section class="education_skills_wrapper">
         <!-- Education Section -->
-        <div class="education d-flex flex-column gap-2">
-            <h4 class="heading fw-bold">EDUCATION</h4>
+        <article class="education d-flex flex-column gap-2">
+            <h3 class="heading fw-bold">Education</h3>
             <div class="d-flex flex-column">
-                <h5><strong class="fw-bold">Computer Science and Engineering</strong></h5>
-                <h6 class="light-text">
-                    Pranveer Singh Institute of Technology, Kanpur
-                </h6>
-                <span class="d-flex justify-content-between">
-                    <span>2021 - Present</span>
-                    <span>Kanpur</span>
-                </span>
+                <hgroup>
+                    <h5><strong class="fw-bold">Computer Science and Engineering</strong></h5>
+                    <h6 class="light-text">Pranveer Singh Institute of Technology, Kanpur</h6>
+                </hgroup>
+                <time datetime="2021">2021 - Present</time><span>Kanpur</span>
             </div>
             <div class="d-flex flex-column mt-4">
-                <h5><strong class="fw-bold">Intermediate & High School</strong></h5>
-                <h6 class="light-text">
-                    Mercy Memorial School
-                </h6>
-                <span class="d-flex justify-content-between">
-                    <span>04/2019 - 04/2021</span>
-                    <span>Kanpur</span>
-                </span>
+                <hgroup>
+                    <h5><strong class="fw-bold">Intermediate & High School</strong></h5>
+                    <h6 class="light-text">Mercy Memorial School</h6>
+                </hgroup>
+                <time datetime="2019-04">04/2019 - 04/2021</time><span>Kanpur</span>
             </div>
-        </div>
+        </article>
+
         <!-- Skills Section -->
-        <div class="skills">
-            <h4 class="heading fw-bold pb-3">SKILLS</h3>
-                <div class="d-flex flex-wrap gap-2 badge_container">
-                    <span class="skill_badge">JavaScript</span>
-                    <span class="skill_badge">AWS</span>
-                    <span class="skill_badge">Java</span>
-                    <span class="skill_badge">Python</span>
-                    <span class="skill_badge">UI/UX Designing</span>
-                    <span class="skill_badge">PostgreSQL</span>
-                    <span class="skill_badge">NoSQL</span>
-                    <span class="skill_badge">React</span>
-                    <span class="skill_badge">NodeJs</span>
-                    <span class="skill_badge">Leadership</span>
-                    <span class="skill_badge">C/C++</span>
-                    <span class="skill_badge">Git / GitHub</span>
-                    <span class="skill_badge">Microsoft Office</span>
-                    <span class="skill_badge">NextJs</span>
-                    <span class="skill_badge">Firebase</span>
-                    <span class="skill_badge">Deployment</span>
-                    <span class="skill_badge">CI/CD</span>
-                </div>
-        </div>
-    </div>
+        <aside class="skills">
+            <h3 class="heading fw-bold pb-3">Skills</h3>
+            <div class="d-flex flex-wrap gap-2 badge_container">
+                <span class="skill_badge">JavaScript</span>
+                <span class="skill_badge">AWS</span>
+                <span class="skill_badge">Java</span>
+                <span class="skill_badge">Python</span>
+                <span class="skill_badge">UI/UX Designing</span>
+                <span class="skill_badge">PostgreSQL</span>
+                <span class="skill_badge">NoSQL</span>
+                <span class="skill_badge">React</span>
+                <span class="skill_badge">NodeJs</span>
+                <span class="skill_badge">Leadership</span>
+                <span class="skill_badge">C/C++</span>
+                <span class="skill_badge">Git / GitHub</span>
+                <span class="skill_badge">Microsoft Office</span>
+                <span class="skill_badge">NextJs</span>
+                <span class="skill_badge">Firebase</span>
+                <span class="skill_badge">Deployment</span>
+                <span class="skill_badge">CI/CD</span>
+            </div>
+        </aside>
+    </section>
     <!-- Projects Achievements Certifications -->
-    <div class="pac_wrapper">
-        <div class="projects">
-            <h4 class="heading fw-bold">PERSONAL PROJECTS</h4>
+    <section class="pac_wrapper">
+        <article class="projects">
+            <h3 class="heading fw-bold">Personal Projects</h3>
             <ul class="projects-list">
                 <li>
                     <strong>WorkWave (08/2023 - 10/2023)</strong>
-                    <div class="d-flex">
-                        <p>WorkWave is a robust web application streamlining company operations by facilitating seamless
-                            workflow management
-                            between employees and administrators. It efficiently records payments, tracks work progress,
-                            and facilitates task
-                            assignments.</p>
-                    </div>
+                    <p>WorkWave is a robust web application streamlining company operations by facilitating seamless
+                        workflow management between employees and administrators. It efficiently records payments,
+                        tracks work progress, and facilitates task assignments.</p>
                 </li>
                 <li>
                     <strong>Reflection (06/2023 - 09/2023)</strong>
-                    <div class="d-flex">
-                        <p>Reflection is a modern and intuitive web application that offers a
-                            curated collection of blogs and articles for inquisitive minds. With
-                            its attractive and minimalistic design, users can explore a diverse
-                            range of topics and stay updated with the latest trends in
-                            technology, science.</p>
-                    </div>
+                    <p>Reflection is a modern and intuitive web application that offers a
+                        curated collection of blogs and articles for inquisitive minds. With
+                        its attractive and minimalistic design, users can explore a diverse
+                        range of topics and stay updated with the latest trends in
+                        technology, science.</p>
                 </li>
                 <li>
                     <strong>GRCU (05/2023 - 07/2023)</strong>
-                    <div class="d-flex">
-                        <p>Sipster, a cutting-edge React Native mobile application, revolutionizes the coffee ordering
-                            experience by offering a
-                            seamless online platform. This innovative app streamlines the process, allowing users to
-                            conveniently order with just a
-                            few taps. Sipster embodies efficiency.</p>
-                    </div>
+                    <p>Sipster, a cutting-edge React Native mobile application, revolutionizes the coffee ordering
+                        experience by offering a seamless online platform. This innovative app streamlines the process,
+                        allowing users to conveniently order with just a few taps.</p>
                 </li>
             </ul>
-        </div>
-        <div class="achievements">
-            <h4 class="heading fw-bold">ACHIEVEMENTS</h4>
+        </article>
+
+        <aside class="achievements">
+            <h3 class="heading fw-bold">Achievements</h3>
             <ul class="achievements-list">
                 <li>3 Star at CodeChef</li>
                 <li>6 Star in problem solving at Hackerrank</li>
@@ -161,51 +146,50 @@
                 <li>Secured Runner Up position in an Intra-College Hackathon</li>
             </ul>
 
-            <h4 class="heading fw-bold">CERTIFICATES</h4>
+            <h3 class="heading fw-bold">Certificates</h3>
             <ul class="certificates-list">
                 <li>Open-Source Contributor (issued by GSSoC & Hacktoberfest)</li>
                 <li>Artificial Intelligence Primer Certification (issued by Infosys)</li>
                 <li>Database Management Training (issued by LinkedIn Learning)</li>
                 <li>Full Stack Development (issued by Udemy)</li>
             </ul>
-        </div>
-    </div>
+        </aside>
+    </section>
     <!-- Work Experience Languages Hobbies -->
-    <!-- Work Experience Section -->
-    <div class="we_lang_wrapper">
-        <div class="work_exp_wrapper">
-            <h4 class="heading fw-bold">WORK EXPERIENCE</h4>
+    <section class="we_lang_wrapper">
+        <article class="work_exp_wrapper">
+            <h3 class="heading fw-bold">Work Experience</h3>
             <div class="work-experience">
-                <h5><strong class="fw-bold">SDE Intern (Full Stack Developer)</strong></h5>
-                <h6>TechlyAssist</h6>
-                <span class="text-muted">06/2023 - 10/2023</span> <span class="float-end">Remote</span>
+                <h4><strong class="fw-bold">SDE Intern (Full Stack Developer)</strong></h4>
+                <h5>TechlyAssist</h5>
+                <time datetime="2023-06">06/2023 - 10/2023</time><span class="float-end">Remote</span>
                 <p class="description">
                     TechlyAssist pioneers tailored tech solutions, offering innovative software services to drive
                     efficiency and success across industries.
                 </p>
                 <ul class="achievements-tasks">
                     <li>Engineered a high-performing full stack application. Integrated top-tier UI/UX for an
-                        engaging,
-                        user-centric experience.</li>
+                        engaging, user-centric experience.</li>
                     <li>Optimized database operations, seamless version control, API integration, and efficient
                         deployment strategies for enhanced workflow management.</li>
                 </ul>
             </div>
-        </div>
-        <div class="lang_intrest_wrapper">
-            <h4 class="heading fw-bold mt-4">LANGUAGES</h4>
+        </article>
+
+        <!-- Languages and Interests Section -->
+        <aside class="lang_intrest_wrapper">
+            <h3 class="heading fw-bold mt-4">Languages</h3>
             <div class="row">
                 <div class="col-md-6">
                     <strong>English</strong>
                     <p class="light-text">Full Professional Proficiency</p>
                 </div>
                 <div class="col-md-6">
-                    <strong>English</strong>
+                    <strong>Hindi</strong>
                     <p class="light-text">Native or Bilingual Proficiency</p>
                 </div>
             </div>
-
-            <h4 class="heading fw-bold mt-4">INTERESTS</h4>
+            <h3 class="heading fw-bold mt-4">Interests</h3>
             <div class="intrest_container d-flex flex-wrap gap-2">
                 <span class="intrest_badge">Video Editing</span>
                 <span class="intrest_badge">Travelling</span>
@@ -215,11 +199,17 @@
                 <span class="intrest_badge">Music</span>
                 <span class="intrest_badge">Cooking</span>
             </div>
-        </div>
-    </div>
-
+        </aside>
+    </section>
     <script src="" async defer></script>
 </body>
-
-
 </html>
+
+<!-- semantics Tags used
+header
+section
+article
+time
+aside 
+hgroup
+-->
