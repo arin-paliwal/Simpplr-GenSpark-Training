@@ -1,9 +1,9 @@
-.header{
+/* .header{
     display: flex;
     align-items: center;
     padding-left: 2rem;
     gap: 5rem;
-}
+} */
 .profile-image {
     width: 10rem;
     height: 10rem;

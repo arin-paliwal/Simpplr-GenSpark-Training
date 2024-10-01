@@ -13,7 +13,16 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
         rel="stylesheet">
-
+    <style>
+        body {
+            background-color: #f0f0f0;
+            padding-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            overflow-x: hidden;
+        }
+    </style>
     <!-- custom css files -->
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/header.css">
@@ -25,13 +34,16 @@
 
 <body class="page_wrapper">
     <!-- Header image and description -->
-    <header class="align-items-center header">
+    <header class="align-items-center" style="display: flex;
+    align-items: center;
+    padding-left: 2rem;
+    gap: 5rem;">
         <div class="text-center">
             <img src="assets/images/arin.jpg" alt="Profile Image" class="profile-image">
         </div>
         <div class="">
             <h1>Arin Paliwal</h1>
-            <h2 class="light-text">Engineering Student</h2>
+            <h5 class="light-text">Engineering Student</h5>
             <p class="description">Motivated and skilled engineering student with a proven track record of achieving
                 goals and exceeding
                 expectations. I bring a strong foundation in programming concepts and a passion for creating functional
@@ -157,7 +169,7 @@
     </section>
     <!-- Work Experience Languages Hobbies -->
     <section class="we_lang_wrapper">
-        <article class="work_exp_wrapper">
+        <article style="width: 50%;">
             <h3 class="heading fw-bold">Work Experience</h3>
             <div class="work-experience">
                 <h4><strong class="fw-bold">SDE Intern (Full Stack Developer)</strong></h4>
@@ -175,9 +187,8 @@
                 </ul>
             </div>
         </article>
-
         <!-- Languages and Interests Section -->
-        <aside class="lang_intrest_wrapper">
+        <aside style="width: 50%;">
             <h3 class="heading fw-bold mt-4">Languages</h3>
             <div class="row">
                 <div class="col-md-6">
@@ -203,6 +214,7 @@
     </section>
     <script src="" async defer></script>
 </body>
+
 </html>
 
 <!-- semantics Tags used

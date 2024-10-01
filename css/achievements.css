@@ -3,14 +3,14 @@
     gap: 4rem;
     padding-left: 2rem;
 }
-.work_exp_wrapper{
+/* .work_exp_wrapper{
     width: 50%;
 }
 .lang_intrest_wrapper{
     width: 50%;
-}
+} */
 .intrest_badge {
-    display: flex;
+    display: inline-block;
     border: 2px solid #989da6;
     border-radius: 8px;
     font-size: medium;

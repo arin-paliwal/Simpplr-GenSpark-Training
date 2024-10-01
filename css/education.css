@@ -15,7 +15,7 @@
 }
 
 .skill_badge {
-    display: flex;
+    display: inline-block;
     background-color: #989da6;
     border: 2px solid #989da6;
     color: white;
