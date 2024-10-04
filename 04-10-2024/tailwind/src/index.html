@@ -1,16 +1,80 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./output.css" rel="stylesheet">
+    <title>Seminar Schedule</title>
+    <link rel="stylesheet" href="./output.css">
 </head>
 
-<body>
-    <h1 class="text-3xl font-bold underline">
-        Hello world!
-    </h1>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen p-4">
+    <div class="bg-white shadow-lg overflow-hidden max-w-3xl w-full">
+        <table class="w-full border-2">
+            <thead>
+                <th rowspan="4" class="border-2 border-gray-600 py-2 px-4">Day</th>
+                <tr>
+                    <th colspan="3" class="text-lg font-bold py-2 px-4 border-2 border-gray-600 bg-gray-200">Seminar
+                    </th>
+                </tr>
+                <tr>
+
+                    <th colspan="2" rowspan="1" class="border-2 border-gray-600 py-2 px-4">Schedule</th>
+                    <th rowspan="2" class="border-2 border-gray-600 py-2 px-4">Topic</th>
+                </tr>
+                <tr>
+                    <th class="border-2 border-gray-600 py-2 px-4">Begin</th>
+                    <th class="border-2 border-gray-600 py-2 px-4">End</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="2" class="border-2 border-gray-600 py-2 px-4">Monday</td>
+                    <td rowspan="2" class="border-2 border-gray-600 py-2 px-4 bg-yellow-200">8:00 a.m.</td>
+                    <td rowspan="2" class="border-2 border-gray-600 py-2 px-4 bg-purple-200">5:00 p.m.</td>
+                    <td rowspan="1" rowspan="" class="border-2 border-gray-600 py-2 px-4">
+                        <p>Introduction to XML</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="1" rowspan="" class="border-2 border-gray-600 py-2 px-4">
+                        <p>XML Schema</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="3" class="border-2 border-gray-600 py-2 px-4">Tuesday</td>
+                    <td rowspan="1" class="border-2 border-gray-600 py-2 px-4 bg-yellow-200">8:00 a.m.</td>
+                    <td rowspan="1" class="border-2 border-gray-600 py-2 px-4 bg-yellow-200">11:00 a.m.</td>
+                    <td rowspan="2" rowspan="" class="border-2 border-gray-600 py-2 px-4">
+                        <p>XPath</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="1" rowspan="" class="border-2 bg-yellow-200 border-gray-600 py-2 px-4">
+                        <p>11:00 a.m.</p>
+                    </td>
+                    <td rowspan="1" rowspan="" class="border-2 bg-green-200 border-gray-600 py-2 px-4">
+                        <p>2:00 p.m.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="1" class="border-2 bg-green-200 border-gray-600 py-2 px-4">2:00 p.m.</td>
+                    <td rowspan="1" class="border-2 border-gray-600 py-2 px-4 bg-purple-200">5:00 p.m..</td>
+                    <td rowspan="1" rowspan="" class="border-2 border-gray-600 py-2 px-4">
+                        <p>XSL Transformations</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="2" class="border-2 border-gray-600 py-2 px-4">Wednesday</td>
+                    <td rowspan="1" class="border-2 border-gray-600 py-2 px-4 bg-yellow-200">8:00 a.m.</td>
+                    <td rowspan="1" class="border-2 border-gray-600 py-2 px-4 bg-green-200">12:00 p.m.</td>
+                    <td rowspan="1" rowspan="" class="border-2 border-gray-600 py-2 px-4">
+                        <p>XSL Formatting Objects</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 
 </html>
