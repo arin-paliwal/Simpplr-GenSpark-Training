@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Arin Paliwal - Portfolio</title>
+  <meta name="description" content="A Landing Page for portfolio website for Arin Paliwal" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="Arin Paliwal, Portfolio, Frontend Developer, Web Developer, Web Designer" />
+  <link rel="icon" href="assets/favicon/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/src/styles/main.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        screens: {
+          'sm': '1100px',
+        }
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <main class="flex bg-[#f0f0f6]">
+    <!-- Sticky Navbar -->
+    <nav class="flex bg-white shadow-sm p-4 fixed w-full top-0 z-50 h-[152px] py-[2rem] px-[4.5rem]">
+      <div class="flex justify-between items-center w-full">
+        <div class="flex">
+          <img src="/07-10-2024/assets/icons/Logo.svg" alt="Logo" class="w-[158px]" />
+        </div>
+        <div class="flex items-center gap-4">
+          <ul id="nav-items" class="flex items-center gap-6">
+            <li
+              class="flex items-center justify-center px-4 py-2 font-medium rounded-md text-[14px] border-2 hover:bg-[#FFB400] transform duration-200 border-[#FFB400]">
+              <a href="/07-10-2024/index.html">Home</a>
+            </li>
+            <li
+              class="flex items-center justify-center px-4 py-2 font-medium rounded-md text-[14px] border-2 hover:bg-[#FFB400] transform duration-200 border-[#FFB400]">
+              <a href="skills/">Skills</a>
+            </li>
+            <li
+              class="flex items-center justify-center px-4 py-2 font-medium rounded-md text-[14px] border-2 hover:bg-[#FFB400] transform duration-200 border-[#FFB400]">
+              <a href="#education">Education</a>
+            </li>
+            <li
+              class="flex items-center justify-center px-4 py-2 font-medium rounded-md text-[14px] border-2 hover:bg-[#FFB400] transform duration-200 border-[#FFB400]">
+              <a href="#projects">Projects</a>
+            </li>
+            <li
+              class="flex items-center justify-center px-4 py-2 font-medium rounded-md text-[14px] border-2 hover:bg-[#FFB400] transform duration-200 border-[#FFB400]">
+              <a href="#recommendations">Recommendations</a>
+            </li>
+            <li
+              class="flex items-center justify-center px-4 py-2 font-medium rounded-md text-[14px] border-2 hover:bg-[#FFB400] transform duration-200 border-[#FFB400]">
+              <a href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="flex flex-col gap-8">
+      <!-- Hero Section -->
+      <section id="#hero"
+        class="flex sm:flex-row flex-col sm:gap-0 gap-8 justify-between sm:min-h-[calc(100vh-152px)] items-center w-full bg-[#fff] sm:mt-[152px] mt-[80px] sm:p-[5rem] p-[1.5rem]">
+        <div class="flex sm:w-1/2">
+          <div class="flex flex-col gap-[2rem] sm:gap-[4rem] justify-center">
+            <div class="flex flex-col">
+              <h1 class="text-[30px] sm:text-[48px] font-bold">I&apos;m Arin Paliwal</h1>
+              <h1 class="text-[30px] sm:text-[48px] font-bold">
+                <span class="text-[#FFB400]">Front-end</span>
+                Developer
+              </h1>
+            </div>
+            <div class="flex">
+              <h1 class="text-[#767676] text-[16px]">
+                I&apos;m a front-end developer based in India. I have a
+                passion for web design and love to create for web and mobile
+                devices. I have a strong foundation in web development and
+                design.
+              </h1>
+            </div>
+            <div class="flex">
+              <button
+                class="flex items-center justify-center gap-2 bg-[#FFB400] w-[154px] h-[51px] px-5 py-3 rounded-md font-semibold text-[16px]">
+                <h1 class="">HIRE ME</h1>
+                <img src="/07-10-2024/assets/icons/right-arrow.svg" alt="Right Arrow" class="" />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="flex sm:w-1/2 sm:mt-0 mt-[4rem]">
+          <div class="flex justify-end">
+            <img src="/07-10-2024/assets/images/Hero_Section_SVG.svg" alt="Hero Section SVG" class="" />
+          </div>
+        </div>
+      </section>
+      <!-- Projects -->
+      <section id="projects" class="flex flex-col gap-[3rem] sm:px-[5rem] p-[1.5rem]">
+        <div class="flex flex-col items-center">
+          <div class="flex">
+            <h1 class="text-[32px] font-bold">Projects</h1>
+          </div>
+          <div class="flex text-center">
+            <h1 class="text-[15px] text-[#767676]">
+              Below are several fully functional frontend and backend projects I have recently developed.
+              <br />
+              These projects were built using the latest technologies and tools.
+            </h1>
+          </div>
+        </div>
+        <div id="projects-container" class="flex flex-wrap gap-[3rem] items-center justify-center">
+          <div
+            class="flex flex-col gap-4 w-full max-w-[385px] h-[432px] bg-white rounded-[12px] shadow-md border-[#c0c0c5] border">
+            <div class="flex">
+              <img src="/07-10-2024/assets/images/Projects/Project1.png" alt="E-Commerce Platform"
+                class="w-full max-w-[385px] h-[200px] sm:h-[256px] object-cover rounded-t-lg" />
+            </div>
+            <div class="flex flex-col gap-1 px-4">
+              <h1 class="text-[16px] text-lg font-medium">E-Commerce Platform</h1>
+              <h2 class="text-[14px] text-[#767676] line-clamp-2">A full-featured e-commerce platform with a modern UI,
+                payment gateway integration, and real-time inventory management.</h2>
+              <div class="flex flex-wrap">
+                <span class="bg-[#efefef] px-3 py-1 rounded-lg text-[12px] border border-[#e3e3e3] m-1">React</span>
+                <span class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">Next.js</span>
+                <span class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">Node.js</span>
+                <span class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">MongoDB</span>
+                <span class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">Razorpay</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="flex flex-col gap-4 w-full max-w-[385px] h-[432px] bg-white rounded-[12px] shadow-md border-[#c0c0c5] border">
+            <div class="flex">
+              <img src="/07-10-2024/assets/images/Projects/Project2.png" alt="Real-Time Chat Application"
+                class="w-full max-w-[385px] h-[200px] sm:h-[256px] object-cover rounded-t-lg" />
+            </div>
+            <div class="flex flex-col gap-1 px-4">
+              <h1 class="text-[16px] text-lg font-medium">Real-Time Chat Application</h1>
+              <h2 class="text-[14px] text-[#767676] line-clamp-2">A real-time messaging app featuring WebSocket
+                communication,
+                user authentication, and chat history management.</h2>
+              <div class="flex flex-wrap">
+                <span class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">React</span>
+                <span class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">Node.js</span>
+                <span class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">Express</span>
+                <span
+                  class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">WebSocket</span>
+                <span class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">MongoDB</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="flex flex-col gap-4 w-full max-w-[385px] h-[432px] bg-white rounded-[12px] shadow-md border-[#c0c0c5] border">
+            <div class="flex">
+              <img src="/07-10-2024/assets/images/Projects/Project3.png" alt="Personal Portfolio"
+                class="w-full max-w-[385px] h-[200px] sm:h-[256px] object-cover rounded-t-lg" />
+            </div>
+            <div class="flex flex-col gap-1 px-4">
+              <h1 class="text-[16px] text-lg font-medium">Personal Portfolio</h1>
+              <h2 class="text-[14px] text-[#767676] line-clamp-2">A responsive personal portfolio website showcasing
+                projects,
+                blogs, and contact information.</h2>
+              <div class="flex flex-wrap">
+                <span class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">HTML</span>
+                <span class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">CSS</span>
+                <span
+                  class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">JavaScript</span>
+                <span class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">React</span>
+                <span class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">GitHub
+                  Pages</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="flex flex-col gap-4 w-full max-w-[385px] h-[432px] bg-white rounded-[12px] shadow-md border-[#c0c0c5] border">
+            <div class="flex">
+              <img src="/07-10-2024/assets/images/Projects/Project4.png" alt="Task Management System"
+                class="w-full max-w-[385px] h-[200px] sm:h-[256px] object-cover rounded-t-lg" />
+            </div>
+            <div class="flex flex-col gap-1 px-4">
+              <h1 class="text-[16px] text-lg font-medium">Task Management System</h1>
+              <h2 class="text-[14px] text-[#767676] line-clamp-2">A task management tool that allows teams to
+                collaborate,
+                assign tasks, and track progress in real-time.</h2>
+              <div class="flex flex-wrap">
+                <span class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">Vue.js</span>
+                <span class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">Firebase</span>
+                <span
+                  class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">Bootstrap</span>
+                <span class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">Node.js</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="flex flex-col gap-4 w-full max-w-[385px] h-[432px] bg-white rounded-[12px] shadow-md border-[#c0c0c5] border">
+            <div class="flex">
+              <img src="/07-10-2024/assets/images/Projects/Project5.png" alt="Weather Dashboard"
+                class="w-full max-w-[385px] h-[200px] sm:h-[256px] object-cover rounded-t-lg" />
+            </div>
+            <div class="flex flex-col gap-1 px-4">
+              <h1 class="text-[16px] text-lg font-medium">Weather Dashboard</h1>
+              <h2 class="text-[14px] text-[#767676] line-clamp-2">A weather dashboard displaying real-time weather data
+                using
+                a assets API, with a clean and user-friendly interface.</h2>
+              <div class="flex flex-wrap">
+                <span class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">HTML</span>
+                <span class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">CSS</span>
+                <span
+                  class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">JavaScript</span>
+                <span class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">OpenWeatherMap
+                  API</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="flex flex-col gap-4 w-full max-w-[385px] h-[432px] bg-white rounded-[12px] shadow-md border-[#c0c0c5] border">
+            <div class="flex">
+              <img src="/07-10-2024/assets/images/Projects/Project6.png" alt="Blog Platform"
+                class="w-full max-w-[385px] h-[200px] sm:h-[256px] object-cover rounded-t-lg" />
+            </div>
+            <div class="flex flex-col gap-1 px-4">
+              <h1 class="text-[16px] text-lg font-medium">Blog Platform</h1>
+              <h2 class="text-[14px] text-[#767676] line-clamp-2">A blogging platform that allows users to create, edit,
+                and
+                publish articles, with rich text formatting and comments section.</h2>
+              <div class="flex flex-wrap">
+                <span class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">Next.js</span>
+                <span class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">GraphQL</span>
+                <span class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">Apollo
+                  Client</span>
+                <span class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">MongoDB</span>
+                <span class="bg-[#efefef] px-3 py-1 rounded-2xl text-[12px] border border-[#e3e3e3] m-1">Tailwind
+                  CSS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Leave ME your info & Contact information -->
+      <section class="flex sm:flex-row flex-col gap-4 items-center sm:px-[5rem] p-[1.5rem]">
+        <div class="flex flex-col sm:w-[70%] w-full gap-4">
+          <div class="flex">
+            <h1 class="text-[32px] font-bold">Leave ME your info</h1>
+          </div>
+          <div class="flex flex-col gap-6 bg-white p-8">
+            <div class="flex flex-col gap-1">
+              <label for="name" class="text-[18px] font-medium text-[#767676]">Your Full Name (Required)</label>
+              <input id="name" class="h-[50px] bg-[#F0F0F6] rounded-md ps-4">
+            </div>
+            <div class="flex flex-col gap-1">
+              <label for="email" class="text-[18px] font-medium text-[#767676]">Your Email (Required)</label>
+              <input id="email" class="h-[50px] bg-[#F0F0F6] rounded-md ps-4">
+            </div>
+            <div class="flex flex-col gap-1">
+              <label for="subject" class="text-[18px] font-medium text-[#767676]">Subject</label>
+              <input id="subject" class="h-[50px] bg-[#F0F0F6] rounded-md ps-4">
+            </div>
+            <div class="flex flex-col gap-1">
+              <label for="message" class="text-[18px] font-medium text-[#767676]">Your Message</label>
+              <textarea id="message" class="bg-[#F0F0F6] ps-4" rows="8"></textarea>
+            </div>
+            <div class="flex">
+              <button id="submitBtn" class="bg-[#FFB400] w-[151px] h-[50px] rounded-md">
+                <h1 class="font-semibold text-[14px]">SEND MESSAGE</h1>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col sm:w-[30%] w-full gap-4">
+          <div class="flex">
+            <h1 class="text-[32px] font-bold">Contact information</h1>
+          </div>
+          <div class="flex flex-col gap-[12.5px]">
+            <div class="flex flex-col gap-4 bg-white p-6">
+              <div class="flex justify-center">
+                <div class="flex justify-center bg-[#FFB400] w-fit h-fit p-3 rounded-full">
+                  <img src="/07-10-2024/assets/icons/Book.svg" alt="Book" class="" />
+                </div>
+              </div>
+              <div class="flex justify-between items-center">
+                <h1 class="text-[18px] font-medium text-[#767676]">
+                  Country:
+                </h1>
+                <h1 class="text-[15px] text-[#767676]">
+                  India
+                </h1>
+              </div>
+              <div class="flex justify-between items-center">
+                <h1 class="text-[18px] font-medium text-[#767676]">
+                  City:
+                </h1>
+                <h1 class="text-[15px] text-[#767676]">
+                  Kanpur
+                </h1>
+              </div>
+              <div class="flex justify-between items-center">
+                <h1 class="text-[18px] font-medium text-[#767676]">
+                  Street:
+                </h1>
+                <h1 class="text-[15px] text-[#767676]">
+                  45 GH Block
+                </h1>
+              </div>
+            </div>
+            <div class="flex flex-col gap-4 bg-white p-6">
+              <div class="flex justify-center">
+                <div class="flex justify-center bg-[#FFB400] w-fit h-fit p-3 rounded-full">
+                  <img src="/07-10-2024/assets/icons/Mail.svg" alt="Book" class="" />
+                </div>
+              </div>
+              <div class="flex justify-between items-center">
+                <h1 class="text-[18px] font-medium text-[#767676]">
+                  Email:
+                </h1>
+                <h1 class="text-[15px] text-[#767676]">
+                  arin2003paliwal@gmail.com
+                </h1>
+              </div>
+              <div class="flex justify-between items-center">
+                <h1 class="text-[18px] font-medium text-[#767676]">
+                  Skype:
+                </h1>
+                <h1 class="text-[15px] text-[#767676]">
+                  @arin-skype
+                </h1>
+              </div>
+              <div class="flex justify-between items-center">
+                <h1 class="text-[18px] font-medium text-[#767676]">
+                  Telegram:
+                </h1>
+                <h1 class="text-[15px] text-[#767676]">
+                  @arin-paliwal
+                </h1>
+              </div>
+            </div>
+            <div class="flex flex-col gap-4 bg-white p-6">
+              <div class="flex justify-center">
+                <div class="flex justify-center bg-[#FFB400] w-fit h-fit p-3 rounded-full">
+                  <img src="/07-10-2024/assets/icons/Mobile.svg" alt="Book" class="w-4 h-4" />
+                </div>
+              </div>
+              <div class="flex justify-between items-center">
+                <h1 class="text-[18px] font-medium text-[#767676]">
+                  Support services:
+                </h1>
+                <h1 class="text-[15px] text-[#767676]">
+                  1539
+                </h1>
+              </div>
+              <div class="flex justify-between items-center">
+                <h1 class="text-[18px] font-medium text-[#767676]">
+                  Office:
+                </h1>
+                <h1 class="text-[15px] text-[#767676]">
+                  +58 (021)356 587 235
+                </h1>
+              </div>
+              <div class="flex justify-between items-center">
+                <h1 class="text-[18px] font-medium text-[#767676]">
+                  Personal:
+                </h1>
+                <h1 class="text-[15px] text-[#767676]">
+                  +58 (021)356 587 235
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Footer -->
+      <footer class="flex flex-col">
+        <div class="flex flex-col gap-[3rem] sm:p-[5rem] p-[1.5rem]">
+          <div class="flex justify-center sm:justify-start">
+            <img src="/07-10-2024/assets/icons/Logo.svg" alt="Logo" class="" />
+          </div>
+          <div class="flex sm:flex-row flex-col gap-[2rem] sm:items-center">
+            <div class="flex sm:flex-col flex-row gap-[1.5rem] sm:w-[35%] w-full">
+              <div class="flex flex-col">
+                <img src="/07-10-2024/assets/images/FooterL1.svg" alt="FooterL1" class="w-[90px]" />
+                <h1 class="text-[12px] text-[#767676]">4.5/5 rating on Unnpius</h1>
+              </div>
+              <div class="flex flex-col">
+                <img src="/07-10-2024/assets/images/FooterL2.svg" alt="FooterL1" class="w-[90px]" />
+                <h1 class="text-[12px] text-[#767676]">9/10 rating on Netlify</h1>
+              </div>
+              <div class="flex flex-col">
+                <img src="/07-10-2024/assets/images/FooterL3.svg" alt="FooterL1" class="w-[90px]" />
+                <h1 class="text-[12px] text-[#767676]">4/5 rating on Suote</h1>
+              </div>
+            </div>
+            <div class=" flex sm:flex-row flex-col gap-[2rem] justify-between sm:w-[65%] w-full sm:px-[2rem]">
+              <div class="flex flex-col gap-[1.5rem]">
+                <div class="flex">
+                  <h1 class="text-[20px] font-bold">Quick Links</h1>
+                </div>
+                <div class="flex flex-col gap-3">
+                  <div class="flex">
+                    <h1 class="">Home</h1>
+                  </div>
+                  <div class="flex">
+                    <h1 class="">Skills</h1>
+                  </div>
+                  <div class="flex">
+                    <h1 class="">Education</h1>
+                  </div>
+                  <div class="flex">
+                    <h1 class="">Projects</h1>
+                  </div>
+                  <div class="flex">
+                    <h1 class="">Recommendations</h1>
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-[1.5rem]">
+                <div class="flex">
+                  <h1 class="text-[20px] font-bold">Portfolio</h1>
+                </div>
+                <div class="flex flex-col gap-3">
+                  <div class="flex">
+                    <h1 class="">Frontend Development</h1>
+                  </div>
+                  <div class="flex">
+                    <h1 class="">Backend Development</h1>
+                  </div>
+                  <div class="flex">
+                    <h1 class="">Website design</h1>
+                  </div>
+                  <div class="flex">
+                    <h1 class="">Machine Learning</h1>
+                  </div>
+                  <div class="flex">
+                    <h1 class="">Problem Solving & DSA</h1>
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-[1.5rem]">
+                <div class="flex">
+                  <h1 class="text-[20px] font-bold">Connect</h1>
+                </div>
+                <div class="flex sm:flex-col flex-row gap-5">
+                  <div class="flex">
+                    <img src="/07-10-2024/assets/images/FooterR1.svg" alt="LinkedIn" class="w-[100px]" />
+                  </div>
+                  <div class="flex">
+                    <img src="/07-10-2024/assets/images/FooterR2.svg" alt="Instagram" class="w-[120px]" />
+                  </div>
+                  <div class="flex">
+                    <img src="/07-10-2024/assets/images/FooterR3.svg" alt="Facebook" class="w-[107px]" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-center items-center gap-2 sm:mb-[-3rem]">
+            <div class="flex">
+              <img src="/07-10-2024/assets/icons/Copyright.svg" alt="CopyRight" class="" />
+            </div>
+            <div class="flex">
+              <h1 class="text-[#767676] text-[16px]">2024 Copyright, All Right Reserved</h1>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </main>
+</body>
+
+</html>
