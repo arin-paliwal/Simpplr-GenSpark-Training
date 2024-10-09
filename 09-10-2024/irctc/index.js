@@ -47,6 +47,10 @@ function getBookingsByTrainTuples(bookings, trainTuples) {
   return bookings.filter((booking) => trainNames.includes(booking.trainName));
 }
 
+function sumAvailableSeats(bookings){
+    return bookings.reduce((acc,booking)=>acc+booking.availableSeats,0);
+}
+
 console.log(getTuplesWithMoreThan10Seats(bookings))
 console.log(
   getBookingsByTrainTuples(
