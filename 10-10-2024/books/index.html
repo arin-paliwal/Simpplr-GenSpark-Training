@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/10-10-2024/books/src/css/style.css" />
+  </head>
+
+  <body class="flex flex-col gap-6 bg-gray-100 p-6 relative">
+    <button
+      id="toggle-cart-button"
+      class="fixed bg-blue-500 z-50 text-white p-3 rounded-full right-10"
+    >
+      <img src="/10-10-2024/books/assets/cart.svg" alt="Cart" />
+    </button>
+    <div class="flex flex-col gap-2 my-4">
+      <h1 class="text-4xl font-bold text-center mb-8">Arin's Book Store</h1>
+      <div
+        id="books-container"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+      ></div>
+    </div>
+    <div
+      id="cart-section"
+      class="fixed bottom-5 right-5 bg-white p-4 shadow-lg w-[30rem] hidden"
+    >
+      <div class="flex flex-row-reverse items-center justify-between">
+        <button id="close-cart"
+            class="bg-gray-200 rounded-full p-2 hover:rotate-90 duration-300 transform text-xl font-bold">
+            <img src="/10-10-2024/books/assets/close.svg" alt="Close Cart" />
+        </button>
+        <h2 class="text-2xl font-semibold">Cart</h2>
+      </div>
+      <div id="cart-items" class="mt-4 flex flex-col gap-2"></div>
+      <div class="flex justify-between mt-4">
+        <h3 class="text-xl font-bold">Total:</h3>
+        <p id="total-price" class="text-xl">$0</p>
+      </div>
+    </div>
+    <script src="/10-10-2024/books/src/scripts/index.js"></script>
+  </body>
+</html>
