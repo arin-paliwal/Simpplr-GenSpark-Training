@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+</head <body class="min-h-screen flex flex-col items-center">
+
+<body class="flex flex-col p-6 gap-4">
+    <nav class="flex justify-between">
+        <h1 class="text-2xl font-bold">Weather App</h1>
+        <div class="flex items-center gap-3">
+            <a href="" class="p-2 border-2 rounded-md hover:bg-gray-200 duration-300 transform">Home</a>
+            <a href="" class="p-2 border-2 rounded-md hover:bg-gray-200 duration-300 transform">About</a>
+            <a href="" class="p-2 border-2 rounded-md hover:bg-gray-200 duration-300 transform">Contact</a>
+        </div>
+    </nav>
+    <div class="flex flex-col">
+        <div class="flex items-center gap-2">
+            <input id="search-bar" type="text"
+                class="w-[50%] p-2 text-lg border border-gray-300 rounded-md shadow-sm focus:outline-none"
+                placeholder="Search location..." />
+                <button class="p-[.65rem] w-[6rem] bg-black text-white rounded-md shadow-md" id="search-button">Search</button>
+        </div>
+        <div id="suggestions"
+            class="flex flex-col gap-1 w-[50%] bg-white rounded-md shadow-lg z-10">
+        </div>
+    </div>
+    <div id="weather-display" class="bg-white shadow-lg rounded-lg">
+        <h2 id="location-name" class="text-2xl font-bold"></h2>
+        <p id="weather-description" class="text-lg"></p>
+        <p id="temperature" class="text-4xl font-bold mt-4"></p>
+    </div>
+</body>
+<script src="index.js" defer></script>
+
+</body>
+
+</html>
