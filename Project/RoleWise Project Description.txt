@@ -1,0 +1,34 @@
+RoleWise - Advanced User Management CRM Portal
+
+Project Description:
+RoleWise is a cutting-edge, front-end User Management System (UMS) portal designed for organizations to manage and visualize user data based on hierarchical roles. The application aims to streamline organizational workflows by allowing users to log in and access data based on their roles within the company—ranging from administrators to managers and employees. With a sleek, responsive interface built on React and Tailwind CSS, RoleWise offers seamless navigation, data access, and management. The portal is designed to simulate real-world scenarios using static JSON files, avoiding the need for backend infrastructure, and focuses on hierarchy-driven access controls, enhancing user productivity and organizational transparency.
+
+Unique Features:
+Hierarchical Role-Based Access Control (RBAC):
+• Users at different levels (Admin, Manager, Employee) will have access to customized dashboards based on their assigned roles, ensuring secure and appropriate data visibility and management.
+• Admins can manage all users, assign roles, and control which data is available to which hierarchy.
+
+Intelligent Data Insights:
+• The application will provide real-time visualizations for key organizational metrics such as user activity, performance trends, and department-wise analysis, giving decision-makers actionable insights.
+
+Session Management & Security:
+• Secure local storage management ensures users' sessions are handled safely without requiring a backend. Each login triggers role-based session creation, maintaining security while providing ease of use.
+
+Technologies:
+• Frontend: HTML, Tailwind CSS, JavaScript (for responsive design and interaction).
+• Framework: React, utilizing React Router for smooth navigation across role-specific dashboards.
+• Data Management: User data and roles will be stored in static JSON files, fetched and processed using JavaScript, simulating real-time role-based access control.
+• Visualization & Libraries: Interactive charts and tables, LocalStorage for managing session information and state persistence.
+• Additional Libraries: Headless UI, Axios for dynamic data fetching (if required).
+
+Project Workflow:
+Authentication Module:
+• Users log in with predefined credentials, and role-based sessions are initiated.
+Role Dashboard:
+• Different dashboards are displayed based on user roles, with customized data views and actions.
+Admin Control:
+• Admins can add/edit/remove users, assign roles, and configure access rights dynamically.
+Data Visualization:
+• Visual representation of user performance and organization metrics available for upper management.
+Mobile & Desktop Ready:
+• The system offers a fully responsive UI optimized for mobile and desktop devices.
