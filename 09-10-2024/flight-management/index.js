@@ -94,10 +94,27 @@ addFlight("AI105", "Tokyo", "New York", 1200);
 function sortFlightsByPrice() {
     return availableFlights.slice().sort((a, b) => a.price - b.price);
 }
+function bubbleSortFlightsByPrice(flights) {
+  let n = flights.length;
+  let swapped;
+  do {
+    swapped = false;
+    for (let i = 0; i < n - 1; i++) {
+      if (flights[i].price > flights[i + 1].price) {
+        [flights[i], flights[i + 1]] = [flights[i + 1], flights[i]];
+        swapped = true;
+      }
+    }
+    n--;
+  } while (swapped);
+
+  return flights;
+}
 function filterFlightsByPrice(maxPrice) {
     return availableFlights.filter((flight) => flight.price <= maxPrice);
 }
-var sortedFlights = sortFlightsByPrice();
+// var sortedFlights = sortFlightsByPrice();
+var sortedFlights=bubbleSortFlightsByPrice(availableFlights);
 console.log(sortedFlights);
 
 var affordableFlights = filterFlightsByPrice(700);
