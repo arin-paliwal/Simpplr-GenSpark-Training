@@ -157,13 +157,10 @@ closeAddBookingModalBtn.addEventListener("click", () => {
 openAddTrainModalBtn.addEventListener("click", () =>
   addTrainModal.classList.remove("hidden")
 );
-
 closeAddTrainModalBtn.addEventListener("click", () =>
   addTrainModal.classList.add("hidden")
 );
-
 addTrainForm.addEventListener("submit", addTrain);
 addBookingForm.addEventListener("submit", addBooking);
-
 renderTrains();
 renderBookings();
