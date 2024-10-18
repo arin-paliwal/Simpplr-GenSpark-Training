@@ -52,6 +52,7 @@ function sumAvailableSeats(bookings){
 }
 
 console.log(getTuplesWithMoreThan10Seats(bookings))
+
 console.log(
   getBookingsByTrainTuples(
     bookings,
