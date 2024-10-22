@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallax Effect</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .bg-header {
+            background: url(https://picsum.photos/1920/1920/?random) center center no-repeat;
+            background-attachment: fixed;
+        }
+
+        .bg-quote {
+            background: url(https://picsum.photos/1600/1600/?random) center center no-repeat;
+            background-attachment: fixed;
+        }
+
+        .bg-hero-img {
+            background: url(https://picsum.photos/1920/1080/?random) center center no-repeat;
+            background-size: cover;
+        }
+
+        .bg-body-img {
+            background: url(https://picsum.photos/1920/1080/?random) center center no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body class="font-serif">
+
+    <!-- Header Section -->
+    <header class="bg-header flex items-center justify-center h-screen pb-12">
+        <div class="bg-white hover:bg-gray-100 transition duration-300 shadow-xl rounded-xl p-4 text-center md:p-8">
+            <p class="italic text-sm">November 1, 2023</p>
+            <h1 class="text-5xl uppercase">Parallax Effect</h1>
+            <p class="text-lg">Author Name</p>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <div class="leading-normal mx-auto py-12 px-4 max-w-xl">
+        <p class="mb-4 text-lg">
+            The parallax effect in HTML is a web design technique that creates the illusion of depth by making elements
+            on a page move at different speeds as the user scrolls through the site. This effect is achieved by
+            displacing the backgrounds of page sections at different rates in relation to the foreground content.
+        </p>
+        <p class="mb-4 text-lg">
+            The parallax effect has become popular in modern web design due to its ability to enhance the user
+            experience and make pages feel more interactive and engaging. It can be implemented using HTML, CSS, and
+            JavaScript, and there are libraries and frameworks that simplify its integration into websites.
+        </p>
+    </div>
+
+    <!-- Quote Section -->
+    <div class="bg-quote container flex items-center justify-center h-screen mx-auto">
+        <blockquote class="bg-black font-serif mx-4 p-4 text-center text-white md:p-8">
+            <p class="font-bold italic text-3xl">
+                &ldquo;Parallax effect adds depth by moving layers at different speeds during scrolling.&rdquo;
+            </p>
+        </blockquote>
+    </div>
+
+    <!-- Additional Content Section -->
+    <div class="leading-normal mx-auto py-12 px-4 max-w-xl">
+        <h2 class="mb-2 text-lg font-semibold text-gray-900">Multiple Layers:</h2>
+        <ul class="max-w-xl space-y-1 text-gray-500 list-inside">
+            <li>The parallax effect involves dividing the page into different layers, with each layer containing
+                different elements or content sections.</li>
+            <li>Each layer moves at a different speed as the user scrolls, creating the illusion of depth and movement.
+            </li>
+        </ul>
+
+        <h2 class="mb-2 text-lg font-semibold text-gray-900">Implementation with CSS and JavaScript:</h2>
+        <ul class="max-w-xl space-y-1 text-gray-500 list-inside">
+            <li>CSS is used to set the position, size, and z-index properties of the layers.</li>
+            <li>JavaScript can be used to control the movement of the layers in response to user scrolling.</li>
+        </ul>
+    </div>
+
+</body>
+
+</html>
