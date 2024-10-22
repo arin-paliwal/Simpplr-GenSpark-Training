@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music Cards</title>
+    <style>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .music-card {
+            display: flex;
+            align-items: center;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            gap: 20px;
+        }
+
+        .music-card img {
+            width: 60px;
+            height: 60px;
+            border-radius: 5px;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        h2 {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="music-card">
+            <img src="https://static-cse.canva.com/blob/978202/1600w-YmFtIRl8-qo.jpg" alt="Liked Songs" />
+            <h2>Liked&nbsp;Songs</h2>
+        </div>
+        <div class="music-card">
+            <img src="https://cdn.musicvine.com/images/good-vibes-collection-cover-v2_5528980777329875.jpg"
+                alt="Happy Vibes" />
+            <h2>Happy&nbsp;Vibes</h2>
+        </div>
+        <div class="music-card">
+            <img src="https://i.pinimg.com/originals/51/79/6e/51796e8b845389e954b98481f166296e.jpg"
+                alt="Arijit Singh Mix" />
+            <h2>Arijit&nbsp;Singh&nbsp;Mix</h2>
+        </div>
+        <div class="music-card">
+            <img src="https://i.scdn.co/image/ab67616d00001e028dce351c5e4a62c2ea2dd498" alt="Vaaste" />
+            <h2>Vaaste</h2>
+        </div>
+        <div class="music-card">
+            <img src="https://a10.gaanacdn.com/images/albums/93/3398093/crop_480x480_3398093.jpg" alt="The Carnival" />
+            <h2>The&nbsp;Carnival</h2>
+        </div>
+        <div class="music-card">
+            <img src="https://c.saavncdn.com/735/Sanam-Best-Is-Back-Hindi-2016-500x500.jpg" alt="This Is Sanam" />
+            <h2>This&nbsp;Is&nbsp;Sanam</h2>
+        </div>
+    </div>
+</body>
+
+</html>
