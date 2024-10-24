@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "es6",       // or "es2015"
+    "lib": ["es6", "dom"], // Ensure "dom" is included to access browser APIs
+    "outDir": "./dist",
+    "strict": true
+  },
+  "include": ["*.ts"],
+  "exclude": ["node_modules"]
+}
