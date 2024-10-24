@@ -1,3 +1,32 @@
+<!-- Task:
+Restaurant Order Processing System using Generators
+
+Scenario:
+Imagine you are managing an online restaurant, and orders come in one at a time. However, the kitchen can only process one order at a time, and each order takes a different amount of time to prepare.
+As the manager, you need to track the order processing system using JavaScript Generators.
+
+Objective:
+Your task is to create a generator function that simulates the process of handling restaurant orders. Each order should be processed one at a time, and once the current order is completed, the next order should start.
+
+Instructions:
+1. Create a generator function named processOrders that simulates the preparation of orders.
+
+2. Each order should have:
+    • orderId
+    • items (an array of food items)
+    • timeToPrepare (a random time between 1-5 seconds)
+
+3. Your generator function should:
+    • Log when an order starts and when it is completed.
+    • Simulate the time taken to prepare the order using setTimeout and yield to pause execution until the current order is finished.
+
+4. Use the generator function to process a list of orders and observe how it pauses between each order until its preparation is complete.
+
+Expected Outcome:
+• The generator will log each order when it starts and when it is completed.
+• It will wait for the current order to be completed before starting the next one. -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 
