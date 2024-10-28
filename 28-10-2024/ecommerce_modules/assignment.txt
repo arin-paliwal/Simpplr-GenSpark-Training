@@ -1,0 +1,87 @@
+Task 3: 28-Oct-2024
+Building an E-Commerce System with TypeScript Modules
+
+Scenario:
+You’re working on a simplified e-commerce system in TypeScript where you need to manage Products, Customers, and Orders as individual modules.
+The goal of this task is to structure code in a modular way, making the system scalable, maintainable, and easier to extend. Each module will have specific
+functionalities for its domain, and they will interact with each other to simulate real-world e-commerce operations.
+  
+Objective:
+Build, extend, and organize an e-commerce system using TypeScript modules. You'll apply core TypeScript concepts to create a modular structure,
+manage imports and exports, and practice data handling across different modules.
+  
+Step-by-Step Task Instructions:
+Step 1: Set Up the Project Structure
+1. Create a directory named src that will contain all modules.
+2. Inside src, create three subdirectories:
+   • products for product-related functionalities
+   • customers for customer-related functionalities
+   • orders for order-related functionalities
+3. Create a main file named index.ts at the root of src to bring everything together.  
+  
+Step 2: Products Module
+1. File: src/products/product.ts
+2. Goal: Define a Product type, maintain a list of products, and allow adding and listing products.
+3. Implementation:
+   • Define an interface, Product, with fields for id, name, price, and category.
+   • Create an empty array products to store product data.
+   • Implement a function addProduct that takes a Product object and adds it to the products array.
+   • Implement a function listProducts to return the list of all products.
+4. Usage: This module will allow you to add new products and view the list of products in your e-commerce system.
+
+Step 3: Customers Module
+1. File: src/customers/customer.ts
+2. Goal: Define a Customer type and manage customer data.
+3. Implementation:
+   • Define an interface, Customer, with fields for id, name, and email.
+   • Create an empty array customers to store customer data.
+   • Implement a function addCustomer that takes a Customer object and adds it to the customers array.
+   • Implement a function listCustomers to return the list of all customers.
+4. Usage: This module will allow you to add customers and view the list of customers in your e-commerce system.
+  
+Step 4: Orders Module
+1. File: src/orders/order.ts
+2. Goal: Define an Order type, manage order creation, and list orders.
+3. Implementation:
+   • Import Product from product.ts and Customer from customer.ts to be used in the order structure.
+   • Define an interface Order with fields for orderId, customer, products (an array of Product), and totalAmount.
+   • Create an empty array orders to store order data.
+   • Implement a function createOrder that:
+     • Accepts a Customer and a list of Products.
+     • Calculates the total order amount.
+     • Creates and adds a new Order to the orders array.
+   • Implement a function listOrders to return the list of all orders.
+4. Usage: This module will allow you to create new orders and view all existing orders.
+  
+Step 5: Main Application File
+1. File: src/index.ts
+2. Objective: Import functionalities from each module and demonstrate the following:
+   • Adding products
+   • Adding customers
+   • Creating an order for a customer using existing products
+
+3. Implementation:
+• Import addProduct and listProducts from product.ts.
+• Import addCustomer and listCustomers from customer.ts.
+• Import createOrder and listOrders from order.ts.
+• Use example data to:
+  • Add products to the products array.
+  • Add a customer to the customers array.
+  • Create an order using a customer and available products.
+• Log the outputs of the products, customers, and orders lists.
+
+Additional Tasks:
+Task 1: Add Product Price Update Functionality
+• Objective: Implement a feature to update the price of an existing product.
+• Instructions: In the product.ts file, add a function updateProductPrice that accepts a productId and a newPrice.
+  Update the product's price if it exists; otherwise, log an error message.
+
+Task 2: Customer Validation
+• Objective: Avoid duplicate customers.
+• Instructions: Update the addCustomer function to check if a customer with the same email already exists before adding a new one.
+  If the customer exists, log a message and skip adding them.
+
+Task 3: Order Discount Calculation
+• Objective: Implement a discount for orders over a certain amount.
+• Instructions: In the order.ts file, modify createOrder to apply a 10% discount if the totalAmount is greater than 1000.
+  Log the discounted amount in the order details.
