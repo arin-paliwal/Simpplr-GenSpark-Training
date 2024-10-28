@@ -51,7 +51,7 @@ const getMembersByRole = (members: Member[], role: MemberRole): Member[] => {
   return members.filter((member) => member.role === role);
 };
 
-// Record is a utility type that creates an object type with specified keys and values
+// Record is a utility type that creates an object type with specified keys and value
 const countBooksByGenre = (books: Book[]): Record<BookGenre, number> => {
   return books.reduce((count, book) => {
     count[book.genre] = (count[book.genre] || 0) + 1;
