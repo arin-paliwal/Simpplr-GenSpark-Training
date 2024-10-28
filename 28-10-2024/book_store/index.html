@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Club Management Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col items-center">
+    <header class="bg-purple-600 text-white w-full p-5 text-center shadow-md">
+        <h1 class="text-2xl font-bold">Book Club Management Tool</h1>
+        <p class="text-sm mt-2">Organize and filter books and members with ease</p>
+    </header>
+    <div class="w-full max-w-6xl p-6 flex flex-col gap-6">
+        <section class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Books Overview</h2>
+            <div class="flex gap-4 mb-4">
+                <select id="genre-filter" class="p-2 border border-gray-300 rounded-lg">
+                    <option value="">Filter by Genre</option>
+                    <option value="FICTION">Fiction</option>
+                    <option value="NON_FICTION">Non-Fiction</option>
+                    <option value="MYSTERY">Mystery</option>
+                    <option value="SCIENCE_FICTION">Science Fiction</option>
+                    <option value="BIOGRAPHY">Biography</option>
+                    <option value="FANTASY">Fantasy</option>
+                </select>
+                <button id="filter-books-btn"
+                    class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">Filter Books</button>
+            </div>
+            <div id="book-count" class="text-gray-700 text-lg mb-4">Total Books by Genre:</div>
+            <div id="genre-counts" class="flex flex-wrap gap-2 mb-4"></div>
+            <div id="books-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+        </section>
+        <section class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Members Overview</h2>
+            <div class="flex gap-4 mb-4">
+                <select id="role-filter" class="p-2 border border-gray-300 rounded-lg">
+                    <option value="">Filter by Role</option>
+                    <option value="ORGANIZER">Organizer</option>
+                    <option value="MODERATOR">Moderator</option>
+                    <option value="MEMBER">Member</option>
+                    <option value="GUEST">Guest</option>
+                </select>
+                <button id="filter-members-btn"
+                    class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">Filter Members</button>
+            </div>
+            <div id="members-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+        </section>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>
