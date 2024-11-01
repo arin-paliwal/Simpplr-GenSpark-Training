@@ -2,11 +2,11 @@
 var users = [
     {
         name: "Arin Paliwal",
-        password: "ap",
+        password: "12",
     },
     {
         name: "Swapinil Gupta",
-        password: "sg",
+        password: "12",
     },
 ];
 const addUsername = (users) => {
@@ -16,7 +16,37 @@ const addUsername = (users) => {
         return Object.assign(Object.assign({}, user), { username });
     });
 };
-let transactions = [];
+let transactions = [
+    {
+        type: "deposit",
+        number: 1,
+        amount: 5000,
+        date: "01-11-2024",
+        time: "12:00:00",
+    },
+    {
+        type: "withdrawal",
+        number: 2,
+        amount: 2000,
+        date: "01-11-2024",
+        time: "12:00:00",
+    },
+    {
+        type: "transfer",
+        number: 3,
+        amount: 1000,
+        recipient: "SG",
+        date: "01-11-2024",
+        time: "12:00:00",
+    },
+    {
+        type: "loan",
+        number: 4,
+        amount: 500,
+        date: "01-11-2024",
+        time: "12:00:00",
+    },
+];
 let currentUser = null;
 let balance = 10000;
 let sorted = false;
@@ -49,14 +79,15 @@ const updateTransactionsDisplay = () => {
               </span>
             </div>
             <div class="flex-1 py-2 px-4">${t.recipient || "N/A"}</div>
-            <div class="flex-1 py-2 px-4">${t.amount}€</div>
+            <div class="flex-1 py-2 px-4">${t.amount}₹</div>
             <div class="flex-1 py-2 px-4 text-gray-500">${t.time} ${t.date}</div>
           </div>`)
         .join("")}
     </div>
   `;
-    document.getElementById("current-balance").textContent = `${balance}€`;
+    document.getElementById("current-balance").textContent = `${balance}₹`;
 };
+updateTransactionsDisplay();
 const calculateTotals = () => {
     const totalIn = transactions
         .filter((t) => t.type === "deposit")
@@ -69,7 +100,12 @@ const calculateTotals = () => {
     document.getElementById("total-out").textContent = `${totalOut}₹`;
     document.getElementById("total-interest").textContent = `${interest}₹`;
 };
+calculateTotals();
 const addTransaction = (type, amount, recipient) => {
+    if (currentUser == null) {
+        alert("Please login first");
+        return;
+    }
     const newTransaction = {
         type,
         number: transactions.length + 1,
@@ -100,8 +136,21 @@ const showMainContent = () => {
     calculateTotals();
 };
 document.getElementById("sort-button").addEventListener("click", () => {
+    console.log(transactions);
     sorted = !sorted;
-    transactions = transactions.sort((a, b) => sorted ? b.amount - a.amount : a.number - b.number);
+    for (let i = 0; i < transactions.length - 1; i++) {
+        for (let j = 0; j < transactions.length - 1 - i; j++) {
+            const condition = sorted
+                ? transactions[j].amount < transactions[j + 1].amount
+                : transactions[j].amount > transactions[j + 1].amount;
+            if (condition) {
+                [transactions[j], transactions[j + 1]] = [
+                    transactions[j + 1],
+                    transactions[j],
+                ];
+            }
+        }
+    }
     updateTransactionsDisplay();
 });
 document.getElementById("transfer-button").addEventListener("click", () => {
@@ -121,8 +170,8 @@ document.getElementById("loan-button").addEventListener("click", () => {
 document.getElementById("credit-button").addEventListener("click", () => {
     const amount = parseFloat(document.getElementById("credit-amount").value);
     if (amount) {
-        addTransaction("deposit", amount);
-        // alert(`Credited ${amount}€ to your account`);
+        addTransaction("deposit", amount, currentUser === null || currentUser === void 0 ? void 0 : currentUser.name);
+        // alert(`Credited ${amount}₹ to your account`);
     }
 });
 document.getElementById("login-button").addEventListener("click", () => {
