@@ -19,7 +19,7 @@ var users: User[] = [
     password: "12",
   },
   {
-    name: "Swapinil Gupta",
+    name: "Swapnil Gupta",
     password: "12",
   },
 ];

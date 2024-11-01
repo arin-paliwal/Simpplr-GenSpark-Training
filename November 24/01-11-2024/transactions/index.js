@@ -5,7 +5,7 @@ var users = [
         password: "12",
     },
     {
-        name: "Swapinil Gupta",
+        name: "Swapnil Gupta",
         password: "12",
     },
 ];
