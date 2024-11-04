@@ -1,3 +1,6 @@
+import React from "react";
+import PropTypes from "prop-types";
+
 const Pet = (props) => {
   return React.createElement("div", {}, [
     React.createElement("h1", {}, props.name),
@@ -5,6 +8,13 @@ const Pet = (props) => {
     React.createElement("h2", {}, props.breed),
   ]);
 };
+
+Pet.propTypes = {
+  name: PropTypes.string.isRequired,
+  animal: PropTypes.string.isRequired,
+  breed: PropTypes.string.isRequired,
+};
+
 const App = () => {
   return React.createElement("div", {}, [
     React.createElement("h1", {}, "Adopt Me!"),
@@ -21,6 +31,7 @@ const App = () => {
     React.createElement(Pet, { name: "Doink", animal: "Cat", breed: "Mix" }),
   ]);
 };
+
 const container = document.getElementById("root");
 const root = ReactDOM.createRoot(container);
 
