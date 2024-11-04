@@ -1,6 +1,3 @@
-import React from "react";
-import PropTypes from "prop-types";
-
 const Pet = (props) => {
   return React.createElement("div", {}, [
     React.createElement("h1", {}, props.name),
@@ -10,9 +7,9 @@ const Pet = (props) => {
 };
 
 Pet.propTypes = {
-  name: PropTypes.string.isRequired,
-  animal: PropTypes.string.isRequired,
-  breed: PropTypes.string.isRequired,
+  name: window.PropTypes.string.isRequired,
+  animal: window.PropTypes.string.isRequired,
+  breed: window.PropTypes.string.isRequired,
 };
 
 const App = () => {
