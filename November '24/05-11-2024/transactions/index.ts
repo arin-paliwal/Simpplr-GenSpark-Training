@@ -61,7 +61,7 @@ let sorted = false;
 
 
 let logoutTimer: number  | undefined = undefined;
-const TIMEOUT_DURATION = 10000;
+const TIMEOUT_DURATION = 1 * 60 * 1000;
 
 const startLogoutTimer = () => {
   let remainingTime = TIMEOUT_DURATION / 1000;
@@ -94,7 +94,7 @@ const updateDisplayDate = () => {
 };
 
 const updateTransactionsDisplay = () => {
-  startLogoutTimer()
+  
   const container = document.getElementById("transactions-container")!;
   container.innerHTML = `
     <div class="transaction-list bg-white shadow-md rounded-lg overflow-hidden">
@@ -134,6 +134,7 @@ const updateTransactionsDisplay = () => {
   document.getElementById("current-balance")!.textContent = `${balance}₹`;
 };
 updateTransactionsDisplay();
+updateDisplayDate();
 
 const calculateTotals = () => {
   const totalIn = transactions
@@ -160,6 +161,7 @@ const addTransaction = (
     alert("Please login first");
     return;
   }
+  startLogoutTimer();
   const newTransaction: Transaction = {
     type,
     number: transactions.length + 1,
