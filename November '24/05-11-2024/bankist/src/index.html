@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bankist - Minimalist Banking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5ccb6d',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-[#f3f3f3] flex flex-col gap-6">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm px-6">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-primary">Bankist</div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#features" class="text-gray-400 font-semibold hover:text-primary">Features</a>
+                <a href="#operations" class="text-gray-400 font-semibold hover:text-primary">Operations</a>
+                <a href="#testimonials" class="text-gray-400 font-semibold hover:text-primary">Testimonials</a>
+            </div>
+            <button id="openAccountBtn"
+                class="bg-primary text-black px-4 py-2 rounded-full transition duration-300">Open
+                account</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="flex px-10 mt-14">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h1 class="text-4xl md:text-5xl leading-[3.5rem] font-bold mb-6">
+                    When <span class="bg-green-300 rounded-sm px-2">banking</span> meets <span
+                        class="bg-green-300 rounded-sm px-2">minimalist</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 font-semibold">A simpler banking experience for a simpler life.</p>
+                <button
+                    class="bg-primary text-white px-6 py-3 rounded-full hover:bg-green-600 transition duration-300">Learn
+                    more →</button>
+            </div>
+            <div>
+                <img src="../public/hero.png" alt="Banking Dashboard" width="600" height="600" class="">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+        <!-- Features Header -->
+        <div class="text-center mb-20">
+            <h2 class="text-emerald-500 font-medium mb-4">FEATURES</h2>
+            <h1 class="text-4xl md:text-5xl font-semibold text-gray-800 max-w-4xl mx-auto leading-tight">
+                Everything you need in a modern bank and more.
+            </h1>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 mt-16">
+            <div class="relative">
+                <img src="../public/digital.jpg" alt="Digital banking interface on desktop"
+                    class="w-full rounded-lg " />
+            </div>
+            <div class="flex flex-col justify-center">
+                <div class="bg-emerald-50 w-12 h-12 rounded-full flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">100% digital bank</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde alias sint quos? Accusantium a fugiat
+                    porro reiciendis saepe quibusdam debitis ducimus.
+                </p>
+            </div>
+            <div class="flex flex-col justify-center md:order-3">
+                <div class="bg-emerald-50 w-12 h-12 rounded-full flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">Free debit card included</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    Quasi, fugit in cumque cupiditate reprehenderit debitis animi enim eveniet consequatur odit quam
+                    quos
+                    possimus assumenda dicta fuga inventore ab.
+                </p>
+            </div>
+            <div class="relative md:order-4">
+                <img src="../public/card.jpg" alt="Modern debit card design" class="w-full rounded-lg " />
+            </div>
+            <div class="relative md:order-5">
+                <img src="../public/grow.jpg" alt="Modern debit card design" class="w-full rounded-lg " />
+            </div>
+            <div class="flex flex-col justify-center md:order-6">
+                <div class="bg-emerald-50 w-12 h-12 rounded-full flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">Watch your money grow</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    Quasi, fugit in cumque cupiditate reprehenderit debitis animi enim eveniet consequatur odit quam
+                    quos
+                    possimus assumenda dicta fuga inventore ab.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Operations Section -->
+    <section class="max-w-4xl mx-auto p-6 flex flex-col items-center">
+        <section class="text-center mb-12">
+            <h2 class="text-emerald-500 font-medium mb-4">OPERATIONS</h2>
+            <h1 class="text-4xl font-bold text-gray-800 mb-8">
+                Everything as simple as possible, but no simpler.
+            </h1>
+        </section>
+        <div class="mb-8">
+            <div class="flex justify-center space-x-4 mb-[-1rem]">
+                <button
+                    class="tab-button bg-yellow-400 text-gray-800 px-6 py-3 rounded-full font-semibold transition-colors duration-300 hover:bg-yellow-500"
+                    data-tab="1">
+                    01 Instant Transfers
+                </button>
+                <button
+                    class="tab-button bg-emerald-400 text-gray-800 px-6 py-3 rounded-full font-semibold transition-colors duration-300 hover:bg-emerald-500"
+                    data-tab="2">
+                    02 Instant Loans
+                </button>
+                <button
+                    class="tab-button bg-red-400 text-gray-800 px-6 py-3 rounded-full font-semibold transition-colors duration-300 hover:bg-red-500"
+                    data-tab="3">
+                    03 Instant Closing
+                </button>
+            </div>
+    
+            <div id="tabContent" class="bg-white p-10 h-[20rem] rounded-lg flex items-center">
+                <div class="tab-content" id="content-1">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-yellow-100 p-3 rounded-full mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-600" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Transfer money to anyone, instantly! No fees, no BS.
+                        </h3>
+                    </div>
+                    <p class="text-gray-600">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip ex ea commodo consequat.
+                    </p>
+                </div>
+                <div class="tab-content hidden" id="content-2">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-emerald-100 p-3 rounded-full mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Get a loan instantly with minimal paperwork.</h3>
+                    </div>
+                    <p class="text-gray-600">
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+                        anim id est laborum.
+                    </p>
+                </div>
+                <div class="tab-content hidden" id="content-3">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-red-100 p-3 rounded-full mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-600" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Close your account instantly, no questions asked.
+                        </h3>
+                    </div>
+                    <p class="text-gray-600">
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+                        dicta sunt explicabo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+        <section class="max-w-6xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-emerald-500 font-medium mb-4">NOT SURE YET?</h2>
+                <h1 class="text-4xl md:text-5xl font-semibold text-gray-800 max-w-4xl mx-auto leading-tight">
+                    Millions of Bankists are already making their lives simpler.
+                </h1>
+            </div>
+            <div class="relative max-w-4xl mx-auto">
+                <div class="overflow-hidden">
+                    <div id="slider" class="flex transition-transform duration-500">
+                        <div class="slide w-full flex-shrink-0 px-8">
+                            <div class="text-emerald-500 text-8xl font-serif mb-8">"</div>
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-6">Best financial decision ever!</h3>
+                            <p class="text-gray-600 mb-8">
+                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium quas quisquam non? Quas
+                                voluptate nulla minima deleniti optio ullam nesciunt, numquam corporis et asperiores laboriosam
+                                sunt, praesent ium suscipit blanditiis. Necessitatibus id alias reiciendis, perferendis facere
+                                pariatur dolore veniam autem esse non voluptatem saepe provident nihil molestiae.
+                            </p>
+                            <div class="flex items-center">
+                                <img src="https://avatar.iran.liara.run/public/37" alt=""
+                                    class="w-12 h-12 rounded-full object-cover mr-4">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Aarav Lynn</h4>
+                                    <p class="text-gray-600">San Francisco, USA</p>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <!-- Slide 2 -->
+                        <div class="slide w-full flex-shrink-0 px-8">
+                            <div class="text-emerald-500 text-8xl font-serif mb-8">"</div>
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-6">The last step to becoming a complete
+                                minimalist</h3>
+                            <p class="text-gray-600 mb-8">
+                                Quisquam itaque deserunt ullam, quia ea repellendus provident, ducimus neque ipsam modi
+                                voluptatibus doloremque, corrupti laborum. Incidunt numquam perferendis veritatis neque
+                                repellendus. Molestiae, vel ipsum similique fuga minus voluptatibus.
+                            </p>
+                            <div class="flex items-center">
+                                <img src="https://avatar.iran.liara.run/public/38" alt="Sarah Smith"
+                                    class="w-12 h-12 rounded-full object-cover mr-4">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Sarah Smith</h4>
+                                    <p class="text-gray-600">London, UK</p>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <!-- Slide 3 -->
+                        <div class="slide w-full flex-shrink-0 px-8">
+                            <div class="text-emerald-500 text-8xl font-serif mb-8">"</div>
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-6">Finally free from old-school banks</h3>
+                            <p class="text-gray-600 mb-8">
+                                Debitis, nihil sit minus suscipit magni aperiam vel tenetur incidunt commodi architecto numquam
+                                omnis nulla autem, necessitatibus blanditiis modi similique quidem. Odio aliquam culpa dicta
+                                beatae quod maiores ipsa minus consequatur error sunt.
+                            </p>
+                            <div class="flex items-center">
+                                <img src="https://avatar.iran.liara.run/public/39" alt="Miguel Rodriguez"
+                                    class="w-12 h-12 rounded-full object-cover mr-4">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Miguel Rodriguez</h4>
+                                    <p class="text-gray-600">Madrid, Spain</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Navigation Arrows -->
+                <button id="prevBtn"
+                    class="absolute hidden left-0 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white rounded-full shadow-lg hover:bg-gray-50 focus:outline-none">
+                    <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                <button id="nextBtn"
+                    class="absolute hidden right-0 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white rounded-full shadow-lg hover:bg-gray-50 focus:outline-none">
+                    <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+        
+                <!-- Navigation Dots -->
+                <div class="flex justify-center mt-8 space-x-2">
+                    <button class="dot w-3 h-3 rounded-full bg-emerald-500" data-index="0"></button>
+                    <button class="dot w-3 h-3 rounded-full bg-gray-300" data-index="1"></button>
+                    <button class="dot w-3 h-3 rounded-full bg-gray-300" data-index="2"></button>
+                </div>
+            </div>
+        </section>
+
+    <!-- CTA Section -->
+    <section class="bg-[#37383d] text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-8">The best day to join Bankist was one year ago.
+                <br/>
+                The second
+                best is today!</h2>
+            <button id="openAccountBtnCTA"
+                class="bg-primary text-white px-8 py-3 rounded-full hover:bg-green-600 transition duration-300">Open
+                your free account today!</button>
+        </div>
+    </section>
+
+
+    <!-- Modal -->
+    <div id="accountModal"
+        class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center hidden">
+        <div class="bg-white rounded-md shadow-xl max-w-lg w-full">
+            <button id="closeModal" class=" p-4 flex w-full justify-end text-gray-600 hover:text-gray-800">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <div class="flex flex-col gap-2 px-6 py-3">
+                <h2 class="text-2xl font-bold mb-4 leading-9">Open your bank account in just
+                    <br />
+                    <span class="bg-green-300 px-3 py-1 rounded-sm">5 minutes</span>
+                </h2>
+                <form id="accountForm">
+                    <div class="mb-2">
+                        <label for="firstName" class="block text-gray-700 font-bold mb-2">First Name</label>
+                        <input type="text" id="firstName" name="firstName" class="w-full px-3 py-2 border rounded-lg"
+                            required>
+                    </div>
+                    <div class="mb-2">
+                        <label for="lastName" class="block text-gray-700 font-bold mb-2">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" class="w-full px-3 py-2 border rounded-lg"
+                            required>
+                    </div>
+                    <div class="mb-2">
+                        <label for="email" class="block text-gray-700 font-bold mb-2">Email</label>
+                        <input type="email" id="email" name="email" class="w-full px-3 py-2 border rounded-lg" required>
+                    </div>
+                    <button type="submit"
+                        class="w-full my-4 bg-primary text-white py-2 rounded-lg hover:bg-green-600 transition duration-300">Create
+                        Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>
