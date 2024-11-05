@@ -3,6 +3,7 @@ const openAccountBtnCTA = document.getElementById("openAccountBtnCTA") as HTMLBu
 const accountModal = document.getElementById("accountModal") as HTMLDivElement;
 const closeModal = document.getElementById("closeModal") as HTMLButtonElement;
 const accountForm = document.getElementById("accountForm") as HTMLFormElement;
+const loginBTN = document.getElementById("login_btn") as HTMLButtonElement;
 
 // Function to open modal
 function openModal(): void {
@@ -18,6 +19,9 @@ function closeModalFunc(): void {
 openAccountBtn.addEventListener("click", openModal);
 openAccountBtnCTA.addEventListener("click", openModal);
 closeModal.addEventListener("click", closeModalFunc);
+loginBTN.addEventListener("click", () => {
+  window.location.href = "/November%20'24/05-11-2024/transactions/index.html";
+});
 
 // Close modal when clicking outside
 accountModal.addEventListener("click", (e: MouseEvent) => {
@@ -31,11 +35,12 @@ accountForm.addEventListener("submit", (e: Event) => {
   e.preventDefault();
   const formData = new FormData(accountForm);
   const data = Object.fromEntries(formData.entries());
-  console.log("Account creation data:", data);
-  // Here you would typically send this data to your server
-  alert("Account created successfully!");
+  let accounts = JSON.parse(localStorage.getItem("accounts") || "[]");
+  accounts.push(data);
+  localStorage.setItem("accounts", JSON.stringify(accounts));
   closeModalFunc();
   accountForm.reset();
+  window.location.href = "/November%20'24/05-11-2024/transactions/index.html";
 });
 
 // Section tabs
@@ -63,7 +68,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Activate the first tab by default
   tabButtons[0].click();
 });
 
@@ -81,7 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
   function updateSlider(): void {
     slider.style.transform = `translateX(-${currentSlide * 100}%)`;
 
-    // Update dots
     dots.forEach((dot, index) => {
       dot.classList.toggle("bg-emerald-500", index === currentSlide);
       dot.classList.toggle("bg-gray-300", index !== currentSlide);
@@ -109,6 +112,5 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Optional: Auto-play
   setInterval(nextSlide, 5000);
 });

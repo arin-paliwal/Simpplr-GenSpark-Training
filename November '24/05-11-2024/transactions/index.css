@@ -1,0 +1,27 @@
+.deposit-label {
+    background-color: #86efac;
+    color: #166534;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.875rem;
+}
+
+.withdrawal-label {
+    background-color: #fca5a5;
+    color: #991b1b;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.875rem;
+}
+
+.action-button {
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.action-button:hover {
+    background-color: #f3f4f6;
+}

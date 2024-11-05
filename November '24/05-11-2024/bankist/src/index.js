@@ -3,6 +3,7 @@ var openAccountBtnCTA = document.getElementById("openAccountBtnCTA");
 var accountModal = document.getElementById("accountModal");
 var closeModal = document.getElementById("closeModal");
 var accountForm = document.getElementById("accountForm");
+var loginBTN = document.getElementById("login_btn");
 // Function to open modal
 function openModal() {
     accountModal.classList.remove("hidden");
@@ -15,6 +16,9 @@ function closeModalFunc() {
 openAccountBtn.addEventListener("click", openModal);
 openAccountBtnCTA.addEventListener("click", openModal);
 closeModal.addEventListener("click", closeModalFunc);
+loginBTN.addEventListener("click", function () {
+    window.location.href = "/November%20'24/05-11-2024/transactions/index.html";
+});
 // Close modal when clicking outside
 accountModal.addEventListener("click", function (e) {
     if (e.target === accountModal) {
@@ -26,11 +30,12 @@ accountForm.addEventListener("submit", function (e) {
     e.preventDefault();
     var formData = new FormData(accountForm);
     var data = Object.fromEntries(formData.entries());
-    console.log("Account creation data:", data);
-    // Here you would typically send this data to your server
-    alert("Account created successfully!");
+    var accounts = JSON.parse(localStorage.getItem("accounts") || "[]");
+    accounts.push(data);
+    localStorage.setItem("accounts", JSON.stringify(accounts));
     closeModalFunc();
     accountForm.reset();
+    window.location.href = "/November%20'24/05-11-2024/transactions/index.html";
 });
 // Section tabs
 document.addEventListener("DOMContentLoaded", function () {
@@ -51,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
             button.classList.add("ring-2", "ring-offset-2", "ring-gray-500");
         });
     });
-    // Activate the first tab by default
     tabButtons[0].click();
 });
 // Testimonial slider
@@ -65,7 +69,6 @@ document.addEventListener("DOMContentLoaded", function () {
     var slideCount = slides.length;
     function updateSlider() {
         slider.style.transform = "translateX(-".concat(currentSlide * 100, "%)");
-        // Update dots
         dots.forEach(function (dot, index) {
             dot.classList.toggle("bg-emerald-500", index === currentSlide);
             dot.classList.toggle("bg-gray-300", index !== currentSlide);
@@ -88,6 +91,5 @@ document.addEventListener("DOMContentLoaded", function () {
             updateSlider();
         });
     });
-    // Optional: Auto-play
     setInterval(nextSlide, 5000);
 });

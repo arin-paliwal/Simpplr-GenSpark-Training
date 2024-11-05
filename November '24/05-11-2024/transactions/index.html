@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body class="bg-gray-50 ">
+    <div class="flex flex-col px-8 py-8 w-full min-h-screen">
+        <div class="flex justify-between items-center mb-8 w-full">
+            <h1 class="text-2xl font-medium">Welcome back
+                <span class="text-blue-500" id="user-name"></span>
+            </h1>
+            <div class="flex gap-2">
+                <input type="text" placeholder="user" id="login-username" class="border p-2 rounded" value="">
+                <input type="password" placeholder="PIN" id="login-password" class="border p-2 rounded" value="">
+                <button class="action-button" id="login-button">→</button>
+                <!-- <button class="action-button" id="logout_btn">Logout</button> -->
+            </div>
+        </div>
+        <div class="flex gap-8 w-full">
+            <!-- Left Column -->
+            <div class="flex-grow">
+                <div class="bg-white rounded-lg p-6 shadow-sm mb-6 w-full">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-medium">Current balance</h2>
+                        <p class="text-sm text-gray-500" id="current-date">Date</p>
+                    </div>
+                    <p class="text-4xl font-bold" id="current-balance">₹10000</p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm w-full">
+                    <div class="divide-y" id="transactions-container"></div>
+                </div>
+
+                <div class="flex justify-between items-center mt-6 p-4 bg-white rounded-lg shadow-sm w-full">
+                    <div class="flex gap-8">
+                        <div>
+                            <span class="text-sm text-gray-500">IN</span>
+                            <span class="text-green-500 ml-2" id="total-in"></span>
+                        </div>
+                        <div>
+                            <span class="text-sm text-gray-500">OUT</span>
+                            <span class="text-red-500 ml-2" id="total-out"></span>
+                        </div>
+                        <div>
+                            <span class="text-sm text-gray-500">INTEREST</span>
+                            <span class="text-green-500 ml-2" id="total-interest">₹60</span>
+                        </div>
+                    </div>
+                    <button class="action-button" id="sort-button">↓ SORT</button>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="w-1/3 space-y-4">
+                <!-- Transfer Money -->
+                <div class="bg-yellow-400 p-6 rounded-lg">
+                    <h3 class="text-lg font-medium mb-4">Transfer money</h3>
+                    <div class="flex gap-2 mb-2">
+                        <input type="text" placeholder="Transfer to" class="flex-1 p-2 rounded" id="transfer-recipient">
+                        <input type="number" placeholder="Amount" class="w-24 p-2 rounded" id="transfer-amount">
+                        <button class="action-button" id="transfer-button">Send</button>
+                    </div>
+                </div>
+
+                <!-- Request Loan -->
+                <div class="bg-green-400 p-6 rounded-lg">
+                    <h3 class="text-lg font-medium mb-4">Request loan</h3>
+                    <div class="flex gap-2">
+                        <input type="number" placeholder="Amount" class="flex-1 p-2 rounded" id="loan-amount">
+                        <button class="action-button" id="loan-button">→</button>
+                    </div>
+                </div>
+
+                <!-- Credit Money -->
+                <div class="bg-green-400 p-6 rounded-lg">
+                    <h3 class="text-lg font-medium mb-4">Credit Money</h3>
+                    <div class="flex gap-2">
+                        <input type="number" placeholder="Amount" class="flex-1 p-2 rounded" id="credit-amount">
+                        <button class="action-button" id="credit-button">→</button>
+                    </div>
+                </div>
+
+                <!-- Close Account -->
+                <div class="bg-red-500 p-6 rounded-lg">
+                    <h3 class="text-lg font-medium mb-4 text-white">Close account</h3>
+                    <div class="flex gap-2">
+                        <input type="text" placeholder="Confirm user" class="flex-1 p-2 rounded" id="close-user">
+                        <input type="password" placeholder="Confirm PIN" class="flex-1 p-2 rounded" id="close-pin">
+                        <button class="action-button" id="close-account-button">→</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="timer" class="fixed bottom-4 left-4 text-red-500 text-xl font-semibold"></div>
+    <script src="index.js" type="module"></script>
+</body>
+
+</html>
