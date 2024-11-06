@@ -34,8 +34,10 @@ const SearchParams = () => {
             }}
           >
             <option />
-            {ANIMALS.map((animal) => (
-              <option value={animal}>{animal}</option>
+            {ANIMALS.map((animal, index) => (
+              <option value={animal} key={index}>
+                {animal}
+              </option>
             ))}
           </select>
         </label>
@@ -47,8 +49,10 @@ const SearchParams = () => {
             onChange={(e) => setBreed(e.target.value)}
           >
             <option />
-            {breeds.map((breed) => (
-              <option value={breed}>{breed}</option>
+            {breeds.map((breed, index) => (
+              <option value={breed} key={index}>
+                {breed}
+              </option>
             ))}
           </select>
         </label>
