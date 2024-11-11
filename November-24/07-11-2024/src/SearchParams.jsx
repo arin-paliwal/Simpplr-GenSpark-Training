@@ -4,7 +4,7 @@ import useAnimalBreed from "./useBreed";
 
 const ANIMALS = ["bird", "dog", "cat", "horse", "rabbit", "reptile", "fish"];
 
-const SearchParams = () => {
+export default function SearchParams() {
   const [location, setLocation] = useState("Udaipur, Rajasthan");
   const [animal, setAnimal] = useState("dog");
   const [breed, setBreed] = useState("");
@@ -24,92 +24,97 @@ const SearchParams = () => {
   };
 
   return (
-    <div className="flex p-6 gap-6 bg-white justify-center">
-      <form className="w-1/2 flex flex-col gap-4">
-        <label className="block">
-          <span className="text-gray-700">Location</span>
-          <input
-            type="text"
-            id="location"
-            value={location}
-            placeholder="Location"
-            onChange={(e) => setLocation(e.target.value)}
-            className="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-200"
-          />
-        </label>
-        <label className="block">
-          <span className="text-gray-700">Animal</span>
-          <select
-            id="animal"
-            value={animal}
-            onChange={(e) => {
-              setAnimal(e.target.value);
-              setBreed("");
-            }}
-            className="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-200"
-          >
-            <option />
-            {ANIMALS.map((animal, index) => (
-              <option key={index} value={animal}>
-                {animal}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label className="block">
-          <span className="text-gray-700">Breed</span>
-          <select
-            id="breed"
-            value={breed}
-            onChange={(e) => setBreed(e.target.value)}
-            className="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-200"
-          >
-            <option />
-            {breedData.map((breed, index) => (
-              <option key={index} value={breed.name}>
-                {breed.name}
-              </option>
-            ))}
-          </select>
-        </label>
-        <button
-          type="button"
-          onClick={fetchPetsFromAPI}
-          className="mt-2 w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-700 transition"
-        >
-          Submit
-        </button>
-        <div className="text-center text-gray-500">{status}</div>
-      </form>
-      <div className="w-1/2 mt-6 overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
-          <thead>
-            <tr className="bg-gray-100 border-b">
-              <th className="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm text-gray-600">
-                Name
-              </th>
-              <th className="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm text-gray-600">
-                Animal
-              </th>
-              <th className="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm text-gray-600">
-                Breed
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {pets.map((pet) => (
-              <Pet
-                key={pet.id}
-                name={pet.name}
-                animal={pet.animal}
-                breed={pet.breed}
-              />
-            ))}
-          </tbody>
-        </table>
+    <div className="min-h-screen bg-gradient-to-br from-purple-100 to-indigo-200 p-8">
+      <div className="max-w-8xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+        <div className="md:flex">
+          <div className="md:w-1/3 bg-indigo-600 p-8">
+            <h2 className="text-3xl font-bold text-white mb-6">
+              Find Your Perfect Pet
+            </h2>
+            <form className="space-y-6">
+              <div>
+                <label
+                  htmlFor="location"
+                  className="block text-sm font-medium text-indigo-100"
+                >
+                  Location
+                </label>
+                <input
+                  type="text"
+                  id="location"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 bg-indigo-700 border border-indigo-500 rounded-md text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  placeholder="Enter location"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="animal"
+                  className="block text-sm font-medium text-indigo-100"
+                >
+                  Animal
+                </label>
+                <select
+                  id="animal"
+                  value={animal}
+                  onChange={(e) => {
+                    setAnimal(e.target.value);
+                    setBreed("");
+                  }}
+                  className="mt-1 block w-full px-3 py-2 bg-indigo-700 border border-indigo-500 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                >
+                  <option value="">Select an animal</option>
+                  {ANIMALS.map((animal) => (
+                    <option key={animal} value={animal}>
+                      {animal}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label
+                  htmlFor="breed"
+                  className="block text-sm font-medium text-indigo-100"
+                >
+                  Breed
+                </label>
+                <select
+                  id="breed"
+                  value={breed}
+                  onChange={(e) => setBreed(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 bg-indigo-700 border border-indigo-500 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                >
+                  <option value="">Select a breed</option>
+                  {breedData.map((breed) => (
+                    <option key={breed.name} value={breed.name}>
+                      {breed.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <button
+                type="button"
+                onClick={fetchPetsFromAPI}
+                className="w-full bg-white text-indigo-600 py-2 px-4 rounded-md font-semibold hover:bg-indigo-50 transition duration-300"
+              >
+                Search
+              </button>
+            </form>
+            <div className="mt-4 text-center text-indigo-200">{status}</div>
+          </div>
+          <div className="md:w-2/3 p-8">
+            <h3 className="text-2xl font-semibold text-gray-800 mb-6">
+              Available Pets
+            </h3>
+            <div className="space-y-6">
+              {pets.map((pet) => (
+                <Pet key={pet.id} {...pet} />
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
-};
-
-export default SearchParams;
+}
