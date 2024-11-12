@@ -1,5 +1,5 @@
 import { Dispatch, PropsWithChildren, SetStateAction, useState } from "react";
-import { Quote, fetchQuotes } from "./application";
+import { Quote, fetchQuotes } from "./Application";
 
 type QuotesPropTypes = {
   quotes: Quote[];
@@ -15,7 +15,7 @@ const Quotes = ({
   const [count, setCount] = useState(10);
 
   return (
-    <section className="flex flex-col gap-8 p-6 bg-gray-50 rounded-lg shadow-md max-w-3xl mx-auto">
+    <section className="flex flex-col gap-8 p-6 bg-gray-50 rounded-lg shadow-md max-w-6xl mx-auto">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -47,7 +47,7 @@ const Quotes = ({
           </button>
         </div>
       </form>
-      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-8 grid-cols-2">
         {children}
       </div>
     </section>
