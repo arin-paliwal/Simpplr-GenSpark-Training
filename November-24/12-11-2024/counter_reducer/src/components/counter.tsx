@@ -65,7 +65,7 @@ function reducer(state: State, action: Action): State {
   }
 }
 
-export default function Component({ InitialCounter = 0 }: CounterProps) {
+export default function Counter({ InitialCounter = 0 }: CounterProps) {
   const [state, dispatch] = useReducer(reducer, {
     count: InitialCounter,
     draftCounter: InitialCounter,

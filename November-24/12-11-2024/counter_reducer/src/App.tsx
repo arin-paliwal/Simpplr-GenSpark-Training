@@ -1,10 +1,10 @@
 import './App.css'
-import Application from './components/application'
+import Wrapper from './components/Wrapper'
 
 function App() {
   return (
     <main>
-      <Application />
+      <Wrapper />
     </main>
   )
 }

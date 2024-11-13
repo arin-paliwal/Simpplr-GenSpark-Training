@@ -1,10 +1,6 @@
-export type Quote = {
-    id: number;
-    quote: string;
-    author?: string;
-  };
+import { QuoteInterface } from "../types";
 
-const InspirationalQuote = ({ quote, author }: Quote) => {
+const InspirationalQuote = ({ quote, author }: QuoteInterface) => {
     return (
       <blockquote className="border-l-4 border-gray-800 pl-4 mb-4">
         <p>{quote}</p>

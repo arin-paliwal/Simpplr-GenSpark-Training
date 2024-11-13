@@ -1,9 +1,9 @@
-import Counter from './counter';
+import Counter from "./counter";
 
-const Application = () => (
+const Wrapper = () => (
   <main className="flex h-screen w-screen">
     <Counter InitialCounter={0} />
   </main>
 );
 
-export default Application;
+export default Wrapper;

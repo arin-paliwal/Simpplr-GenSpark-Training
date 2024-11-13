@@ -1,8 +1,9 @@
 import { PropsWithChildren, useState } from "react";
-import { Quote, fetchQuotes } from "./Wrapper";
+import {fetchQuotes } from "./Wrapper";
+import { QuoteInterface } from "../types";
 
 type QuotesPropTypes = {
-  quotes: Quote[];
+  quotes: QuoteInterface[];
   count: number;
   dispatch: React.Dispatch<any>;
   children: React.ReactNode;

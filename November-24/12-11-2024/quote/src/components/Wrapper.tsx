@@ -1,12 +1,7 @@
 import { useEffect, useReducer, useState } from "react";
-import Quotes from "./Quote";
 import InspirationalQuote from "./InspirationalQuote";
-
-export type Quote = {
-  id: number;
-  quote: string;
-  author?: string;
-};
+import { QuoteInterface } from "../types";
+import Quotes from "./Quote";
 
 export const fetchRandomQuote = async () => {
   const response = await fetch("https://dummyjson.com/quotes/random");
@@ -20,12 +15,12 @@ export const fetchQuotes = async (count: number) => {
 
 type Action =
   | { type: "SET_COUNT"; payload: number }
-  | { type: "SET_QUOTES"; payload: Quote[] }
+  | { type: "SET_QUOTES"; payload: QuoteInterface[] }
   | { type: "SET_LOADING"; payload: boolean };
 
 type State = {
   count: number;
-  quotes: Quote[];
+  quotes: QuoteInterface[];
   isLoading: boolean;
 };
 
