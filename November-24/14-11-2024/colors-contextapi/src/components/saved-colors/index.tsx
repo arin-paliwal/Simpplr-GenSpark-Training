@@ -11,7 +11,7 @@ const saved = [
 ];
 
 const SavedColors = () => {
-  const { state, dispatch } = useContext(ColorContext);
+  const { state } = useContext(ColorContext);
   const [savedColors, setSavedColors] = useState(saved);
   console.log(savedColors); 
 
@@ -32,7 +32,6 @@ const SavedColors = () => {
             key={id}
             name={name}
             hexColor={hexColor}
-            dispatch={dispatch}
             onRemove={() =>
               setSavedColors((colors) =>
                 colors.filter((color) => color.id !== id),
