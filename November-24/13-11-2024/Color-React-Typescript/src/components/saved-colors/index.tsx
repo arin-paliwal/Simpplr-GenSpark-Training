@@ -16,6 +16,7 @@ const saved = [
 
 const SavedColors = ({ hexColor,dispatch }: SavedColorsProps) => {
   const [savedColors, setSavedColors] = useState(saved);
+  console.log(savedColors); 
 
   return (
     <section className="flex flex-col w-full gap-4 sm:col-span-2">

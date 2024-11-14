@@ -1,6 +1,6 @@
 import { cmyk, hsl, hsv, rgb } from 'color-convert';
 
-type ColorState = {
+export type ColorState = {
   hexColor: string;
 };
 
@@ -52,36 +52,18 @@ export const colorReducer = (
   state: ColorState = initialState,
   action: ColorAction,
 ): ColorState => {
-  if (action.type === 'update-hex-color') {
-    const hexColor = action.payload;
-    return {
-      ...state,
-      hexColor,
-    };
-  } else if (action.type === 'update-rgb-color') {
-    const hexColorFromRGB = `#${rgb.hex(action.payload.rgb)}`;
-    return {
-      ...state,
-      hexColor: hexColorFromRGB,
-    };
-  } else if (action.type === 'update-hsl-color') {
-    const hexColorFromHSL = `#${hsl.hex(action.payload.hsl)}`;
-    return {
-      ...state,
-      hexColor: hexColorFromHSL,
-    };
-  } else if (action.type === 'update-hsv-color') {
-    const hexColorFromHSV = `#${hsv.hex(action.payload.hsv)}`;
-    return {
-      ...state,
-      hexColor: hexColorFromHSV,
-    };
-  } else if (action.type === 'update-cmyk-color') {
-    const hexColorFromCMYK = `#${cmyk.hex(action.payload.cmyk)}`;
-    return {
-      ...state,
-      hexColor: hexColorFromCMYK,
-    };
+  switch (action.type) {
+    case 'update-hex-color':
+      return { ...state, hexColor: action.payload };
+    case 'update-rgb-color':
+      return { ...state, hexColor: `#${rgb.hex(action.payload.rgb)}` };
+    case 'update-hsl-color':
+      return { ...state, hexColor: `#${hsl.hex(action.payload.hsl)}` };
+    case 'update-hsv-color':
+      return { ...state, hexColor: `#${hsv.hex(action.payload.hsv)}` };
+    case 'update-cmyk-color':
+      return { ...state, hexColor: `#${cmyk.hex(action.payload.cmyk)}` };
+    default:
+      return state;
   }
-  return state;
 };

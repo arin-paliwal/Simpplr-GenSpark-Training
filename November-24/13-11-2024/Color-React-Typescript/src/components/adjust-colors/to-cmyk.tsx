@@ -20,7 +20,7 @@ const HexToCMYK = ({ hexColor, dispatch }: HexToCMYKProps) => {
         type="number"
         value={c}
         onChange={(e) => {
-          const c = parseInt(e.target.value, 10);
+          const c = e.target.valueAsNumber
           dispatch({
             type: 'update-cmyk-color',
             payload: { cmyk: [c, m, y, k] },
@@ -34,7 +34,7 @@ const HexToCMYK = ({ hexColor, dispatch }: HexToCMYKProps) => {
         type="number"
         value={m}
         onChange={(e) => {
-          const m = parseInt(e.target.value, 10);
+          const m = e.target.valueAsNumber
           dispatch({
             type: 'update-cmyk-color',
             payload: { cmyk: [c, m, y, k] },
@@ -48,7 +48,7 @@ const HexToCMYK = ({ hexColor, dispatch }: HexToCMYKProps) => {
         type="number"
         value={y}
         onChange={(e) => {
-          const y = parseInt(e.target.value, 10);
+          const y = e.target.valueAsNumber
           dispatch({
             type: 'update-cmyk-color',
             payload: { cmyk: [c, m, y, k] },
@@ -62,7 +62,7 @@ const HexToCMYK = ({ hexColor, dispatch }: HexToCMYKProps) => {
         max={100}
         value={k}
         onChange={(e) => {
-          const k = parseInt(e.target.value, 10);
+          const k = e.target.valueAsNumber
           dispatch({
             type: 'update-cmyk-color',
             payload: { cmyk: [c, m, y, k] },

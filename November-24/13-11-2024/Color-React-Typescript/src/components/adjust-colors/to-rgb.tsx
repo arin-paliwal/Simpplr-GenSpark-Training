@@ -20,7 +20,7 @@ const HexToRGB = ({ hexColor, dispatch }: HexToRGBProps) => {
         min={0}
         max={255}
         onChange={(e) => {
-          const r = parseInt(e.target.value, 10);
+          const r = e.target.valueAsNumber
           dispatch({
             type: 'update-rgb-color',
             payload: { rgb: [r, g, b] },
@@ -34,7 +34,7 @@ const HexToRGB = ({ hexColor, dispatch }: HexToRGBProps) => {
         min={0}
         max={255}
         onChange={(e) => {
-          const g = parseInt(e.target.value, 10);
+          const g = e.target.valueAsNumber
           dispatch({
             type: 'update-rgb-color',
             payload: { rgb: [r, g, b] },
@@ -48,7 +48,7 @@ const HexToRGB = ({ hexColor, dispatch }: HexToRGBProps) => {
         min={0}
         max={255}
         onChange={(e) => {
-          const b = parseInt(e.target.value, 10);
+          const b = e.target.valueAsNumber
           dispatch({
             type: 'update-rgb-color',
             payload: { rgb: [r, g, b] },
