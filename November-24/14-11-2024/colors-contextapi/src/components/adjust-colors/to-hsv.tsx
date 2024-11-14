@@ -3,7 +3,6 @@ import LabeledInput from '../shared/labeled-input';
 import { ColorAction } from '../../color-reducer';
 import { useContext } from 'react';
 import { ColorContext } from '../../context/color-context';
-;
 
 const HexToHSV = () => {
   const { state, dispatch } = useContext(ColorContext);
