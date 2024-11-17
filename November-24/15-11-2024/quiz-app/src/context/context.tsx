@@ -8,8 +8,7 @@ type QuestionProviderProps = {
 
 export const QuizContext = createContext<QuizContextType>({
   state: initialState,
-  dispatch: () => undefined,
-});
+} as QuizContextType);
 
 export const QuizProvider = ({ children }: QuestionProviderProps) => {
   const [state, dispatch] = useReducer(quizReducer, initialState);

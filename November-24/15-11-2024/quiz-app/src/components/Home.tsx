@@ -41,21 +41,23 @@ const Home: React.FC = () => {
         </section>
 
         <section className="grid md:grid-cols-3 gap-8 mb-16">
-          {[{
-            icon: BookOpen,
-            title: "Learn",
-            description: "Gain knowledge on various topics",
-          },
-          {
-            icon: Brain,
-            title: "Challenge",
-            description: "Test your skills and improve",
-          },
-          {
-            icon: Trophy,
-            title: "Achieve",
-            description: "Earn badges and track progress",
-          }].map((feature, index) => (
+          {[
+            {
+              icon: BookOpen,
+              title: "Learn",
+              description: "Gain knowledge on various topics",
+            },
+            {
+              icon: Brain,
+              title: "Challenge",
+              description: "Test your skills and improve",
+            },
+            {
+              icon: Trophy,
+              title: "Achieve",
+              description: "Earn badges and track progress",
+            },
+          ].map((feature, index) => (
             <div
               key={index}
               className="bg-white border border-gray-300 p-6 rounded-lg text-center"

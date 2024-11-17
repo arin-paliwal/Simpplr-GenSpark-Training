@@ -8,7 +8,10 @@ export const initialState: QuizState = {
   score: 0,
 };
 
-export const quizReducer = (state: QuizState, action: QuizAction): QuizState => {
+export const quizReducer = (
+  state: QuizState,
+  action: QuizAction,
+): QuizState => {
   switch (action.type) {
     case "SET_SETTINGS":
       return {

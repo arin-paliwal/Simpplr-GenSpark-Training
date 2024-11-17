@@ -9,7 +9,7 @@ const useFetchData = (category: string, difficulty: string) => {
     const fetchQuestions = async () => {
       try {
         const response = await fetch(
-          `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=multiple`
+          `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=multiple`,
         );
         const data = await response.json();
         const shuffledQuestions = data.results.map((question: any) => ({
