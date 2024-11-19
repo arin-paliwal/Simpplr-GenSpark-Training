@@ -1,12 +1,14 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { TodoContext } from "../context";
-import { Category } from "../types/user-interface";
+import { Category, TodoItem } from "../types/user-interface";
 
 export default function PackagingTODO() {
   const { state, dispatch } = useContext(TodoContext);
+  const [editText, setEditText] = useState("");
 
-  const { todos, newTodos, activeCategory, initialSuggestions } = state;
+  const { todos, newTodos, activeCategory, initialSuggestions, editingTodoId } =
+    state;
 
   const addTodo = (category: Category) => {
     const categoryTyped = category;
@@ -48,6 +50,80 @@ export default function PackagingTODO() {
     });
     toast.success(`✅ Suggestion added to ${category}!`, { icon: "💡" });
   };
+
+  const startEditingTodo = (id: number, text: string) => {
+    dispatch({ type: "START_EDITING_TODO", payload: { id } });
+    setEditText(text);
+  };
+
+  const finishEditingTodo = (id: number) => {
+    if (editText.trim() !== "") {
+      dispatch({
+        type: "FINISH_EDITING_TODO",
+        payload: { id, text: editText },
+      });
+      toast.success("✏️ Task updated successfully!", { icon: "✅" });
+    } else {
+      dispatch({ type: "START_EDITING_TODO", payload: { id } });
+      toast.error("Task text cannot be empty.", { icon: "❌" });
+    }
+  };
+
+  const deleteTodo = (id: number) => {
+    dispatch({ type: "DELETE_TODO", payload: { id } });
+    toast.success("🗑️ Task deleted successfully!", { icon: "✅" });
+  };
+
+  const renderTodoItem = (todo: TodoItem) => (
+    <li
+      key={todo.id}
+      className={`flex items-center justify-between p-3 ${
+        todo.completed
+          ? "bg-green-50 border border-green-200"
+          : "bg-white border border-gray-200"
+      } rounded-lg shadow-sm transition-all duration-200 hover:shadow-md`}
+    >
+      <span className="flex items-center">
+        <input
+          type="checkbox"
+          checked={todo.completed}
+          onChange={() => toggleTodo(todo.id)}
+          className={`mr-3 form-checkbox h-5 w-5 ${
+            todo.completed ? "text-green-500" : "text-blue-500"
+          } rounded focus:ring-blue-500`}
+        />
+        {editingTodoId === todo.id ? (
+          <input
+            type="text"
+            value={editText}
+            onChange={(e) => setEditText(e.target.value)}
+            onBlur={() => finishEditingTodo(todo.id)}
+            onKeyUp={(e) => e.key === "Enter" && finishEditingTodo(todo.id)}
+            className="px-2 py-1 w-[20rem] border rounded"
+            autoFocus
+          />
+        ) : (
+          <span className={todo.completed ? "line-through text-gray-500" : ""}>
+            {todo.text}
+          </span>
+        )}
+      </span>
+      <div className="flex items-center gap-4">
+        <button
+          onClick={() => startEditingTodo(todo.id, todo.text)}
+          className="flex border px-2 py-1 w-[4rem] justify-center items-center rounded-md text-blue-500 hover:text-blue-700"
+        >
+          Edit
+        </button>
+        <button
+          onClick={() => deleteTodo(todo.id)}
+          className="flex border px-2 py-1 w-[4rem] justify-center items-center rounded-md text-red-500 hover:text-red-700"
+        >
+          Delete
+        </button>
+      </div>
+    </li>
+  );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 sm:p-6 md:p-8">
@@ -133,22 +209,7 @@ export default function PackagingTODO() {
                       (todo) =>
                         !todo.completed && todo.category === activeCategory
                     )
-                    .map((todo) => (
-                      <li
-                        key={todo.id}
-                        className="flex items-center justify-between p-3 bg-white border border-gray-200 rounded-lg shadow-sm transition-all duration-200 hover:shadow-md"
-                      >
-                        <span className="flex items-center">
-                          <input
-                            type="checkbox"
-                            checked={todo.completed}
-                            onChange={() => toggleTodo(todo.id)}
-                            className="mr-3 form-checkbox h-5 w-5 text-blue-500 rounded focus:ring-blue-500"
-                          />
-                          <span>{todo.text}</span>
-                        </span>
-                      </li>
-                    ))}
+                    .map(renderTodoItem)}
                 </ul>
               </div>
               <div>
@@ -161,24 +222,7 @@ export default function PackagingTODO() {
                       (todo) =>
                         todo.completed && todo.category === activeCategory
                     )
-                    .map((todo) => (
-                      <li
-                        key={todo.id}
-                        className="flex items-center justify-between p-3 bg-green-50 border border-green-200 rounded-lg shadow-sm transition-all duration-200 hover:shadow-md"
-                      >
-                        <span className="flex items-center">
-                          <input
-                            type="checkbox"
-                            checked={todo.completed}
-                            onChange={() => toggleTodo(todo.id)}
-                            className="mr-3 form-checkbox h-5 w-5 text-green-500 rounded focus:ring-green-500"
-                          />
-                          <span className="line-through text-gray-500">
-                            {todo.text}
-                          </span>
-                        </span>
-                      </li>
-                    ))}
+                    .map(renderTodoItem)}
                 </ul>
               </div>
             </div>

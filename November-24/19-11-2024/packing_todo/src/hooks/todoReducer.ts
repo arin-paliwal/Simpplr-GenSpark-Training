@@ -26,6 +26,7 @@ export const initialState: State = {
     "Space Trip": "",
   },
   initialSuggestions,
+  editingTodoId: null,
 };
 
 export const todoReducer = (state: State, action: Action): State => {
@@ -67,6 +68,23 @@ export const todoReducer = (state: State, action: Action): State => {
         completed: false,
       };
       return { ...state, todos: [...state.todos, newSuggestion] };
+    }
+    case "START_EDITING_TODO": {
+      return { ...state, editingTodoId: action.payload.id };
+    }
+    case "FINISH_EDITING_TODO": {
+      const updatedTodos = state.todos.map((todo) =>
+        todo.id === action.payload.id
+          ? { ...todo, text: action.payload.text }
+          : todo
+      );
+      return { ...state, todos: updatedTodos, editingTodoId: null };
+    }
+    case "DELETE_TODO": {
+      const updatedTodos = state.todos.filter(
+        (todo) => todo.id !== action.payload.id
+      );
+      return { ...state, todos: updatedTodos };
     }
     default:
       return state;

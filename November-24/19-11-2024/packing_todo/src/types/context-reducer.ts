@@ -10,6 +10,7 @@ export interface State {
   activeCategory: Category;
   newTodos: Record<Category, string>; 
   initialSuggestions: Record<Category, string[]>;
+  editingTodoId: number | null;
 }
 
 export type Action =
@@ -20,4 +21,7 @@ export type Action =
       type: "ADD_SUGGESTION";
       payload: { suggestion: string; category: Category };
     }
-  | { type: "SET_NEW_TODO_TEXT"; payload: { category: Category; text: string } }; 
+  | { type: "SET_NEW_TODO_TEXT"; payload: { category: Category; text: string } }
+  | { type: "START_EDITING_TODO"; payload: { id: number } }
+  | { type: "FINISH_EDITING_TODO"; payload: { id: number; text: string } }
+  | { type: "DELETE_TODO"; payload: { id: number } };
