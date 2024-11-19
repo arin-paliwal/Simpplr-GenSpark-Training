@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function QuizResults() {
   const [showAnswers, setShowAnswers] = useState(false);
-  const { state, dispatch } = useContext(QuizContext);
+  const { state } = useContext(QuizContext);
   const { questions, score } = state;
   const navigate = useNavigate();
   return (

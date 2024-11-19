@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import QuizContext from "../context/context";
 import useFetchData from "../hooks/useFetchData";
 
-const EnhancedQuiz: React.FC = () => {
+const EnhancedQuiz = () => {
   const { state, dispatch } = useContext(QuizContext);
   const navigate = useNavigate();
 

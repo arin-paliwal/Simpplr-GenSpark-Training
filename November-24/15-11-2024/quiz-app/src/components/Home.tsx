@@ -1,16 +1,16 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import QuizContext from "../context/context";
 import { BookOpen, Brain, Trophy } from "lucide-react";
 
-const Home: React.FC = () => {
+const Home = () => {
   const { dispatch } = useContext(QuizContext);
   const navigate = useNavigate();
 
   const startQuiz = () => {
     dispatch({
       type: "SET_SETTINGS",
-      payload: { category: "9", difficulty: "easy" },
+      payload: { category: "9", difficulty: "hard" },
     });
     navigate("/quiz");
   };
