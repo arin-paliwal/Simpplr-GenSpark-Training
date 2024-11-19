@@ -1,66 +1,35 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { Toaster, toast } from "react-hot-toast";
-import { Category, TodoItem } from "../types/user-interface";
-import { initialSuggestions } from "../helper/suggestions";
-
-const defaultTodos: TodoItem[] = Object.entries(initialSuggestions).flatMap(
-  ([category, suggestions]) =>
-    suggestions.slice(0, 3).map((text, index) => ({
-      id: Date.now() + index,
-      text,
-      category: category as Category,
-      completed: false,
-    }))
-);
+import { TodoContext } from "../context";
+import { Category } from "../types/user-interface";
 
 export default function PackagingTODO() {
-  const [todos, setTodos] = useState<TodoItem[]>(defaultTodos);
-  const [newTodos, setNewTodos] = useState<Record<Category, string>>({
-    Mountains: "",
-    Beaches: "",
-    "College Trip": "",
-    "Wedding Function": "",
-    "Space Trip": "",
-  });
-  const [activeCategory, setActiveCategory] = useState<Category>("Mountains");
+  const { state, dispatch } = useContext(TodoContext);
+
+  const { todos, newTodos, activeCategory, initialSuggestions } = state;
 
   const addTodo = (category: Category) => {
-    if (newTodos[category].trim() !== "") {
-      setTodos([
-        ...todos,
-        {
-          id: Date.now(),
-          text: newTodos[category],
-          category,
-          completed: false,
-        },
-      ]);
-      setNewTodos({ ...newTodos, [category]: "" });
-      toast.success(`✅ Item added to ${category}!`, {
-        icon: "🎒",
+    const categoryTyped = category as Category;
+    if (newTodos[categoryTyped].trim() !== "") {
+      dispatch({
+        type: "ADD_TODO",
+        payload: { category: categoryTyped, text: newTodos[categoryTyped] },
       });
+      toast.success(`✅ Item added to ${categoryTyped}!`, { icon: "🎒" });
     } else {
-      toast.error("Please enter an item before adding.", {
-        icon: "❌",
-      });
+      toast.error("Please enter an item before adding.", { icon: "❌" });
     }
   };
 
   const toggleTodo = (id: number) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
+    dispatch({ type: "TOGGLE_TODO", payload: { id } });
     const todo = todos.find((t) => t.id === id);
     if (todo) {
       toast.success(
         todo.completed
           ? `📦 ${todo.text} unpacked!`
           : `✅ ${todo.text} packed!`,
-        {
-          icon: todo.completed ? "🔓" : "🔒",
-        }
+        { icon: todo.completed ? "🔓" : "🔒" }
       );
     }
   };
@@ -72,13 +41,11 @@ export default function PackagingTODO() {
       });
       return;
     }
-    setTodos([
-      ...todos,
-      { id: Date.now(), text: suggestion, category, completed: false },
-    ]);
-    toast.success(`✅ Suggestion added to ${category}!`, {
-      icon: "💡",
+    dispatch({
+      type: "ADD_TODO",
+      payload: { category, text: suggestion },
     });
+    toast.success(`✅ Suggestion added to ${category}!`, { icon: "💡" });
   };
 
   return (
@@ -92,21 +59,24 @@ export default function PackagingTODO() {
                 Packing List
               </h1>
               <nav>
-                {(Object.keys(initialSuggestions) as Category[]).map(
-                  (category) => (
-                    <button
-                      key={category}
-                      onClick={() => setActiveCategory(category)}
-                      className={`w-full text-left py-3 px-4 rounded-lg transition-colors duration-200 ${
-                        activeCategory === category
-                          ? "bg-blue-500 text-white"
-                          : "text-gray-600 hover:bg-gray-200"
-                      }`}
-                    >
-                      {category}
-                    </button>
-                  )
-                )}
+                {Object.keys(initialSuggestions).map((category) => (
+                  <button
+                    key={category}
+                    onClick={() =>
+                      dispatch({
+                        type: "SET_ACTIVE_CATEGORY",
+                        payload: { category: category as Category },
+                      })
+                    }
+                    className={`w-full text-left py-3 px-4 rounded-lg transition-colors duration-200 ${
+                      activeCategory === category
+                        ? "bg-blue-500 text-white"
+                        : "text-gray-600 hover:bg-gray-200"
+                    }`}
+                  >
+                    {category}
+                  </button>
+                ))}
               </nav>
             </div>
           </div>
@@ -120,9 +90,12 @@ export default function PackagingTODO() {
                   type="text"
                   value={newTodos[activeCategory]}
                   onChange={(e) =>
-                    setNewTodos({
-                      ...newTodos,
-                      [activeCategory]: e.target.value,
+                    dispatch({
+                      type: "SET_NEW_TODO_TEXT",
+                      payload: {
+                        category: activeCategory,
+                        text: e.target.value,
+                      },
                     })
                   }
                   className="flex-grow px-4 py-2 text-gray-700 bg-gray-100 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
