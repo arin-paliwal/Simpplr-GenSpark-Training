@@ -9,7 +9,7 @@ export default function PackagingTODO() {
   const { todos, newTodos, activeCategory, initialSuggestions } = state;
 
   const addTodo = (category: Category) => {
-    const categoryTyped = category as Category;
+    const categoryTyped = category;
     if (newTodos[categoryTyped].trim() !== "") {
       dispatch({
         type: "ADD_TODO",
@@ -23,6 +23,7 @@ export default function PackagingTODO() {
 
   const toggleTodo = (id: number) => {
     dispatch({ type: "TOGGLE_TODO", payload: { id } });
+    console.log("id", id);
     const todo = todos.find((t) => t.id === id);
     if (todo) {
       toast.success(
@@ -49,7 +50,7 @@ export default function PackagingTODO() {
   };
 
   return (
-    <div className="h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 sm:p-6 md:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 sm:p-6 md:p-8">
       <Toaster position="top-right" />
       <div className="flex h-full bg-white rounded-xl shadow-lg overflow-hidden">
         <div className="md:flex">
