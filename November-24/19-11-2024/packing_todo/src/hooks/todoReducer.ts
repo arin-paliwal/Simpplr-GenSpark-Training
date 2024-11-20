@@ -24,6 +24,7 @@ export const initialState: State = {
     "College Trip": "",
     "Wedding Function": "",
     "Space Trip": "",
+    "ALL": "",
   },
   initialSuggestions,
   editingTodoId: null,
@@ -85,6 +86,19 @@ export const todoReducer = (state: State, action: Action): State => {
         (todo) => todo.id !== action.payload.id
       );
       return { ...state, todos: updatedTodos };
+    }
+    case "ADD_CATEGORY": {
+      return {
+        ...state,
+        newTodos: {
+          ...state.newTodos,
+          [action.payload.category]: "",
+        },
+        initialSuggestions: {
+          ...state.initialSuggestions,
+          [action.payload.category]: [],
+        },
+      };
     }
     default:
       return state;

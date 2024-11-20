@@ -24,4 +24,5 @@ export type Action =
   | { type: "SET_NEW_TODO_TEXT"; payload: { category: Category; text: string } }
   | { type: "START_EDITING_TODO"; payload: { id: number } }
   | { type: "FINISH_EDITING_TODO"; payload: { id: number; text: string } }
-  | { type: "DELETE_TODO"; payload: { id: number } };
+  | { type: "DELETE_TODO"; payload: { id: number } }
+  | { type: "ADD_CATEGORY"; payload: { category: Category } };

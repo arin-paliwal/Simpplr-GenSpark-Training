@@ -3,7 +3,8 @@ export type Category =
   | "Beaches"
   | "College Trip"
   | "Wedding Function"
-  | "Space Trip";
+  | "Space Trip"
+  | "ALL";
 
 export interface TodoItem {
   id: number;
