@@ -8,22 +8,19 @@ export default function PackagingTODO() {
   const { state, dispatch } = useContext(TodoContext);
   const [editText, setEditText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [hoveredTodoId, setHoveredTodoId] = useState<number | null>(null)
+  const [hoveredTodoId, setHoveredTodoId] = useState<number | null>(null);
   const [newCategoryName, setNewCategoryName] = useState("");
-
-
 
   const { todos, newTodos, activeCategory, initialSuggestions, editingTodoId } =
     state;
 
-    useEffect(() => {
-      setIsLoading(true);
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-      }, 2000);
-      return () => clearTimeout(timer);
-    }, [activeCategory]);
-  
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [activeCategory]);
 
   const addTodo = (category: Category) => {
     const categoryTyped = category;
@@ -58,7 +55,9 @@ export default function PackagingTODO() {
         payload: { category: newCategoryName as Category },
       });
       setNewCategoryName("");
-      toast.success(`✅ New category "${newCategoryName}" added!`, { icon: "📁" });
+      toast.success(`✅ New category "${newCategoryName}" added!`, {
+        icon: "📁",
+      });
     } else {
       toast.error("Please enter a category name.", { icon: "❌" });
     }
@@ -111,8 +110,8 @@ export default function PackagingTODO() {
         hoveredTodoId === todo.id
           ? "scale-105 shadow-lg z-10"
           : hoveredTodoId === null
-          ? "hover:shadow-md"
-          : "blur-sm"
+            ? "hover:shadow-md"
+            : "blur-sm"
       }`}
       onMouseEnter={() => setHoveredTodoId(todo.id)}
       onMouseLeave={() => setHoveredTodoId(null)}
@@ -162,10 +161,9 @@ export default function PackagingTODO() {
       </div>
     </li>
   );
-  
 
-return (
-    <div className="h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 sm:p-6 md:p-8">
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 sm:p-6 md:p-8">
       <Toaster position="top-right" />
       <div className="flex h-full bg-white rounded-xl shadow-lg overflow-hidden">
         <div className="flex w-full">
@@ -175,21 +173,6 @@ return (
                 Packing List
               </h1>
               <nav className="space-y-2">
-                <button
-                  onClick={() =>
-                    dispatch({
-                      type: "SET_ACTIVE_CATEGORY",
-                      payload: { category: "ALL" as Category },
-                    })
-                  }
-                  className={`w-full text-left py-3 px-4 rounded-lg transition-all duration-300 ${
-                    activeCategory === "ALL"
-                      ? "bg-blue-500 text-white"
-                      : "text-gray-600 hover:bg-gray-200"
-                  }`}
-                >
-                  ALL
-                </button>
                 {Object.keys(initialSuggestions).map((category) => (
                   <button
                     key={category}
@@ -210,7 +193,9 @@ return (
                 ))}
               </nav>
               <div className="mt-6">
-                <h2 className="text-xl font-semibold mb-2 text-gray-700">Add New Category</h2>
+                <h2 className="text-xl font-semibold mb-2 text-gray-700">
+                  Add New Category
+                </h2>
                 <div className="flex">
                   <input
                     type="text"
@@ -229,13 +214,16 @@ return (
               </div>
             </div>
           </div>
-          <div className="flex w-full p-6 overflow-y-scroll">
+          <div className="flex w-full p-6">
             {isLoading ? (
               <div className="flex justify-center items-center h-full w-full">
                 <Loader />
               </div>
             ) : (
-              <div className="transition-opacity duration-300 ease-in-out" style={{ opacity: isLoading ? 0 : 1 }}>
+              <div
+                className="transition-opacity duration-300 ease-in-out"
+                style={{ opacity: isLoading ? 0 : 1 }}
+              >
                 <div className="mb-6">
                   <h2 className="text-2xl font-semibold mb-4 text-gray-700">
                     {activeCategory}
@@ -266,22 +254,26 @@ return (
                         </button>
                       </div>
                       <div className="flex flex-wrap gap-2">
-                        {initialSuggestions[activeCategory]?.map((suggestion) => (
-                          <button
-                            key={suggestion}
-                            onClick={() => addSuggestion(suggestion, activeCategory)}
-                            className="px-3 py-1 text-sm text-blue-500 bg-blue-100 rounded-full hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200"
-                          >
-                            {suggestion}
-                          </button>
-                        ))}
+                        {initialSuggestions[activeCategory]?.map(
+                          (suggestion) => (
+                            <button
+                              key={suggestion}
+                              onClick={() =>
+                                addSuggestion(suggestion, activeCategory)
+                              }
+                              className="px-3 py-1 text-sm text-blue-500 bg-blue-100 rounded-full hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200"
+                            >
+                              {suggestion}
+                            </button>
+                          )
+                        )}
                       </div>
                     </>
                   )}
                 </div>
 
-                <div className="space-y-6">
-                  <div>
+                <div className="flex gap-6">
+                  <div className="w-1/2">
                     <h3 className="text-xl font-semibold mb-4 text-gray-700">
                       To Pack
                     </h3>
@@ -289,12 +281,15 @@ return (
                       {todos
                         .filter(
                           (todo) =>
-                            !todo.completed && (activeCategory === "ALL" || todo.category === activeCategory)
+                            !todo.completed &&
+                            (activeCategory === "ALL" ||
+                              todo.category === activeCategory)
                         )
                         .map(renderTodoItem)}
                     </ul>
                   </div>
-                  <div>
+
+                  <div className="w-1/2">
                     <h3 className="text-xl font-semibold mb-4 text-gray-700">
                       Packed
                     </h3>
@@ -302,7 +297,9 @@ return (
                       {todos
                         .filter(
                           (todo) =>
-                            todo.completed && (activeCategory === "ALL" || todo.category === activeCategory)
+                            todo.completed &&
+                            (activeCategory === "ALL" ||
+                              todo.category === activeCategory)
                         )
                         .map(renderTodoItem)}
                     </ul>
