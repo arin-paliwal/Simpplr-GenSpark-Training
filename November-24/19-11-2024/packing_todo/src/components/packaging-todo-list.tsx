@@ -1,29 +1,29 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { TodoContext } from "../context";
 import { Category, TodoItem } from "../types/user-interface";
 import Loader from "./loader";
-import { DndProvider, useDrag, useDrop } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import { DndProvider, useDrag, useDrop } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
-const ITEM_TYPE = 'TODO_ITEM';
+const ITEM_TYPE = "TODO_ITEM";
 
 interface DragItem {
   id: number;
   completed: boolean;
 }
 
-const DraggableTodoItem = ({ 
-  todo, 
-  onToggle, 
-  onEdit, 
-  onDelete, 
-  isEditing, 
-  editText, 
-  onEditChange, 
+const DraggableTodoItem = ({
+  todo,
+  onToggle,
+  onEdit,
+  onDelete,
+  isEditing,
+  editText,
+  onEditChange,
   onEditComplete,
   hoveredId,
-  onHover
+  onHover,
 }: {
   todo: TodoItem;
   onToggle: (id: number) => void;
@@ -45,10 +45,10 @@ const DraggableTodoItem = ({
   }));
 
   return (
-    <div 
-      ref={drag} 
+    <div
+      ref={drag}
       style={{ opacity: isDragging ? 0.5 : 1 }}
-      className={`${isDragging ? 'opacity-50' : 'opacity-100'}`}
+      className={`${isDragging ? "opacity-50" : "opacity-100"}`}
     >
       <li
         className={`flex items-center justify-between p-3 w-full ${
@@ -59,8 +59,8 @@ const DraggableTodoItem = ({
           hoveredId === todo.id
             ? "scale-105 shadow-lg z-10"
             : hoveredId === null
-            ? "hover:shadow-md"
-            : "blur-sm"
+              ? "hover:shadow-md"
+              : "blur-sm"
         } cursor-move`}
         onMouseEnter={() => onHover(todo.id)}
         onMouseLeave={() => onHover(null)}
@@ -113,9 +113,9 @@ const DraggableTodoItem = ({
   );
 };
 
-const DroppableList = ({ 
-  title, 
-  items, 
+const DroppableList = ({
+  title,
+  items,
   completed,
   onDrop,
   onToggle,
@@ -126,7 +126,7 @@ const DroppableList = ({
   onEditChange,
   onEditComplete,
   hoveredId,
-  onHover
+  onHover,
 }: {
   title: string;
   items: TodoItem[];
@@ -152,18 +152,16 @@ const DroppableList = ({
 
   return (
     <div className="w-1/2">
-      <h3 className="text-xl font-semibold mb-4 text-gray-700">
-        {title}
-      </h3>
-      <div 
-        ref={drop} 
+      <h3 className="text-xl font-semibold mb-4 text-gray-700">{title}</h3>
+      <div
+        ref={drop}
         className={`space-y-2 min-h-[100px] p-2 rounded-lg transition-colors ${
-          isOver ? 'bg-blue-50' : 'bg-transparent'
+          isOver ? "bg-blue-50" : "bg-transparent"
         }`}
       >
         {items.map((todo) => (
-          <DraggableTodoItem 
-            key={todo.id} 
+          <DraggableTodoItem
+            key={todo.id}
             todo={todo}
             onToggle={onToggle}
             onEdit={onEdit}
@@ -188,7 +186,8 @@ export default function PackagingTODO() {
   const [hoveredTodoId, setHoveredTodoId] = useState<number | null>(null);
   const [newCategoryName, setNewCategoryName] = useState("");
 
-  const { todos, newTodos, activeCategory, initialSuggestions, editingTodoId } = state;
+  const { todos, newTodos, activeCategory, initialSuggestions, editingTodoId } =
+    state;
 
   useEffect(() => {
     setIsLoading(true);
@@ -210,7 +209,7 @@ export default function PackagingTODO() {
     }
   };
 
-  const toggleTodo = (id: number) => {
+  const toggleTodo = useCallback((id: number) => {
     dispatch({ type: "TOGGLE_TODO", payload: { id } });
     const todo = todos.find((t) => t.id === id);
     if (todo) {
@@ -221,11 +220,8 @@ export default function PackagingTODO() {
         { icon: todo.completed ? "🔓" : "🔒" }
       );
     }
-  };
+  }, [todos, dispatch]);
 
-  const handleDrop = (item: DragItem) => {
-    toggleTodo(item.id);
-  };
 
   const addNewCategory = () => {
     if (newCategoryName.trim() !== "") {
@@ -256,12 +252,12 @@ export default function PackagingTODO() {
     toast.success(`✅ Suggestion added to ${category}!`, { icon: "💡" });
   };
 
-  const startEditingTodo = (id: number, text: string) => {
+  const startEditingTodo = useCallback((id: number, text: string) => {
     dispatch({ type: "START_EDITING_TODO", payload: { id } });
     setEditText(text);
-  };
+  }, [dispatch]);
 
-  const finishEditingTodo = (id: number) => {
+  const finishEditingTodo = useCallback((id: number) => {
     if (editText.trim() !== "") {
       dispatch({
         type: "FINISH_EDITING_TODO",
@@ -269,15 +265,18 @@ export default function PackagingTODO() {
       });
       toast.success("✏️ Task updated successfully!", { icon: "✅" });
     } else {
-      dispatch({ type: "START_EDITING_TODO", payload: { id } });
       toast.error("Task text cannot be empty.", { icon: "❌" });
     }
-  };
+  }, [editText, dispatch]);
 
-  const deleteTodo = (id: number) => {
+  const deleteTodo = useCallback((id: number) => {
     dispatch({ type: "DELETE_TODO", payload: { id } });
     toast.success("🗑️ Task deleted successfully!", { icon: "✅" });
-  };
+  }, [dispatch]);
+  
+  const handleDrop = useCallback((item: DragItem) => {
+    toggleTodo(item.id);
+  }, [toggleTodo]);
 
   return (
     <DndProvider backend={HTML5Backend}>
