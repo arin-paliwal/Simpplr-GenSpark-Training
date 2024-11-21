@@ -1,17 +1,44 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ThemeChanger } from "../theme-changer";
 import { Toaster } from "react-hot-toast";
 import ReminderModal from "../create-reminder-modal";
-import { tasks } from "../../data/main-content-data";
-import { Flag } from "lucide-react";
+import { Flag, LocateIcon } from "lucide-react";
+import { Reminder } from "../../types/main-content";
 
 export default function MainContent() {
+  interface Task {
+    status: string;
+    items: Reminder[];
+  }
   const [viewMode, setViewMode] = useState<"Board" | "List">("Board");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [tasks, setTasks] = useState<Task[]>([]);
+  useEffect(() => {
+    console.log(tasks);
+  }, [tasks]);
+  useEffect(() => {
+    const reminders = JSON.parse(localStorage.getItem("reminders") || "[]");
+
+    const groupedTasks = reminders.reduce((acc: any, task: any) => {
+      if (!acc[task.status]) {
+        acc[task.status] = [];
+      }
+      acc[task.status].push(task);
+      return acc;
+    }, {});
+
+    const tasksData = Object.keys(groupedTasks).map((status) => ({
+      status,
+      items: groupedTasks[status],
+    }));
+
+    setTasks(tasksData);
+  }, []);
 
   const renderBoardView = () => (
     <div className="grid grid-cols-4 gap-4">
-      {tasks.map((column) => (
+      {tasks.sort((a, b) => a.status.localeCompare(b.status))
+      .map((column) => (
         <div
           key={column.status}
           className="bg-white dark:bg-dark-bg rounded-lg shadow p-4"
@@ -24,22 +51,22 @@ export default function MainContent() {
           {column.items.map((task, index) => (
             <div
               key={index}
-              className="bg-white border-2 dark:border-dark-secondary dark:bg-black p-4 rounded-lg mb-2 flex flex-col gap-2"
+              className="bg-[#f4f5f6] border-2 border-transparent hover:border-primary duration-300 cursor-pointer dark:border-dark-secondary dark:bg-black p-4 rounded-lg mb-2 flex flex-col gap-2"
             >
               <div className="flex items-center gap-2 mb-1">
                 <span
                   className={`text-xs font-semibold px-2 py-1 rounded-md
                     ${
-                      task.priority === "Low"
+                      task.priority === "low"
                         ? "bg-green-100 text-green-700"
                         : ""
                     }
                     ${
-                      task.priority === "Medium"
+                      task.priority === "medium"
                         ? "bg-yellow-100 text-yellow-700"
                         : ""
                     }
-                    ${task.priority === "High" ? "bg-red-100 text-red-700" : ""}
+                    ${task.priority === "high" ? "bg-red-100 text-red-700" : ""}
                   `}
                 >
                   {task.priority}
@@ -47,17 +74,17 @@ export default function MainContent() {
                 <span
                   className={`text-xs font-semibold px-2 py-1 rounded-md
                     ${
-                      task.category === "Personal"
+                      task.category === "personal"
                         ? "bg-purple-100 text-purple-700"
                         : ""
                     }
                     ${
-                      task.category === "Health"
+                      task.category === "health"
                         ? "bg-pink-100 text-pink-700"
                         : ""
                     }
                     ${
-                      task.category === "Work"
+                      task.category === "work"
                         ? "bg-violet-100 text-violet-700"
                         : ""
                     }
@@ -67,18 +94,21 @@ export default function MainContent() {
                 </span>
               </div>
               <div className="flex flex-col">
-              <h3 className="font-bold text-light-text dark:text-dark-text">
-              {task.title}
-              </h3>
-              <h3 className="text-sm mb-1 truncate text-light-text dark:text-dark-text">
-                {task?.title}
-              </h3>
+                <h3 className="font-bold text-light-text dark:text-dark-text">
+                  {task.title}
+                </h3>
+                <h3 className="text-sm mb-1 truncate text-light-text dark:text-dark-text">
+                  {task?.description}
+                </h3>
               </div>
-              <div className="flex justify-betweentext-xs text-gray-500 items-center gap-2">
+              <div className="flex text-xs text-gray-500 items-center gap-2">
                 <Flag size={16} />
-                <span className="text-sm">{task.date}</span>●
-                <span className="text-sm">15:00</span>●
-                <span className="text-sm">Online</span>
+                <span className="text-sm">{task.date}</span> ●
+                <span className="text-sm">{task.time}</span>
+              </div>
+              <div className="flex text-xs text-gray-500 items-center gap-2">
+                <LocateIcon size={16} />
+                <span className="text-sm">{task.location}</span>
               </div>
               <div className="flex mt-2 items-center gap-3">
                 <img
@@ -86,7 +116,7 @@ export default function MainContent() {
                   alt="Avatar"
                   className="w-6 h-6 rounded-full border-2 border-white -ml-2"
                 />
-                <span className="text-sm">Arin Paliwal</span>
+                <span className="text-sm">{task.assignedUser}</span>
               </div>
             </div>
           ))}
@@ -113,9 +143,12 @@ export default function MainContent() {
                     {task.title}
                   </h3>
                   <span className="text-xs text-gray-500">{task.category}</span>
+                  <p className="text-sm text-gray-600">{task.description}</p>
+                  <p className="text-xs text-gray-500">{task.location}</p>
                 </div>
-                <div className="flex items-center gap-6">
-                  <span className="text-xs text-gray-500">{task.date}</span>
+                <div className="flex flex-col items-end">
+                  <span className="text-xs text-gray-500">{task.date} at {task.time}</span>
+                  <span className="text-xs text-gray-500">{task.assignedUser}</span>
                   <img
                     src="/avatars/memoji.jpg"
                     alt="Avatar"
@@ -129,11 +162,12 @@ export default function MainContent() {
       ))}
     </div>
   );
+  
 
   return (
     <>
       <Toaster />
-      <div className="w-full p-6 dark:bg-dark-secondary bg-[#f5f4f6]">
+      <div className="w-full overflow-auto p-6 dark:bg-dark-secondary bg-[#f5f4f6]">
         <div className="flex justify-between items-center mb-8">
           <div className="flex flex-col">
             <h1 className="text-2xl font-bold text-light-text dark:text-dark-text">
@@ -176,8 +210,7 @@ export default function MainContent() {
             List
           </button>
         </div>
-
-        <div className="flex w-full">
+        <div className="flex w-full overflow-auto">
           {viewMode === "Board" ? renderBoardView() : renderListView()}
         </div>
       </div>

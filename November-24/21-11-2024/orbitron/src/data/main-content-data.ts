@@ -1,3 +1,5 @@
+import { Reminder } from "../types/main-content";
+
 export const habits = [
   {
     name: "Observing",
@@ -10,7 +12,7 @@ export const habits = [
   { name: "Reading", icon: "/habits/reading.jpg", time: "07:00 - 09:00" },
 ];
 
-export const mock_reminders = [
+export const mock_reminders: Reminder[] = [
   {
     priority: "medium",
     category: "work",
@@ -20,7 +22,7 @@ export const mock_reminders = [
     date: "2024-11-22",
     time: "15:00",
     assignedUser: "arin@gmail.com",
-    status: "in-progress", // Default status
+    status: "in-progress", 
   },
   {
     priority: "low",
@@ -31,7 +33,7 @@ export const mock_reminders = [
     date: "2024-11-23",
     time: "19:00",
     assignedUser: "samira@gmail.com",
-    status: "assigned", // Default status
+    status: "assigned", 
   },
   {
     priority: "high",
@@ -42,7 +44,7 @@ export const mock_reminders = [
     date: "2024-11-24",
     time: "20:00",
     assignedUser: "ravi@gmail.com",
-    status: "completed", // Default status
+    status: "completed", 
   },
   {
     priority: "high",
@@ -53,7 +55,7 @@ export const mock_reminders = [
     date: "2024-11-24",
     time: "20:00",
     assignedUser: "anjali@gmail.com",
-    status: "review", // Default status
+    status: "review", 
   },
   {
     priority: "high",
@@ -64,61 +66,6 @@ export const mock_reminders = [
     date: "2024-11-24",
     time: "20:00",
     assignedUser: "arin@gmail.com",
-    status: "in-progress", // Default status
-  },
-];
-
-
-
-export const tasks = [
-  {
-    status: "To Do",
-    items: [
-      {
-        priority: "Low",
-        category: "Health",
-        title: "Finance Landing Page",
-        date: "31 Oct",
-      },
-      {
-        priority: "High",
-        category: "Health",
-        title: "CRM Dashboard",
-        date: "1 Nov",
-      },
-    ],
-  },
-  {
-    status: "In Progress",
-    items: [
-      {
-        priority: "Medium",
-        category: "Personal",
-        title: "Rent Car Personal",
-        date: "20 Oct",
-      },
-    ],
-  },
-  {
-    status: "Done",
-    items: [
-      {
-        priority: "High",
-        category: "Work",
-        title: "Sales Management UI Component",
-        date: "18 Oct",
-      },
-    ],
-  },
-  {
-    status: "Review",
-    items: [
-      {
-        priority: "Low",
-        category: "Health",
-        title: "Travel Landing Page",
-        date: "4 Nov",
-      },
-    ],
+    status: "in-progress", 
   },
 ];

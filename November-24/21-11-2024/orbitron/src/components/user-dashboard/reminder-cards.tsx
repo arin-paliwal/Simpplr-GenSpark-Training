@@ -15,9 +15,12 @@ const getRemindersByEmail = (email: string): Reminder[] => {
 };
 
 export default function ReminderCards() {
+  const [all_reminders, setAllReminders] = useState<Reminder[]>(
+    JSON.parse(localStorage.getItem("reminders") || "[]")
+  );
   const [reminders, setReminders] = useState<Reminder[]>([]);
   const [activeMenuIndex, setActiveMenuIndex] = useState<number | null>(null);
-  const menuRef = useRef<HTMLDivElement | null>(null); // Ref for the menu modal
+  const menuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const currentUserData = JSON.parse(localStorage.getItem("currentUser") || "{}");
@@ -28,8 +31,7 @@ export default function ReminderCards() {
       setReminders(mock_reminders);
     }
 
-    // Close menu if clicked outside
-    const handleClickOutside = (event: MouseEvent) => {
+      const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setActiveMenuIndex(null);
       }
@@ -48,12 +50,18 @@ export default function ReminderCards() {
 
   const handleStatusChange = (index: number, status: "assigned" | "in-progress" | "completed" | "review") => {
     const updatedReminders = [...reminders];
-    updatedReminders[index].status = status;
-    setReminders(updatedReminders);
-    setActiveMenuIndex(null);
-    toast.success(`Reminder marked as ${status}`);
-    localStorage.setItem("reminders", JSON.stringify(updatedReminders));
-  };
+    if (updatedReminders[index]) {
+        updatedReminders[index].status = status;
+        setReminders(updatedReminders);
+        setActiveMenuIndex(null);
+        toast.success(`Reminder marked as ${status}`);
+        all_reminders[index].status = status;
+        localStorage.setItem("reminders", JSON.stringify(all_reminders));
+    } else {
+        console.error("Invalid index or reminder not found");
+    }
+};
+
 
   return (
     <div className="flex flex-col">

@@ -39,7 +39,7 @@ import { useNavigate } from "react-router-dom";
     
 
     return (
-      <div className="flex flex-col h-full w-80 p-6 bg-light-bg dark:bg-dark-bg border-r dark:border-dark-secondary border-light-border_color rounded-tl-xl rounded-bl-xl justify-between">
+      <div className="flex flex-col h-full w-64 p-6 bg-light-bg dark:bg-dark-bg border-r dark:border-dark-secondary border-light-border_color rounded-tl-xl rounded-bl-xl justify-between">
         <div className="flex flex-col w-full">
           <div className="mb-8">
             <h2 className="mb-3 text-sm font-semibold text-light-texts dark:text-dark-texts">

@@ -12,6 +12,7 @@ const ReminderModal = ({ isOpen, onClose }: ReminderModalProps) => {
     date: "",
     time: "",
     assignedUser: "",
+    status: "assigned",
   });
 
   const [users, setUsers] = useState<{ name: string; email: string }[]>([]);
