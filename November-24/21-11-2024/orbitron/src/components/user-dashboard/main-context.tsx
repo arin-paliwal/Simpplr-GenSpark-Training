@@ -2,7 +2,6 @@ import { habits } from "../../data/main-content-data";
 import { useNavigate } from "react-router-dom";
 import { ThemeChanger } from "../theme-changer";
 import ReminderCards from "./reminder-cards";
-import ReminderModal from "./create-reminder-modal";
 import { useState } from "react";
 
 export function MainContent() {
@@ -15,13 +14,16 @@ export function MainContent() {
   return (
     <main className="flex-1 h-screen overflow-auto componentScroll p-6 bg-[#f5f4f7] dark:bg-dark-secondary text-light-text dark:text-dark-text rounded-tr-xl rounded-br-xl">
       <header className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Today Activities</h1>
+      <div className="flex flex-col">
+          <h1 className="text-2xl font-bold text-light-text dark:text-dark-text">
+            My Dashboard
+          </h1>
+          <h1 className="text-sm text-light-text dark:text-dark-text">
+            Signed in as {JSON.parse(localStorage.getItem("currentUser")).email}
+          </h1>
+        </div>
         <div className="flex items-center gap-4">
-          <button className="bg-primary text-white px-4 py-2 rounded"
-          onClick={() => setIsModalOpen(true)}
-          >
-            + New Activity
-          </button>
+          
           <div className="flex items-center gap-2">
             <ThemeChanger />
             <button
@@ -55,10 +57,6 @@ export function MainContent() {
         </div>
       </section>
       <ReminderCards />
-      <ReminderModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
     </main>
   );
 }

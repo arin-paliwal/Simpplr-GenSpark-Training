@@ -119,7 +119,6 @@ export function Sidebar() {
 
   return (
     <>
-      {/* Mobile menu button */}
       <button
         className="md:hidden fixed top-4 left-4 z-50 p-2 bg-primary text-white rounded-md"
         onClick={toggleMobileMenu}
@@ -132,7 +131,6 @@ export function Sidebar() {
         )}
       </button>
 
-      {/* Mobile sidebar */}
       <aside
         className={`md:hidden fixed inset-y-0 left-0 z-40 w-64 bg-white dark:bg-dark-bg text-light-text dark:text-dark-text p-6 border-r dark:border-x-dark-secondary border-light-border_color dark:border-dark-border_color transform transition-transform duration-300 ease-in-out ${
           isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
@@ -143,7 +141,6 @@ export function Sidebar() {
         </div>
       </aside>
 
-      {/* Desktop sidebar */}
       <aside className="hidden md:block w-64 h-screen overflow-auto componentScroll bg-white dark:bg-dark-bg text-light-text dark:text-dark-text p-6 border-r dark:border-x-dark-secondary border-light-border_color dark:border-dark-border_color rounded-tl-xl rounded-bl-xl">
         {sidebarContent}
       </aside>

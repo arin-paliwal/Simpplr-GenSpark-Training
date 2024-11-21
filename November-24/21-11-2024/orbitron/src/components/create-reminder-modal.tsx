@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Reminder } from '../../types/main-content'
+import { Reminder } from '../types/main-content'
 
 interface ReminderModalProps {
   isOpen: boolean
   onClose: () => void
-  onSubmit: (reminder: Reminder) => void
 }
 
 const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose }) => {
@@ -15,7 +14,9 @@ const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose }) => {
     location: '',
     date: '',
     time: '',
+    assignedUsers: []
   })
+  const [users, setUsers] = useState<{ name: string, email: string }[]>([]) 
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -25,9 +26,20 @@ const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose }) => {
     return () => window.removeEventListener('keydown', handleEscape)
   }, [onClose])
 
+  useEffect(() => {
+    const storedUsers = JSON.parse(localStorage.getItem('users') || '[]')
+    const filteredUsers = storedUsers.filter((user: { role: string }) => user.role === 'user')
+    setUsers(filteredUsers)
+  }, [])
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setReminder(prev => ({ ...prev, [name]: value }))
+  }
+
+  const handleSelectUsers = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedUsers = Array.from(e.target.selectedOptions, option => option.value)
+    setReminder(prev => ({ ...prev, assignedUsers: selectedUsers })) // Update assigned users
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -49,12 +61,11 @@ const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose }) => {
     } catch (error) {
         console.error("Failed to update reminders:", error);
     }
-};
-
+  }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-light-bg dark:bg-dark-bg rounded-lg shadow-xl w-full max-w-md">
+    <div className="fixed flex justify-center items-center z-30 p-4 inset-0 backdrop-brightness-50 backdrop:blur-lg">
+      <div className="bg-light-bg dark:bg-dark-bg rounded-lg shadow-xl h-[90%] w-[70%] overflow-auto">
         <div className="p-6">
           <h2 className="text-2xl font-bold mb-4 text-light-text dark:text-dark-text">Add New Reminder</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -76,6 +87,7 @@ const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose }) => {
                 <option value="health">Health</option>
               </select>
             </div>
+
             <div>
               <label htmlFor="title" className="block text-sm font-medium text-light-texts dark:text-dark-texts mb-1">
                 Title
@@ -90,6 +102,7 @@ const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose }) => {
                 required
               />
             </div>
+
             <div>
               <label htmlFor="description" className="block text-sm font-medium text-light-texts dark:text-dark-texts mb-1">
                 Description
@@ -104,6 +117,7 @@ const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose }) => {
                 required
               ></textarea>
             </div>
+
             <div>
               <label htmlFor="location" className="block text-sm font-medium text-light-texts dark:text-dark-texts mb-1">
                 Location
@@ -118,6 +132,7 @@ const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose }) => {
                 required
               />
             </div>
+
             <div>
               <label htmlFor="date" className="block text-sm font-medium text-light-texts dark:text-dark-texts mb-1">
                 Date
@@ -132,6 +147,7 @@ const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose }) => {
                 required
               />
             </div>
+
             <div>
               <label htmlFor="time" className="block text-sm font-medium text-light-texts dark:text-dark-texts mb-1">
                 Time
@@ -146,6 +162,26 @@ const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose }) => {
                 required
               />
             </div>
+
+            <div>
+              <label htmlFor="assignedUsers" className="block text-sm font-medium text-light-texts dark:text-dark-texts mb-1">
+                Assign Task to Users
+              </label>
+              <select
+                id="assignedUsers"
+                name="assignedUsers"
+                value={reminder.assignedUsers}
+                onChange={handleSelectUsers}
+                className="w-full p-2 rounded-md border border-border_color dark:border-border_color2 bg-light-secondarybg dark:bg-dark-secondary text-light-text dark:text-dark-text"
+              >
+                {users.map(user => (
+                  <option key={user.email} value={user.email}>
+                    {user.name} ({user.email})
+                  </option>
+                ))}
+              </select>
+            </div>
+
             <div className="flex justify-end space-x-2 mt-6">
               <button
                 type="button"
