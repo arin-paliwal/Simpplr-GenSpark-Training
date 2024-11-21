@@ -2,13 +2,18 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Loader } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/user-slice";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Login() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
+    role: 1,
   });
 
   const validateEmail = (email: string) => {
@@ -21,10 +26,37 @@ export default function Login() {
       return;
     }
     setLoading(true);
+    try {
+      const isExist = JSON.parse(localStorage.getItem("users") || "[]");
+      const userExists = isExist.find(
+        (user: any) => user.email === loginForm.email
+      );
+      if (!userExists) {
+        toast.error("User does not exist with this email.");
+        setLoading(false);
+        return;
+      }
+      if (userExists.password !== loginForm.password) {
+        toast.error("Incorrect password.");
+        setLoading(false);
+        return;
+      }
+      dispatch(login({ role: userExists.role }));
+      toast.success("Logged in successfully.");
+      setTimeout(() => {
+        navigate(
+          userExists.role === "admin" ? "/admin-dashboard" : "/user-dashboard"
+        );
+      }, 1000);
+    } catch (error) {
+      console.error("Error during login:", error);
+      setLoading(false);
+    }
   };
 
   return (
     <>
+      <Toaster />
       <div className="flex h-screen flex-col md:flex-row items-center justify-center">
         <div className="md:w-[50%] login_image bg-black relative h-screen flex-col bg-muted text-white dark:border-r flex p-8">
           <div className="login_image absolute inset-0" />
