@@ -1,85 +1,9 @@
-const tasks = [
-  {
-    status: "To Do",
-    items: [
-      {
-        priority: "Low",
-        category: "Web Design",
-        title: "Finance Landing Page",
-        date: "31 Oct",
-        comments: 9,
-        avatars: [
-          "/placeholder.svg?height=24&width=24",
-          "/placeholder.svg?height=24&width=24",
-        ],
-      },
-      {
-        priority: "High",
-        category: "Web Design",
-        title: "CRM Dashboard",
-        date: "1 Nov",
-        comments: 8,
-        avatars: [
-          "/placeholder.svg?height=24&width=24",
-          "/placeholder.svg?height=24&width=24",
-        ],
-      },
-    ],
-  },
-  {
-    status: "In Progress",
-    items: [
-      {
-        priority: "Medium",
-        category: "Mobile Apps",
-        title: "Rent Car Mobile Apps",
-        date: "20 Oct",
-        comments: 14,
-        avatars: [
-          "/placeholder.svg?height=24&width=24",
-          "/placeholder.svg?height=24&width=24",
-        ],
-      },
-    ],
-  },
-  {
-    status: "Done",
-    items: [
-      {
-        priority: "High",
-        category: "Component",
-        title: "Sales Management UI Component",
-        date: "18 Oct",
-        comments: 19,
-        avatars: [
-          "/placeholder.svg?height=24&width=24",
-          "/placeholder.svg?height=24&width=24",
-        ],
-      },
-    ],
-  },
-  {
-    status: "Review",
-    items: [
-      {
-        priority: "Low",
-        category: "Web Design",
-        title: "Travel Landing Page",
-        date: "4 Nov",
-        comments: 5,
-        avatars: [
-          "/placeholder.svg?height=24&width=24",
-          "/placeholder.svg?height=24&width=24",
-        ],
-      },
-    ],
-  },
-];
-
 import { useState } from "react";
 import { ThemeChanger } from "../theme-changer";
 import { Toaster } from "react-hot-toast";
 import ReminderModal from "../create-reminder-modal";
+import { tasks } from "../../data/main-content-data";
+import { Flag } from "lucide-react";
 
 export default function MainContent() {
   const [viewMode, setViewMode] = useState<"Board" | "List">("Board");
@@ -93,46 +17,76 @@ export default function MainContent() {
           className="bg-white dark:bg-dark-bg rounded-lg shadow p-4"
         >
           <div className="flex justify-between items-center mb-2">
-            <h2 className="font-bold text-light-text dark:text-dark-text">
-              {column.status}
-            </h2>
+            <h2>{column.status}</h2>
+
             <span className="text-gray-500">{column.items.length}</span>
           </div>
           {column.items.map((task, index) => (
             <div
               key={index}
-              className="bg-gray-50 dark:bg-dark-secondary p-3 rounded-lg mb-2"
+              className="bg-white border-2 dark:border-dark-secondary dark:bg-black p-4 rounded-lg mb-2 flex flex-col gap-2"
             >
-              <div className="flex justify-between items-center mb-1">
+              <div className="flex items-center gap-2 mb-1">
                 <span
-                  className={`text-xs font-semibold ${
-                    task.priority === "High"
-                      ? "text-red-500"
-                      : task.priority === "Medium"
-                      ? "text-yellow-500"
-                      : "text-green-500"
-                  }`}
+                  className={`text-xs font-semibold px-2 py-1 rounded-md
+                    ${
+                      task.priority === "Low"
+                        ? "bg-green-100 text-green-700"
+                        : ""
+                    }
+                    ${
+                      task.priority === "Medium"
+                        ? "bg-yellow-100 text-yellow-700"
+                        : ""
+                    }
+                    ${task.priority === "High" ? "bg-red-100 text-red-700" : ""}
+                  `}
                 >
                   {task.priority}
                 </span>
-                <span className="text-xs text-gray-500">{task.category}</span>
+                <span
+                  className={`text-xs font-semibold px-2 py-1 rounded-md
+                    ${
+                      task.category === "Personal"
+                        ? "bg-purple-100 text-purple-700"
+                        : ""
+                    }
+                    ${
+                      task.category === "Health"
+                        ? "bg-pink-100 text-pink-700"
+                        : ""
+                    }
+                    ${
+                      task.category === "Work"
+                        ? "bg-violet-100 text-violet-700"
+                        : ""
+                    }
+                  `}
+                >
+                  {task.category}
+                </span>
               </div>
-              <h3 className="font-bold mb-1 text-light-text dark:text-dark-text">
-                {task.title}
+              <div className="flex flex-col">
+              <h3 className="font-bold text-light-text dark:text-dark-text">
+              {task.title}
               </h3>
-              <div className="flex justify-between items-center text-xs text-gray-500">
-                <span>{task.date}</span>
-                <span>{task.comments} comments</span>
+              <h3 className="text-sm mb-1 truncate text-light-text dark:text-dark-text">
+                {task?.title}
+              </h3>
               </div>
-              <div className="flex mt-2">
-                {task.avatars.map((avatar, idx) => (
-                  <img
-                    key={idx}
-                    src={`https://avatar.iran.liara.run/public/${idx}`}
-                    alt="Avatar"
-                    className="w-6 h-6 rounded-full border-2 border-white -ml-2"
-                  />
-                ))}
+              <div className="flex justify-betweentext-xs text-gray-500 items-center gap-2">
+                <Flag size={16} />
+                <span className="text-sm">{task.date}</span>●
+                <span className="text-sm">15:00</span>●
+                <span className="text-sm">Online</span>
+              </div>
+              <div className="flex mt-2 items-center gap-3">
+                <img
+                  src="/avatars/memoji.jpg"
+                  alt="Avatar"
+                  className="w-6 h-6 rounded-full border-2 border-white -ml-2"
+                />
+                <span className="text-sm">Arin Paliwal</span>
               </div>
             </div>
           ))}
@@ -160,16 +114,13 @@ export default function MainContent() {
                   </h3>
                   <span className="text-xs text-gray-500">{task.category}</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-6">
                   <span className="text-xs text-gray-500">{task.date}</span>
-                  {task.avatars.map((avatar, idx) => (
-                    <img
-                      key={idx}
-                      src={avatar}
-                      alt="Avatar"
-                      className="w-6 h-6 rounded-full border-2 border-white -ml-2"
-                    />
-                  ))}
+                  <img
+                    src="/avatars/memoji.jpg"
+                    alt="Avatar"
+                    className="w-6 h-6 rounded-full border-2 border-white -ml-2"
+                  />
                 </div>
               </div>
             ))}
@@ -219,7 +170,7 @@ export default function MainContent() {
               viewMode === "List"
                 ? "border-2 border-primary bg-primary text-white"
                 : "border-2 border-transparent text-light-text dark:text-dark-text hover:border-primary hover:bg-light-secondarybg hover:dark:bg-dark-secondary"
-            }`} 
+            }`}
             onClick={() => setViewMode("List")}
           >
             List
@@ -231,10 +182,10 @@ export default function MainContent() {
         </div>
       </div>
       <div className="flex">
-      <ReminderModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
+        <ReminderModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
       </div>
     </>
   );

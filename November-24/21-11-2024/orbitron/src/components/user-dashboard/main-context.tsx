@@ -2,10 +2,15 @@ import { habits } from "../../data/main-content-data";
 import { useNavigate } from "react-router-dom";
 import { ThemeChanger } from "../theme-changer";
 import ReminderCards from "./reminder-cards";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/user-slice";
 
 export function MainContent() {
   const navigate = useNavigate();
+  const dispath=useDispatch()
   const handleLogout = () => {
+    dispath(logout())
+    localStorage.removeItem("currentUser");
     navigate("/");
   };
 

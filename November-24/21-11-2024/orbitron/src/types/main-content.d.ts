@@ -11,7 +11,8 @@ interface Reminder {
   location: string;
   time: string;
   date: string;
-  assignedUsers: string[];
+  assignedUser: string;
+  priority: string;
 }
 
 interface ReminderModalProps {

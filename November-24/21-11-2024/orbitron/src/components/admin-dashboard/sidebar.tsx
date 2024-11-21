@@ -10,6 +10,9 @@
     Users2,
     BarChart,
   } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/user-slice";
+import { useNavigate } from "react-router-dom";
 
   export default function Sidebar() {
     const [selectedTab, setSelectedTab] = useState("dashboard");
@@ -26,6 +29,13 @@
       { name: "teams", icon: <Users className="w-4 h-4" /> },
       { name: "settings", icon: <Settings className="w-4 h-4" /> },
     ];
+    const dispath=useDispatch()
+    const navigate = useNavigate();
+    const handleLogout = () => {
+      dispath(logout())
+      localStorage.removeItem("currentUser");
+      navigate("/");
+    };
     
 
     return (
@@ -84,7 +94,9 @@
             ))}
           </div>
         </div>
-        <div className="flex">
+        <div className="flex"
+        onClick={handleLogout}
+        >
           <button className="bg-red-500 w-full text-white px-4 py-2 rounded">
             Logout
           </button>
