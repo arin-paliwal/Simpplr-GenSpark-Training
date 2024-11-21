@@ -30,7 +30,7 @@ export function MainContent() {
   };
 
   return (
-    <main className="flex-1 p-6 bg-[#f5f4f7] dark:bg-dark-bg text-light-text dark:text-dark-text rounded-tr-xl rounded-br-xl">
+    <main className="flex-1 p-6 bg-[#f5f4f7] dark:bg-dark-secondary text-light-text dark:text-dark-text rounded-tr-xl rounded-br-xl">
       <header className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Today Activities</h1>
         <div className="flex items-center gap-4">
