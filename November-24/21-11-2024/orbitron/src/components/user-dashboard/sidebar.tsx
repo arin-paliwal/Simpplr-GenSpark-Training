@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   Home,
@@ -14,6 +15,8 @@ import {
   Trash2,
   PieChart,
   Heart,
+  Menu,
+  X,
 } from "lucide-react";
 import { setSelectedItem } from "../../redux/sidebar-slice";
 import store from "../../redux/store";
@@ -25,6 +28,7 @@ export function Sidebar() {
   const selectedItem = useSelector(
     (state: RootState) => state.sidebar.selectedItem
   );
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const data = {
     days: ["Today", "Tomorrow", "Next 7 days", "Inbox"],
@@ -56,8 +60,23 @@ export function Sidebar() {
     Summary: <PieChart className={iconClass} />,
   };
 
-  return (
-    <aside className="w-64 h-screen overflow-auto componentScroll bg-white dark:bg-dark-bg text-light-text dark:text-dark-text p-6 border-r dark:border-x-dark-secondary border-light-border_color dark:border-dark-border_color rounded-tl-xl rounded-bl-xl flex flex-col gap-6">
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const sidebarContent = (
+    <div className="flex flex-col gap-6">
       {Object.entries(data).map(([category, items]) => (
         <div key={category} className="flex flex-col gap-2">
           <h3 className="font-semibold text-light-texts dark:text-dark-texts">
@@ -71,13 +90,14 @@ export function Sidebar() {
                   ? "bg-primary text-white dark:text-dark-text"
                   : "hover:bg-light-secondarybg dark:hover:bg-dark-secondary"
               }`}
-              onClick={() => dispatch(setSelectedItem(item))}
+              onClick={() => {
+                dispatch(setSelectedItem(item));
+                if (isMobileMenuOpen) {
+                  setIsMobileMenuOpen(false);
+                }
+              }}
             >
-              <span
-                
-              >
-                {icons[item] || <Sparkles className={iconClass} />}
-              </span>
+              <span>{icons[item] || <Sparkles className={iconClass} />}</span>
               <span
                 className={`font-medium ${
                   selectedItem === item
@@ -94,6 +114,39 @@ export function Sidebar() {
           ))}
         </div>
       ))}
-    </aside>
+    </div>
+  );
+
+  return (
+    <>
+      {/* Mobile menu button */}
+      <button
+        className="md:hidden fixed top-4 left-4 z-50 p-2 bg-primary text-white rounded-md"
+        onClick={toggleMobileMenu}
+        aria-label="Toggle menu"
+      >
+        {isMobileMenuOpen ? (
+          <X className="h-6 w-6" />
+        ) : (
+          <Menu className="h-6 w-6" />
+        )}
+      </button>
+
+      {/* Mobile sidebar */}
+      <aside
+        className={`md:hidden fixed inset-y-0 left-0 z-40 w-64 bg-white dark:bg-dark-bg text-light-text dark:text-dark-text p-6 border-r dark:border-x-dark-secondary border-light-border_color dark:border-dark-border_color transform transition-transform duration-300 ease-in-out ${
+          isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="h-full overflow-y-auto componentScroll">
+          {sidebarContent}
+        </div>
+      </aside>
+
+      {/* Desktop sidebar */}
+      <aside className="hidden md:block w-64 h-screen overflow-auto componentScroll bg-white dark:bg-dark-bg text-light-text dark:text-dark-text p-6 border-r dark:border-x-dark-secondary border-light-border_color dark:border-dark-border_color rounded-tl-xl rounded-bl-xl">
+        {sidebarContent}
+      </aside>
+    </>
   );
 }

@@ -24,3 +24,34 @@ export const mockData: MockData = {
     { status: "Completed", tasks: ["Task 4", "Task 5"] },
   ],
 };
+
+export const reminders = [
+  {
+    category: "work",
+    title: "Gym Session Week 3",
+    description: "Day for biceps, legs, and back.",
+    location: "Dona Gym",
+    time: "15:00",
+  },
+  {
+    category: "learning",
+    title: "Advanced Piano Class",
+    description: "Practicing melody with Mrs. Angeline.",
+    location: "Mrs. Angeline house",
+    time: "19:00",
+  },
+  {
+    category: "inspiration",
+    title: "Product Design Webinar",
+    description: "Tokopedia Product Design Webinar.",
+    location: "Online",
+    time: "20:00",
+  },
+  {
+    category: "inspiration",
+    title: "Product Design Webinar",
+    description: "Tokopedia Product Design Webinar.",
+    location: "Online",
+    time: "20:00",
+  }
+];

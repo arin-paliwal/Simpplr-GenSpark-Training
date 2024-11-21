@@ -11,8 +11,8 @@ export default function Login() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [loginForm, setLoginForm] = useState({
-    email: "",
-    password: "",
+    email: "arin@gmail.com",
+    password: "1221",
     role: 1,
   });
 

@@ -3,10 +3,11 @@ import { Habit, MockData, Reminder, TodoList } from "../../types/main-content";
 import { mockData } from "../../data/main-content-data";
 import { useNavigate } from "react-router-dom";
 import { ThemeChanger } from "../theme-changer";
+import ReminderCards from "./reminder-cards";
 
 export function MainContent() {
   const [habits, setHabits] = useState<Habit[]>([]);
-  const [reminders, setReminders] = useState<Reminder[]>([]);
+  // const [reminders, setReminders] = useState<Reminder[]>([]);
   const [todoLists, setTodoLists] = useState<TodoList[]>([]);
   const email = "arin@gmail.com";
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ export function MainContent() {
     ) as MockData | null;
     if (storedData) {
       setHabits(storedData.habits || []);
-      setReminders(storedData.reminders || []);
+      // setReminders(storedData.reminders || []);
       setTodoLists(storedData.todoLists || []);
     }
   }, [email]);
@@ -47,7 +48,6 @@ export function MainContent() {
           </div>
         </div>
       </header>
-
       <section className="mb-6">
         <h2 className="text-xl font-semibold mb-4">Your Habits</h2>
         <div className="grid grid-cols-5 gap-4">
@@ -69,24 +69,7 @@ export function MainContent() {
           ))}
         </div>
       </section>
-
-      <section className="mb-6">
-        <h2 className="text-xl font-semibold mb-4">Reminders</h2>
-        <div className="grid grid-cols-3 gap-4">
-          {reminders.map((reminder, index) => (
-            <div
-              key={index}
-              className="dark:bg-dark-secondary text-light-text dark:text-dark-texts p-4 rounded-lg shadow"
-            >
-              <h3 className="font-bold">{reminder.title}</h3>
-              <p className="text-sm text-light-texts dark:text-dark-texts">
-                {reminder.details}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
+      <ReminderCards />
       <section>
         <h2 className="text-xl font-semibold mb-4">To-Do List</h2>
         <div className="grid grid-cols-3 gap-4">
