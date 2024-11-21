@@ -72,7 +72,7 @@ export default function Signup() {
 
   return (
     <div className="flex h-screen flex-col md:flex-row items-center justify-center">
-      <div className="md:w-[50%] login_image bg-black relative h-screen flex-col bg-muted text-white dark:border-r flex p-8">
+      <div className="md:w-[50%] login_image bg-black relative h-screen flex-col bg-muted text-white dark:border-r-black flex p-8">
         <div className="login_image absolute inset-0" />
         <div className="relative z-20 flex items-center text-lg font-medium">
           <svg
