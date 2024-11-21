@@ -1,111 +1,165 @@
-'use client'
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Loader } from "lucide-react";
+export default function Signup() {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [loginForm, setLoginForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    role: 2,
+  });
 
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+  const validateEmail = (email:string) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  };
 
-export default function Register() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [role, setRole] = useState('user')
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle registration logic here
-    console.log('Registration submitted', { name, email, password, role })
-  }
+  const handleSubmission = async () => {
+    if (!validateEmail(loginForm.email)) {
+      return;
+    }
+    setLoading(true);
+  };
 
   return (
-    <div className="flex h-screen">
-      <div className="w-1/2 bg-gray-100 flex flex-col justify-center items-center p-12">
-        <img
-          src="/placeholder.svg?height=300&width=300"
-          alt="Register illustration"
-          className="w-full max-w-md mb-8 transition-transform duration-300 ease-in-out transform hover:scale-105"
-        />
-        <h2 className="text-3xl font-bold text-gray-800 mb-4 transition-opacity duration-300 ease-in-out opacity-0 animate-fade-in">
-          Join Our Community
-        </h2>
-        <p className="text-gray-600 text-center transition-opacity duration-300 ease-in-out opacity-0 animate-fade-in delay-200">
-          Create an account to start your journey with us.
-        </p>
-      </div>
-      <div className="w-1/2 bg-white flex justify-center items-center">
-        <div className="w-full max-w-md p-8 transition-all duration-300 ease-in-out transform hover:shadow-lg">
-          <h1 className="text-4xl font-bold mb-8 text-center">Register</h1>
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 ease-in-out"
-              />
+    <>
+      <div className="flex h-screen flex-col md:flex-row items-center justify-center">
+        <div className="md:w-[50%] login_image bg-black relative h-screen flex-col bg-muted text-white dark:border-r flex p-8">
+          <div className="login_image absolute inset-0" />
+          <div className="relative z-20 flex items-center text-lg font-medium">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="mr-2 h-6 w-6"
+            >
+              <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
+            </svg>
+            Orbitron - A Role Based Activity Tracker
+          </div>
+          <div className="relative z-20 mt-auto">
+            <blockquote className="space-y-2">
+              <p className="text-lg">
+                &ldquo; This application has been a game-changer for my
+                productivity and task management. Since I started using it, I've
+                noticed a significant improvement in how efficiently I handle my
+                responsibilities. I highly recommend it to anyone looking to
+                stay organized and focused.
+                &rdquo;
+              </p>
+            </blockquote>
+          </div>
+        </div>
+        <div className="flex flex-col md:w-[50%] p-8">
+          <button
+            className="absolute top-2 right-2 rounded-md text-white cursor-pointer p-2 font-semibold bg-primary"
+            onClick={() => navigate("/")}
+          >
+            Login
+          </button>
+          <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+            <div className="flex flex-col space-y-2 text-center">
+              <h1 className="text-2xl font-semibold tracking-tight">
+                Register your account
+              </h1>
+              <p className="text-sm text-muted-foreground">
+                Fill in the form below to create your account
+              </p>
             </div>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 ease-in-out"
-              />
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-1">
+                <input
+                  type="name"
+                  placeholder="Enter your name"
+                  className="border border-gray-300 rounded-md p-2 focus:outline-none"
+                  value={loginForm.name}
+                  onChange={(e) =>
+                    setLoginForm({ ...loginForm, name: e.target.value })
+                  }
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="border border-gray-300 rounded-md p-2 focus:outline-none"
+                  value={loginForm.email}
+                  onChange={(e) =>
+                    setLoginForm({ ...loginForm, email: e.target.value })
+                  }
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <input
+                  type="password"
+                  placeholder="Enter your password"
+                  className="border border-gray-300 rounded-md p-2 focus:outline-none"
+                  value={loginForm.password}
+                  onChange={(e) =>
+                    setLoginForm({ ...loginForm, password: e.target.value })
+                  }
+                />
+              </div>
+
+              <div className="flex items-center gap-2 justify-center">
+                <button
+                  className={`flex justify-center items-center gap-2 p-2 w-[50%] focus:outline-none border-2 rounded-md ${
+                    loginForm.role === 2
+                      ? "bg-primary border-primary text-white"
+                      : ""
+                  }`}
+                  onClick={() => setLoginForm({ ...loginForm, role: 2 })}
+                >
+                  Admin
+                </button>
+
+                <button
+                  className={`flex justify-center items-center gap-2 p-2 w-[50%] focus:outline-none border-2 rounded-md ${
+                    loginForm.role === 1
+                      ? "bg-primary border-primary text-white"
+                      : ""
+                  }`}
+                  onClick={() => setLoginForm({ ...loginForm, role: 1 })}
+                >
+                  User
+                </button>
+              </div>
             </div>
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Password
-              </label>
-              <input
-                type="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 ease-in-out"
-              />
-            </div>
-            <div>
-              <label htmlFor="role" className="block text-sm font-medium text-gray-700">
-                Role
-              </label>
-              <select
-                id="role"
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-                required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 ease-in-out"
+            <p className="px-8 text-center text-sm text-muted-foreground">
+              By clicking continue, you agree to our{" "}
+              <span
+                // to="/support/terms-and-conditions"
+                className="underline underline-offset-4 cursor-pointer hover:text-primary"
               >
-                <option value="user">User</option>
-                <option value="admin">Admin</option>
-              </select>
-            </div>
-            <div>
-              <button
-                type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out transform hover:scale-105"
+                Terms of Service
+              </span>{" "}
+              and{" "}
+              <span
+                // to="/support/privacy-policy"
+                className="underline underline-offset-4 cursor-pointer hover:text-primary"
               >
+                Privacy Policy
+              </span>
+              .
+            </p>
+            <div
+              className="flex items-center gap-2 justify-center"
+              onClick={handleSubmission}
+            >
+              <button className="flex justify-center items-center gap-2 bg-primary text-white rounded-md p-2 w-full focus:outline-none">
                 Register
+                {loading && <Loader className="animate-spin" size={18} />}
               </button>
             </div>
-          </form>
-          <p className="mt-4 text-center text-sm text-gray-600">
-            Already have an account?{' '}
-            <Link to="/login" className="font-medium text-indigo-600 hover:text-indigo-500 transition duration-150 ease-in-out">
-              Log in here
-            </Link>
-          </p>
+          </div>
         </div>
       </div>
-    </div>
-  )
+    </>
+  );
 }
-
