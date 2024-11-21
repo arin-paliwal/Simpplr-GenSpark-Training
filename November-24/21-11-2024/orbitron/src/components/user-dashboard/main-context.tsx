@@ -30,7 +30,7 @@ export function MainContent() {
   };
 
   return (
-    <main className="flex-1 p-6 bg-[#f5f4f7] dark:bg-dark-secondary text-light-text dark:text-dark-text rounded-tr-xl rounded-br-xl">
+    <main className="flex-1 h-screen overflow-auto componentScroll p-6 bg-[#f5f4f7] dark:bg-dark-secondary text-light-text dark:text-dark-text rounded-tr-xl rounded-br-xl">
       <header className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Today Activities</h1>
         <div className="flex items-center gap-4">
@@ -54,7 +54,7 @@ export function MainContent() {
           {habits.map((habit, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-dark-secondary p-3 rounded-xl flex flex-col"
+              className="bg-white dark:bg-black p-3 rounded-xl flex flex-col"
             >
               <img
                 src={habit.icon || "/placeholder.svg"}
@@ -70,24 +70,7 @@ export function MainContent() {
         </div>
       </section>
       <ReminderCards />
-      <section>
-        <h2 className="text-xl font-semibold mb-4">To-Do List</h2>
-        <div className="grid grid-cols-3 gap-4">
-          {todoLists.map((list, index) => (
-            <div
-              key={index}
-              className="dark:bg-dark-secondary text-light-text dark:text-dark-texts p-4 rounded-lg shadow"
-            >
-              <h3 className="font-bold">{list.status}</h3>
-              <ul className="text-sm text-light-texts dark:text-dark-texts">
-                {list.tasks.map((task, i) => (
-                  <li key={i}>{task}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </section>
+      
     </main>
   );
 }

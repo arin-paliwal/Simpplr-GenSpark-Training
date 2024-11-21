@@ -53,5 +53,12 @@ export const reminders = [
     description: "Tokopedia Product Design Webinar.",
     location: "Online",
     time: "20:00",
+  },
+  {
+    category: "inspiration",
+    title: "Product Design Webinar",
+    description: "Tokopedia Product Design Webinar.",
+    location: "Online",
+    time: "20:00",
   }
 ];
