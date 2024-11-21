@@ -20,6 +20,7 @@ export const mock_reminders = [
     date: "2024-11-22",
     time: "15:00",
     assignedUser: "arin@gmail.com",
+    status: "in-progress", // Default status
   },
   {
     priority: "low",
@@ -30,6 +31,7 @@ export const mock_reminders = [
     date: "2024-11-23",
     time: "19:00",
     assignedUser: "samira@gmail.com",
+    status: "assigned", // Default status
   },
   {
     priority: "high",
@@ -40,6 +42,7 @@ export const mock_reminders = [
     date: "2024-11-24",
     time: "20:00",
     assignedUser: "ravi@gmail.com",
+    status: "completed", // Default status
   },
   {
     priority: "high",
@@ -50,6 +53,7 @@ export const mock_reminders = [
     date: "2024-11-24",
     time: "20:00",
     assignedUser: "anjali@gmail.com",
+    status: "review", // Default status
   },
   {
     priority: "high",
@@ -60,8 +64,10 @@ export const mock_reminders = [
     date: "2024-11-24",
     time: "20:00",
     assignedUser: "arin@gmail.com",
+    status: "in-progress", // Default status
   },
 ];
+
 
 
 export const tasks = [

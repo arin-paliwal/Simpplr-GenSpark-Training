@@ -13,6 +13,7 @@ interface Reminder {
   date: string;
   assignedUser: string;
   priority: string;
+  status: "assigned" | "in-progress" | "completed" | "review";
 }
 
 interface ReminderModalProps {
