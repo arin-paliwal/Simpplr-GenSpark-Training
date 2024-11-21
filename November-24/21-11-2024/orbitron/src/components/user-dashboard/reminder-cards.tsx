@@ -1,10 +1,19 @@
 import { Ellipsis } from "lucide-react";
-import { reminders } from "../../data/main-content-data";
+import { reminders as mockReminders } from "../../data/main-content-data";
 
 export default function ReminderCards() {
+  const currentUserData = JSON.parse(
+    localStorage.getItem("currentUser") || "{}"
+  );
+  const reminders = Array.isArray(currentUserData.reminders)
+    ? currentUserData.reminders
+    : mockReminders;
+
   return (
     <div className="flex flex-col">
-      <h2 className="text-2xl font-bold mb-4 text-light-text dark:text-dark-text">Reminders</h2>
+      <h2 className="text-2xl font-bold mb-4 text-light-text dark:text-dark-text">
+        Reminders
+      </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {reminders.map((reminder, index) => (
           <div
@@ -12,9 +21,7 @@ export default function ReminderCards() {
             className="w-[18rem] border-2 border-transparent hover:border-primary duration-300 bg-light-bg dark:bg-dark-bg p-4 rounded-lg cursor-pointer border-gray-200 flex flex-col gap-3"
           >
             <div className="flex items-center justify-between mb-2">
-              <span
-                className="text-sm text-purple-700 font-medium px-2 py-1 rounded bg-purple-200"
-              >
+              <span className="text-sm text-purple-700 font-medium px-2 py-1 rounded bg-purple-200">
                 {reminder.category}
               </span>
               <div className="flex hover:bg-gray-200 hover:dark:bg-dark-secondary rounded-full p-1">

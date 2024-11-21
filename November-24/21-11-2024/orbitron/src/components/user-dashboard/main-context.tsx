@@ -1,30 +1,13 @@
-import { useEffect, useState } from "react";
-import { Habit, MockData, Reminder, TodoList } from "../../types/main-content";
-import { mockData } from "../../data/main-content-data";
+import { habits } from "../../data/main-content-data";
 import { useNavigate } from "react-router-dom";
 import { ThemeChanger } from "../theme-changer";
 import ReminderCards from "./reminder-cards";
+import ReminderModal from "./create-reminder-modal";
+import { useState } from "react";
 
 export function MainContent() {
-  const [habits, setHabits] = useState<Habit[]>([]);
-  // const [reminders, setReminders] = useState<Reminder[]>([]);
-  const [todoLists, setTodoLists] = useState<TodoList[]>([]);
-  const email = "arin@gmail.com";
   const navigate = useNavigate();
-
-  localStorage.setItem("arin@gmail.com", JSON.stringify(mockData));
-
-  useEffect(() => {
-    const storedData = JSON.parse(
-      localStorage.getItem(email) || "null"
-    ) as MockData | null;
-    if (storedData) {
-      setHabits(storedData.habits || []);
-      // setReminders(storedData.reminders || []);
-      setTodoLists(storedData.todoLists || []);
-    }
-  }, [email]);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const handleLogout = () => {
     navigate("/");
   };
@@ -34,7 +17,9 @@ export function MainContent() {
       <header className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Today Activities</h1>
         <div className="flex items-center gap-4">
-          <button className="bg-primary text-white px-4 py-2 rounded">
+          <button className="bg-primary text-white px-4 py-2 rounded"
+          onClick={() => setIsModalOpen(true)}
+          >
             + New Activity
           </button>
           <div className="flex items-center gap-2">
@@ -70,7 +55,10 @@ export function MainContent() {
         </div>
       </section>
       <ReminderCards />
-      
+      <ReminderModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </main>
   );
 }

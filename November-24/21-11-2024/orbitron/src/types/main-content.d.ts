@@ -4,9 +4,13 @@ export interface Habit {
   time: string;
 }
 
-export interface Reminder {
-  title: string;
-  details: string;
+interface Reminder {
+  category: string
+  title: string
+  description: string
+  location: string
+  time: string
+  date: string
 }
 
 export interface TodoList {
