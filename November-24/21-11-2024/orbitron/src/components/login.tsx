@@ -42,6 +42,7 @@ export default function Login() {
         return;
       }
       dispatch(login({ role: userExists.role }));
+      localStorage.setItem("currentUser", JSON.stringify(userExists));
       toast.success("Logged in successfully.");
       setTimeout(() => {
         navigate(

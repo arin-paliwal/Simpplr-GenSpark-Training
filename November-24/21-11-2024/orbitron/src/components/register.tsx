@@ -17,9 +17,9 @@ export default function Signup() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [loginForm, setLoginForm] = useState<LoginForm>({
-    name: "",
-    email: "",
-    password: "",
+    name: "Arin Paliwal",
+    email: "arin@gmail.com",
+    password: "1221",
     role: 1,
   });
 
@@ -58,6 +58,7 @@ export default function Signup() {
       };
       users.push(user);
       localStorage.setItem("users", JSON.stringify(users));
+      localStorage.setItem("currentUser", JSON.stringify(user));
       dispatch(register({ role: role as "admin" | "user" }));
       setTimeout(() => {
         navigate(role === "admin" ? "/admin/dashboard" : "/user/dashboard");
