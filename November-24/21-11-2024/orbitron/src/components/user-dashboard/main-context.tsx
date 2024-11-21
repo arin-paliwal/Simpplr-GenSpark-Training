@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
-import { Sun, Moon } from "lucide-react";
 import { Habit, MockData, Reminder, TodoList } from "../../types/main-content";
 import { mockData } from "../../data/main-content-data";
 import { useNavigate } from "react-router-dom";
+import { ThemeChanger } from "../theme-changer";
 
 export function MainContent() {
-  const { theme, setTheme } = useTheme();
   const [habits, setHabits] = useState<Habit[]>([]);
   const [reminders, setReminders] = useState<Reminder[]>([]);
   const [todoLists, setTodoLists] = useState<TodoList[]>([]);
   const email = "arin@gmail.com";
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   localStorage.setItem("arin@gmail.com", JSON.stringify(mockData));
 
@@ -28,7 +26,7 @@ export function MainContent() {
 
   const handleLogout = () => {
     navigate("/");
-  }
+  };
 
   return (
     <main className="flex-1 p-6 bg-[#f5f4f7] dark:bg-dark-bg text-light-text dark:text-dark-text rounded-tr-xl rounded-br-xl">
@@ -39,30 +37,10 @@ export function MainContent() {
             + New Activity
           </button>
           <div className="flex items-center gap-2">
+            <ThemeChanger />
             <button
-              className={`p-2 rounded transition-colors duration-200 ${
-                theme === "light"
-                  ? "bg-white text-black"
-                  : "bg-light-secondarybg dark:bg-dark-secondary text-light-text dark:text-dark-texts"
-              }`}
-              onClick={() => setTheme("light")}
-              aria-label="Switch to Light Mode"
-            >
-              <Sun className="h-5 w-5" />
-            </button>
-            <button
-              className={`p-2 rounded transition-colors duration-200 ${
-                theme === "dark"
-                  ? "bg-dark-bg text-white"
-                  : "bg-light-secondarybg dark:bg-dark-secondary text-light-text dark:text-dark-texts"
-              }`}
-              onClick={() => setTheme("dark")}
-              aria-label="Switch to Dark Mode"
-            >
-              <Moon className="h-5 w-5" />
-            </button>
-            <button className="p-2 rounded bg-red-500 text-white w-[6rem]"
-            onClick={handleLogout}
+              className="p-2 rounded bg-red-500 text-white w-[6rem]"
+              onClick={handleLogout}
             >
               Logout
             </button>
