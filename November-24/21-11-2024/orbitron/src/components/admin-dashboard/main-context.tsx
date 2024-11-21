@@ -128,7 +128,7 @@ export default function MainContent() {
                 {task.avatars.map((avatar, idx) => (
                   <img
                     key={idx}
-                    src={avatar}
+                    src={`https://avatar.iran.liara.run/public/${idx}`}
                     alt="Avatar"
                     className="w-6 h-6 rounded-full border-2 border-white -ml-2"
                   />
