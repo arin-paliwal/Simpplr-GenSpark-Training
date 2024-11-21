@@ -2,11 +2,9 @@ import { habits } from "../../data/main-content-data";
 import { useNavigate } from "react-router-dom";
 import { ThemeChanger } from "../theme-changer";
 import ReminderCards from "./reminder-cards";
-import { useState } from "react";
 
 export function MainContent() {
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const handleLogout = () => {
     navigate("/");
   };
@@ -14,16 +12,16 @@ export function MainContent() {
   return (
     <main className="flex-1 h-screen overflow-auto componentScroll p-6 bg-[#f5f4f7] dark:bg-dark-secondary text-light-text dark:text-dark-text rounded-tr-xl rounded-br-xl">
       <header className="flex justify-between items-center mb-6">
-      <div className="flex flex-col">
+        <div className="flex flex-col">
           <h1 className="text-2xl font-bold text-light-text dark:text-dark-text">
             My Dashboard
           </h1>
           <h1 className="text-sm text-light-text dark:text-dark-text">
-            Signed in as {JSON.parse(localStorage.getItem("currentUser")).email}
+            Signed in as{" "}
+            {JSON.parse(localStorage.getItem("currentUser") || "{}").email}
           </h1>
         </div>
         <div className="flex items-center gap-4">
-          
           <div className="flex items-center gap-2">
             <ThemeChanger />
             <button

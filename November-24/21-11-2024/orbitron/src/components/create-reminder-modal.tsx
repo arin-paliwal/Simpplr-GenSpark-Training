@@ -1,76 +1,87 @@
-import React, { useState, useEffect } from 'react'
-import { Reminder } from '../types/main-content'
+import React, { useState, useEffect } from "react";
+import { Reminder, ReminderModalProps } from "../types/main-content";
 
-interface ReminderModalProps {
-  isOpen: boolean
-  onClose: () => void
-}
-
-const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose }) => {
+const ReminderModal = ({ isOpen, onClose }: ReminderModalProps) => {
   const [reminder, setReminder] = useState<Reminder>({
-    category: '',
-    title: '',
-    description: '',
-    location: '',
-    date: '',
-    time: '',
-    assignedUsers: []
-  })
-  const [users, setUsers] = useState<{ name: string, email: string }[]>([]) 
+    category: "",
+    title: "",
+    description: "",
+    location: "",
+    date: "",
+    time: "",
+    assignedUsers: [],
+  });
+  const [users, setUsers] = useState<{ name: string; email: string }[]>([]);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
-    }
-    window.addEventListener('keydown', handleEscape)
-    return () => window.removeEventListener('keydown', handleEscape)
-  }, [onClose])
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [onClose]);
 
   useEffect(() => {
-    const storedUsers = JSON.parse(localStorage.getItem('users') || '[]')
-    const filteredUsers = storedUsers.filter((user: { role: string }) => user.role === 'user')
-    setUsers(filteredUsers)
-  }, [])
+    const storedUsers = JSON.parse(localStorage.getItem("users") || "[]");
+    const filteredUsers = storedUsers.filter(
+      (user: { role: string }) => user.role === "user"
+    );
+    setUsers(filteredUsers);
+  }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
-    setReminder(prev => ({ ...prev, [name]: value }))
-  }
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setReminder((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSelectUsers = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedUsers = Array.from(e.target.selectedOptions, option => option.value)
-    setReminder(prev => ({ ...prev, assignedUsers: selectedUsers })) // Update assigned users
-  }
+    const selectedUsers = Array.from(
+      e.target.selectedOptions,
+      (option) => option.value
+    );
+    setReminder((prev) => ({ ...prev, assignedUsers: selectedUsers })); // Update assigned users
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    onClose()
-  }
+    e.preventDefault();
+    onClose();
+  };
 
-  if (!isOpen) return null
+  if (!isOpen) return null;
 
   const handleAddReminder = (reminder: Object) => {
     try {
-        console.log(reminder);
-        const currentUserData = JSON.parse(localStorage.getItem('currentUser') || '{}');
-        if (!Array.isArray(currentUserData.reminders)) {
-            currentUserData.reminders = [];
-        }
-        currentUserData.reminders.push(reminder);
-        localStorage.setItem('currentUser', JSON.stringify(currentUserData));
+      console.log(reminder);
+      const currentUserData = JSON.parse(
+        localStorage.getItem("currentUser") || "{}"
+      );
+      if (!Array.isArray(currentUserData.reminders)) {
+        currentUserData.reminders = [];
+      }
+      currentUserData.reminders.push(reminder);
+      localStorage.setItem("currentUser", JSON.stringify(currentUserData));
     } catch (error) {
-        console.error("Failed to update reminders:", error);
+      console.error("Failed to update reminders:", error);
     }
-  }
+  };
 
   return (
     <div className="fixed flex justify-center items-center z-30 p-4 inset-0 backdrop-brightness-50 backdrop:blur-lg">
       <div className="bg-light-bg dark:bg-dark-bg rounded-lg shadow-xl h-[90%] w-[70%] overflow-auto">
         <div className="p-6">
-          <h2 className="text-2xl font-bold mb-4 text-light-text dark:text-dark-text">Add New Reminder</h2>
+          <h2 className="text-2xl font-bold mb-4 text-light-text dark:text-dark-text">
+            Add New Reminder
+          </h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="category" className="block text-sm font-medium text-light-texts dark:text-dark-texts mb-1">
+              <label
+                htmlFor="category"
+                className="block text-sm font-medium text-light-texts dark:text-dark-texts mb-1"
+              >
                 Category
               </label>
               <select
@@ -89,7 +100,10 @@ const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose }) => {
             </div>
 
             <div>
-              <label htmlFor="title" className="block text-sm font-medium text-light-texts dark:text-dark-texts mb-1">
+              <label
+                htmlFor="title"
+                className="block text-sm font-medium text-light-texts dark:text-dark-texts mb-1"
+              >
                 Title
               </label>
               <input
@@ -104,7 +118,10 @@ const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose }) => {
             </div>
 
             <div>
-              <label htmlFor="description" className="block text-sm font-medium text-light-texts dark:text-dark-texts mb-1">
+              <label
+                htmlFor="description"
+                className="block text-sm font-medium text-light-texts dark:text-dark-texts mb-1"
+              >
                 Description
               </label>
               <textarea
@@ -119,7 +136,10 @@ const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose }) => {
             </div>
 
             <div>
-              <label htmlFor="location" className="block text-sm font-medium text-light-texts dark:text-dark-texts mb-1">
+              <label
+                htmlFor="location"
+                className="block text-sm font-medium text-light-texts dark:text-dark-texts mb-1"
+              >
                 Location
               </label>
               <input
@@ -134,7 +154,10 @@ const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose }) => {
             </div>
 
             <div>
-              <label htmlFor="date" className="block text-sm font-medium text-light-texts dark:text-dark-texts mb-1">
+              <label
+                htmlFor="date"
+                className="block text-sm font-medium text-light-texts dark:text-dark-texts mb-1"
+              >
                 Date
               </label>
               <input
@@ -149,7 +172,10 @@ const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose }) => {
             </div>
 
             <div>
-              <label htmlFor="time" className="block text-sm font-medium text-light-texts dark:text-dark-texts mb-1">
+              <label
+                htmlFor="time"
+                className="block text-sm font-medium text-light-texts dark:text-dark-texts mb-1"
+              >
                 Time
               </label>
               <input
@@ -164,7 +190,10 @@ const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose }) => {
             </div>
 
             <div>
-              <label htmlFor="assignedUsers" className="block text-sm font-medium text-light-texts dark:text-dark-texts mb-1">
+              <label
+                htmlFor="assignedUsers"
+                className="block text-sm font-medium text-light-texts dark:text-dark-texts mb-1"
+              >
                 Assign Task to Users
               </label>
               <select
@@ -174,7 +203,7 @@ const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose }) => {
                 onChange={handleSelectUsers}
                 className="w-full p-2 rounded-md border border-border_color dark:border-border_color2 bg-light-secondarybg dark:bg-dark-secondary text-light-text dark:text-dark-text"
               >
-                {users.map(user => (
+                {users.map((user) => (
                   <option key={user.email} value={user.email}>
                     {user.name} ({user.email})
                   </option>
@@ -202,7 +231,7 @@ const ReminderModal: React.FC<ReminderModalProps> = ({ isOpen, onClose }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ReminderModal
+export default ReminderModal;

@@ -5,14 +5,19 @@ export interface Habit {
 }
 
 interface Reminder {
-  category: string
-  title: string
-  description: string
-  location: string
-  time: string
-  date: string
+  category: string;
+  title: string;
+  description: string;
+  location: string;
+  time: string;
+  date: string;
+  assignedUsers: string[];
 }
 
+interface ReminderModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
 export interface TodoList {
   status: string;
   tasks: string[];
