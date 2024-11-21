@@ -60,7 +60,7 @@ export default function Signup() {
       localStorage.setItem("users", JSON.stringify(users));
       dispatch(register({ role: role as "admin" | "user" }));
       setTimeout(() => {
-        navigate(role === "admin" ? "/admin-dashboard" : "/user-dashboard");
+        navigate(role === "admin" ? "/admin/dashboard" : "/user/dashboard");
       }, 1000);
     } catch (error) {
       console.error("Error during registration:", error);
