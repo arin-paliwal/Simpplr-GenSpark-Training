@@ -5,6 +5,7 @@ export interface Habit {
 }
 
 interface Reminder {
+  id?: number;
   category: string;
   title: string;
   description: string;

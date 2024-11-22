@@ -19,9 +19,8 @@ import {
   X,
 } from "lucide-react";
 import { setSelectedItem } from "../../redux/sidebar-slice";
-import store from "../../redux/store";
+import { RootState } from "../../types";
 
-type RootState = ReturnType<typeof store.getState>;
 
 export function Sidebar() {
   const dispatch = useDispatch();

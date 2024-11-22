@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import store from "../redux/store";
 
 export interface PrivateRouteProps {
   children: ReactNode;
@@ -15,3 +16,6 @@ export interface LoginFormInterface {
   password: string;
   role?: 1 | 2;
 }
+
+export type RootState = ReturnType<typeof store.getState>;
+

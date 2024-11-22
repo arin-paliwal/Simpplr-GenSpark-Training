@@ -66,11 +66,11 @@ export default function ReminderCards() {
   return (
     <div className="flex flex-col">
       <h2 className="text-2xl font-bold mb-4 text-light-text dark:text-dark-text">Reminders</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <div className="flex items-center flex-wrap gap-4">
         {reminders.map((reminder, index) => (
           <div
             key={index}
-            className="w-[18rem] border-2 border-transparent hover:border-primary duration-300 bg-light-bg dark:bg-dark-bg p-4 rounded-lg cursor-pointer border-gray-200 flex flex-col gap-3"
+            className="w-[20rem] border-2 border-transparent hover:border-primary duration-300 bg-light-bg dark:bg-dark-bg p-4 rounded-lg cursor-pointer border-gray-200 flex flex-col gap-3"
           >
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
