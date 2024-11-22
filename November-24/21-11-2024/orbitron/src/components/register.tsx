@@ -4,6 +4,7 @@ import { Loader } from "lucide-react";
 import toast, { Toaster } from "react-hot-toast";
 import { register } from "../redux/user-slice";
 import { useDispatch } from "react-redux";
+import { ThemeChanger } from "./theme-changer";
 
 interface LoginForm {
   name: string;
@@ -72,7 +73,9 @@ export default function Signup() {
 
   return (
     <div className="flex h-screen flex-col md:flex-row items-center justify-center">
-      <div className="md:w-[50%] login_image bg-black relative h-screen flex-col bg-muted text-white dark:border-r-black flex p-8">
+      <div className="md:w-[50%] login_image bg-black relative h-screen flex-col bg-muted text-white dark:border-r-black flex p-8"
+      style={{ backgroundImage: "url('/login_register.svg')" }}
+      >
         <div className="login_image absolute inset-0" />
         <div className="relative z-20 flex items-center text-lg font-medium">
           <svg
@@ -87,10 +90,10 @@ export default function Signup() {
           >
             <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
           </svg>
-          Orbitron - A Role Based Activity Tracker
+          Orbitron - Activity Tracker
         </div>
         <div className="relative z-20 mt-auto">
-          <blockquote className="space-y-2">
+          {/* <blockquote className="space-y-2">
             <p className="text-lg">
               &ldquo; This application has been a game-changer for my
               productivity and task management. Since I started using it, I've
@@ -98,17 +101,21 @@ export default function Signup() {
               responsibilities. I highly recommend it to anyone looking to stay
               organized and focused. &rdquo;
             </p>
-          </blockquote>
+          </blockquote> */}
         </div>
       </div>
 
       <div className="flex flex-col md:w-[50%] p-8">
-        <button
-          className="absolute top-2 right-2 rounded-md text-white cursor-pointer p-2 font-semibold bg-primary"
-          onClick={() => navigate("/")}
-        >
-          Login
-        </button>
+      <div className="flex absolute top-4 right-4 justify-end items-center gap-2">
+          <ThemeChanger />
+          <button
+            className="rounded-md text-white cursor-pointer p-2 font-semibold bg-primary"
+            onClick={() => navigate("/")}
+          >
+            Login
+          </button>
+          
+          </div>
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col space-y-2 text-center">
             <h1 className="text-2xl font-semibold tracking-tight">

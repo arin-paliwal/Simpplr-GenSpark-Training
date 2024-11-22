@@ -1,6 +1,5 @@
-'use client'
-
 import React, { useState } from 'react'
+import toast from 'react-hot-toast'
 
 interface User {
   name: string
@@ -11,9 +10,7 @@ interface User {
 
 export default function UserManagement() {
   const [users, setUsers] = useState<User[]>(
-    localStorage.getItem('users')
-      ? JSON.parse(localStorage.getItem('users')!)
-      : []
+    localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')!) : []
   )
   const [editingIndex, setEditingIndex] = useState<number | null>(null)
   const [newUser, setNewUser] = useState<User>({ name: '', email: '', password: '', role: 'user' })
@@ -22,9 +19,11 @@ export default function UserManagement() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     if (editingIndex !== null) {
-      setUsers(users.map((user, index) => 
-        index === editingIndex ? { ...user, [name]: value } : user
-      ))
+      setUsers((prevUsers) =>
+        prevUsers.map((user, index) =>
+          index === editingIndex ? { ...user, [name]: value } : user
+        )
+      )
     } else {
       setNewUser({ ...newUser, [name]: value })
     }
@@ -33,31 +32,43 @@ export default function UserManagement() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (editingIndex !== null) {
+      const updatedUsers = [...users]
+      updatedUsers[editingIndex] = newUser
+      setUsers(updatedUsers)
+      localStorage.setItem('users', JSON.stringify(updatedUsers))
+      toast.success('User updated successfully!')
       setEditingIndex(null)
+      setNewUser({ name: '', email: '', password: '', role: 'user' }) // Clear form
     } else {
-      setUsers([...users, newUser])
-      setNewUser({ name: '', email: '', password: '', role: 'user' })
+      const updatedUsers = [...users, newUser]
+      setUsers(updatedUsers)
+      localStorage.setItem('users', JSON.stringify(updatedUsers))
+      toast.success('User added successfully!')
+      setNewUser({ name: '', email: '', password: '', role: 'user' }) // Clear form
     }
   }
 
   const handleEdit = (index: number) => {
     setEditingIndex(index)
-    setNewUser(users[index])
+    setNewUser(users[index]) // Pre-fill the form with the user's current data
   }
 
   const handleDelete = (index: number) => {
-    setUsers(users.filter((_, i) => i !== index))
+    const updatedUsers = users.filter((_, i) => i !== index)
+    setUsers(updatedUsers)
+    localStorage.setItem('users', JSON.stringify(updatedUsers))
   }
 
-  const filteredUsers = users.filter(user => 
-    user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    user.email.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredUsers = users.filter(
+    (user) =>
+      user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
   return (
     <div className="p-6 bg-light-bg dark:bg-dark-bg min-h-screen">
       <h1 className="text-2xl font-bold text-light-text dark:text-dark-text mb-4">User Management</h1>
-      
+
       <div className="mb-4">
         <input
           type="text"
@@ -86,22 +97,24 @@ export default function UserManagement() {
                 <td className="px-4 py-2 text-light-text dark:text-dark-text">{user.email}</td>
                 <td className="px-4 py-2 text-light-text dark:text-dark-text">{user.password}</td>
                 <td className="px-4 py-2">
-                  <span className={`px-2 py-1 rounded text-sm ${
-                    user.role === 'admin' 
-                      ? 'bg-blue-200 text-blue-800 dark:bg-blue-900 dark:text-blue-200' 
-                      : 'bg-green-200 text-green-800 dark:bg-green-900 dark:text-green-200'
-                  }`}>
+                  <span
+                    className={`px-2 py-1 rounded text-sm ${
+                      user.role === 'admin'
+                        ? 'bg-blue-200 text-blue-800 dark:bg-blue-900 dark:text-blue-200'
+                        : 'bg-green-200 text-green-800 dark:bg-green-900 dark:text-green-200'
+                    }`}
+                  >
                     {user.role}
                   </span>
                 </td>
                 <td className="px-4 py-2">
-                  <button 
+                  <button
                     onClick={() => handleEdit(index)}
                     className="bg-yellow-500 text-white px-2 py-1 rounded mr-2 hover:bg-yellow-600"
                   >
                     Edit
                   </button>
-                  <button 
+                  <button
                     onClick={() => handleDelete(index)}
                     className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
                   >
@@ -156,8 +169,8 @@ export default function UserManagement() {
             <option value="admin">Admin</option>
           </select>
         </div>
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           className="mt-4 bg-primary text-white px-4 py-2 rounded hover:bg-indigo-600"
         >
           {editingIndex !== null ? 'Save Changes' : 'Add User'}

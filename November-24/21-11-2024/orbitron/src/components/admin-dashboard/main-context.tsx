@@ -155,7 +155,8 @@ export default function MainContent() {
                 </div>
                 <div className="flex mt-2 items-center gap-3">
                   <img
-                    src="/avatars/memoji.jpg"
+                  src={`https://avatar.iran.liara.run/public/${index}`}
+                    // src="/avatars/memoji.jpg"
                     alt="Avatar"
                     className="w-6 h-6 rounded-full border-2 border-white -ml-2"
                   />
@@ -197,7 +198,8 @@ export default function MainContent() {
                     {task.assignedUser}
                   </span>
                   <img
-                    src="/avatars/memoji.jpg"
+                    // src="/avatars/memoji.jpg"
+                    src={`https://avatar.iran.liara.run/public/${index+1}`}
                     alt="Avatar"
                     className="w-6 h-6 rounded-full border-2 border-white -ml-2"
                   />

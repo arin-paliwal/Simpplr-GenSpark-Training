@@ -21,7 +21,8 @@ export default function ReminderCards() {
   const [reminders, setReminders] = useState<Reminder[]>([]);
   const [activeMenuIndex, setActiveMenuIndex] = useState<number | null>(null);
   const menuRef = useRef<HTMLDivElement | null>(null);
-
+  
+  
   useEffect(() => {
     const currentUserData = JSON.parse(localStorage.getItem("currentUser") || "{}");
     const fetchedReminders = getRemindersByEmail(currentUserData.email);
@@ -55,12 +56,15 @@ export default function ReminderCards() {
         setReminders(updatedReminders);
         setActiveMenuIndex(null);
         toast.success(`Reminder marked as ${status}`);
-        all_reminders[index].status = status;
-        localStorage.setItem("reminders", JSON.stringify(all_reminders));
+        const updatedAllReminders = [...all_reminders];
+        updatedAllReminders[index].status = status;
+        localStorage.setItem("reminders", JSON.stringify(updatedAllReminders));
+        setAllReminders(updatedAllReminders);
     } else {
         console.error("Invalid index or reminder not found");
     }
 };
+
 
 
   return (
