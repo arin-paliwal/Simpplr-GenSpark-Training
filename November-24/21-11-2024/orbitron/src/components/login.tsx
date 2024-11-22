@@ -1,19 +1,21 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Loader } from "lucide-react";
+import { Loader } from 'lucide-react';
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { login } from "../redux/user-slice";
+import { login } from "../redux/slices/user";
 import toast, { Toaster } from "react-hot-toast";
 import { ThemeChanger } from "./theme-changer";
+import { add_mock_data_to_local_storage } from "../data";
+import { setContext, setSelectedItem } from "../redux/slices/sidebar";
 
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [loginForm, setLoginForm] = useState({
-    email: "arin@gmail.com",
-    password: "1221",
+    email: "",
+    password: "",
     role: 1,
   });
 
@@ -45,6 +47,13 @@ export default function Login() {
       dispatch(login({ role: userExists.role }));
       localStorage.setItem("currentUser", JSON.stringify(userExists));
       toast.success("Logged in successfully.");
+      if (userExists.role === "admin") {
+        dispatch(setContext("admin"));
+        dispatch(setSelectedItem("dashboard"));
+      } else {
+        dispatch(setContext("user"));
+        dispatch(setSelectedItem("Today"));
+      }
       setTimeout(() => {
         navigate(
           userExists.role === "admin" ? "/admin/dashboard" : "/user/dashboard"
@@ -56,12 +65,36 @@ export default function Login() {
     }
   };
 
+  const addMockData = () => {
+    toast.success("Mock Data Loaded Successfully");
+    add_mock_data_to_local_storage();
+  };
+
+  const setUserCredentials = () => {
+    setLoginForm({
+      email: "arjun.mehta@gmail.com",
+      password: "arjun1234",
+      role: 1,
+    });
+    toast.success("User credentials set");
+  };
+
+  const setAdminCredentials = () => {
+    setLoginForm({
+      email: "admin@orbitron.com",
+      password: "admin123",
+      role: 2,
+    });
+    toast.success("Admin credentials set");
+  };
+
   return (
     <>
       <Toaster />
       <div className="flex h-screen flex-col md:flex-row items-center justify-center">
-        <div className="md:w-[50%] login_image bg-black relative h-screen flex-col bg-muted text-white dark:border-r-black flex p-8"
-        style={{ backgroundImage: "url('/login_register.svg')" }}
+        <div
+          className="md:w-[50%] login_image bg-black relative h-screen flex-col bg-muted text-white dark:border-r-black flex p-8"
+          style={{ backgroundImage: "url('/login_register.svg')" }}
         >
           <div className="login_image absolute inset-0" />
           <div className="relative z-20 flex items-center text-lg font-medium">
@@ -80,29 +113,41 @@ export default function Login() {
             Orbitron - Activity Tracker
           </div>
           <div className="relative z-20 mt-auto">
-            {/* <blockquote className="space-y-2">
-              <p className="text-lg">
-                &ldquo; This application has been a game-changer for my
-                productivity and task management. Since I started using it, I've
-                noticed a significant improvement in how efficiently I handle my
-                responsibilities. I highly recommend it to anyone looking to
-                stay organized and focused. &rdquo;
-              </p>
-            </blockquote> */}
+            {/* Removed blockquote as per the original code */}
           </div>
         </div>
         <div className="flex flex-col md:w-[50%] p-8">
           <div className="flex absolute top-4 right-4 justify-end items-center gap-2">
-          <ThemeChanger />
-          <button
-            className="rounded-md text-white cursor-pointer p-2 font-semibold bg-primary"
-            onClick={() => navigate("/register")}
-          >
-            Register
-          </button>
-          
+            <ThemeChanger />
+            <button
+              className="rounded-md text-white cursor-pointer p-2 font-semibold bg-primary"
+              onClick={() => navigate("/register")}
+            >
+              Register
+            </button>
           </div>
+          <div className="absolute bottom-4 right-4 flex justify-start gap-4 mb-4">
+              <h3 
+                className="text-sm cursor-pointer underline"
+                onClick={addMockData}
+              >
+                Add Mock Data
+              </h3>
+              <h3 
+                className="text-sm cursor-pointer underline"
+                onClick={setUserCredentials}
+              >
+                User Login
+              </h3>
+              <h3 
+                className="text-sm cursor-pointer underline"
+                onClick={setAdminCredentials}
+              >
+                Admin Login
+              </h3>
+            </div>
           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+          
             <div className="flex flex-col space-y-2 text-center">
               <h1 className="text-2xl font-semibold tracking-tight">
                 Log-in to your account
@@ -167,3 +212,4 @@ export default function Login() {
     </>
   );
 }
+

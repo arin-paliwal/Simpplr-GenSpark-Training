@@ -1,6 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
-import { UserState } from "../types";
+import { UserState } from "../../types";
+
+const setCookie = (key: string, value: string) => {
+  Cookies.set(key, value, { expires: 7 });
+};
+
+const removeCookie = (key: string) => {
+  Cookies.remove(key);
+};
 
 const initialState: UserState = {
   role:
@@ -17,20 +25,20 @@ const userSlice = createSlice({
     login: (state, action: PayloadAction<{ role: "admin" | "user" }>) => {
       state.isAuthenticated = true;
       state.role = action.payload.role;
-      Cookies.set("isAuthenticated", "true", { expires: 7 });
-      Cookies.set("role", action.payload.role, { expires: 7 });
+      setCookie("isAuthenticated", "true");
+      setCookie("role", action.payload.role);
     },
     logout: (state) => {
       state.isAuthenticated = false;
       state.role = null;
-      Cookies.remove("isAuthenticated");
-      Cookies.remove("role");
+      removeCookie("isAuthenticated");
+      removeCookie("role");
     },
     register: (state, action: PayloadAction<{ role: "admin" | "user" }>) => {
       state.isAuthenticated = true;
       state.role = action.payload.role;
-      Cookies.set("isAuthenticated", "true", { expires: 7 });
-      Cookies.set("role", action.payload.role, { expires: 7 });
+      setCookie("isAuthenticated", "true");
+      setCookie("role", action.payload.role);
     },
   },
 });

@@ -18,12 +18,13 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import { setSelectedItem } from "../../redux/sidebar-slice";
+import { setSelectedItem } from "../../redux/slices/sidebar";
 import { RootState } from "../../types";
 
 
 export function Sidebar() {
   const dispatch = useDispatch();
+  dispatch(setSelectedItem("Today"));
   const selectedItem = useSelector(
     (state: RootState) => state.sidebar.selectedItem
   );

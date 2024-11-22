@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Loader } from "lucide-react";
 import toast, { Toaster } from "react-hot-toast";
-import { register } from "../redux/user-slice";
+import { register } from "../redux/slices/user";
 import { useDispatch } from "react-redux";
 import { ThemeChanger } from "./theme-changer";
 

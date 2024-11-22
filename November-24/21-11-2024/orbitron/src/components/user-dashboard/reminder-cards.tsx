@@ -1,7 +1,6 @@
 import { CheckCircle, Edit, Ellipsis, Eye } from "lucide-react";
 import { Reminder } from "../../types/main-content";
 import { useEffect, useState, useRef } from "react";
-import { mock_reminders } from "../../data/main-content-data";
 import toast from "react-hot-toast";
 
 const getRemindersByEmail = (email: string): Reminder[] => {
@@ -15,24 +14,28 @@ const getRemindersByEmail = (email: string): Reminder[] => {
 };
 
 export default function ReminderCards() {
-  const [all_reminders, setAllReminders] = useState<Reminder[]>(
-    JSON.parse(localStorage.getItem("reminders") || "[]")
-  );
   const [reminders, setReminders] = useState<Reminder[]>([]);
   const [activeMenuIndex, setActiveMenuIndex] = useState<number | null>(null);
   const menuRef = useRef<HTMLDivElement | null>(null);
   
-  
   useEffect(() => {
     const currentUserData = JSON.parse(localStorage.getItem("currentUser") || "{}");
+    
+    if (!currentUserData.email) {
+      console.error("User email is missing.");
+      return;
+    }
+    
     const fetchedReminders = getRemindersByEmail(currentUserData.email);
     if (fetchedReminders.length) {
       setReminders(fetchedReminders);
     } else {
-      setReminders(mock_reminders);
+      // Optional: set some mock reminders if no reminders are found
+      // setReminders(mock_reminders);
+      console.warn("No reminders found for the current user.");
     }
 
-      const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setActiveMenuIndex(null);
       }
@@ -49,23 +52,37 @@ export default function ReminderCards() {
     setActiveMenuIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
-  const handleStatusChange = (index: number, status: "assigned" | "in-progress" | "completed" | "review") => {
-    const updatedReminders = [...reminders];
-    if (updatedReminders[index]) {
-        updatedReminders[index].status = status;
-        setReminders(updatedReminders);
-        setActiveMenuIndex(null);
-        toast.success(`Reminder marked as ${status}`);
-        const updatedAllReminders = [...all_reminders];
-        updatedAllReminders[index].status = status;
-        localStorage.setItem("reminders", JSON.stringify(updatedAllReminders));
-        setAllReminders(updatedAllReminders);
-    } else {
-        console.error("Invalid index or reminder not found");
+  const handleStatusChange = (
+    index: number,
+    status: "assigned" | "in-progress" | "completed" | "review"
+  ) => {
+    const fetchAllReminders = JSON.parse(localStorage.getItem("reminders") || "[]") as Reminder[];
+    const currentUser = JSON.parse(localStorage.getItem("currentUser") || "{}");
+    
+    if (!currentUser.email) {
+      console.error("Current user not found or email is missing.");
+      return;
     }
-};
-
-
+    
+    const myReminders = fetchAllReminders.filter(
+      (reminder) => reminder.assignedUser === currentUser.email
+    );
+  
+    if (myReminders[index]) {
+      myReminders[index].status = status;
+    } else {
+      console.error("Invalid index for user's reminders.");
+      return;
+    }
+  
+    const updatedReminders = fetchAllReminders.map((reminder) =>
+      reminder.assignedUser === currentUser.email
+        ? myReminders.find((r) => r.id === reminder.id) || reminder
+        : reminder
+    );  
+    localStorage.setItem("reminders", JSON.stringify(updatedReminders));
+    toast.success(`Reminder marked as ${status}`);
+  };
 
   return (
     <div className="flex flex-col">
@@ -139,13 +156,13 @@ export default function ReminderCards() {
             <hr className="border-t-4 border-light-secondarybg dark:border-dark-secondary rounded-full my-3" />
             <div className="flex justify-between text-sm text-light-texts dark:text-dark-text">
               <div className="flex items-center gap-2">
-              <span className="font-semibold">{reminder.location}</span>●
-              <span className="font-semibold">{reminder.date}</span>●
-              <span className="font-semibold">{reminder.time}</span>
+                <span className="font-semibold">{reminder.location}</span>●
+                <span className="font-semibold">{reminder.date}</span>●
+                <span className="font-semibold">{reminder.time}</span>
               </div>
             </div>
             <span className="text-sm mt-[-8px] text-light-texts dark:text-dark-text font-semibold">
-              Current Stage: {reminder.status?reminder.status:"assigned"}
+              Current Stage: {reminder.status || "assigned"}
             </span>
           </div>
         ))}

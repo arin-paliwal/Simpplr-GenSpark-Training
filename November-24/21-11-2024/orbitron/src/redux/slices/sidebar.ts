@@ -2,10 +2,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface SidebarState {
   selectedItem: string | null;
+  context: "admin" | "user";
 }
 
 const initialState: SidebarState = {
-  selectedItem: "Today",
+  selectedItem: "dashboard",
+  context: "user",
 };
 
 const sidebarSlice = createSlice({
@@ -18,8 +20,11 @@ const sidebarSlice = createSlice({
     clearSelectedItem: (state) => {
       state.selectedItem = null;
     },
+    setContext: (state, action: PayloadAction<"admin" | "user">) => {
+      state.context = action.payload;
+    },
   },
 });
 
-export const { setSelectedItem, clearSelectedItem } = sidebarSlice.actions;
+export const { setSelectedItem, clearSelectedItem, setContext } = sidebarSlice.actions;
 export default sidebarSlice.reducer;

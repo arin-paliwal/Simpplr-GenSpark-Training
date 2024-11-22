@@ -1,18 +1,19 @@
-import { habits } from "../../data/main-content-data";
 import { useNavigate } from "react-router-dom";
 import { ThemeChanger } from "../theme-changer";
 import ReminderCards from "./reminder-cards";
 import { useDispatch } from "react-redux";
-import { logout } from "../../redux/user-slice";
+import { logout } from "../../redux/slices/user";
+import { Habit } from "../../types/main-content";
 
 export function MainContent() {
   const navigate = useNavigate();
-  const dispath=useDispatch()
+  const dispath = useDispatch();
   const handleLogout = () => {
-    dispath(logout())
+    dispath(logout());
     localStorage.removeItem("currentUser");
     navigate("/");
   };
+  const habits: Habit[] = JSON.parse(localStorage.getItem("habits") || "[]");
 
   return (
     <main className="flex-1 h-screen overflow-auto componentScroll p-6 bg-[#f5f4f7] dark:bg-dark-secondary text-light-text dark:text-dark-text rounded-tr-xl rounded-br-xl">

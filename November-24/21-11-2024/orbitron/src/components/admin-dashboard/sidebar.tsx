@@ -8,15 +8,15 @@ import {
   BarChart,
 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../redux/user-slice";
+import { logout } from "../../redux/slices/user";
 import { useNavigate } from "react-router-dom";
-import { setSelectedItem } from "../../redux/admin-sidebar-slice";
 import { RootState } from "../../types";
+import { setContext, setSelectedItem } from "../../redux/slices/sidebar";
 
 export default function Sidebar() {
   const dispatch = useDispatch();
   const selectedItem = useSelector(
-    (state: RootState) => state.adminSidebar.selectedItem
+    (state: RootState) => state.sidebar.selectedItem
   );
   const menuItems = [
     { name: "dashboard", icon: <Home className="w-4 h-4" /> },

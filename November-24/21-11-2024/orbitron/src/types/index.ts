@@ -17,5 +17,12 @@ export interface LoginFormInterface {
   role?: 1 | 2;
 }
 
+export interface UserInterface {
+  name: string;
+  email: string;
+  password: string;
+  role: "admin" | "user";
+}
+
 export type RootState = ReturnType<typeof store.getState>;
 

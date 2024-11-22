@@ -11,7 +11,7 @@ import ReminderManagement from "./tabs/reminder";
 
 export default function MainContent() {
   const selectedItem = useSelector(
-    (state: RootState) => state.adminSidebar.selectedItem
+    (state: RootState) => state.sidebar.selectedItem
   );
 
   interface Task {
