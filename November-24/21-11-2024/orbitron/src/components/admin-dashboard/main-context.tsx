@@ -218,8 +218,6 @@ export default function MainContent() {
         return <UserManagement />;
       case "analytics":
         return <ReminderManagement />;
-      case "calendar":
-        return viewMode === "Board" ? renderBoardView() : renderListView();
       default:
         return <div>Select an option</div>;
     }

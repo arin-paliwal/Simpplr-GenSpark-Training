@@ -22,12 +22,12 @@ export default function Sidebar() {
     { name: "dashboard", icon: <Home className="w-4 h-4" /> },
     { name: "users", icon: <Users2 className="w-4 h-4" /> },
     { name: "analytics", icon: <BarChart className="w-4 h-4" /> },
-    { name: "calendar", icon: <Calendar className="w-4 h-4" /> },
+    // { name: "calendar", icon: <Calendar className="w-4 h-4" /> },
   ];
   const accountItems = [
-    { name: "profile", icon: <User className="w-4 h-4" /> },
-    { name: "teams", icon: <Users className="w-4 h-4" /> },
-    { name: "settings", icon: <Settings className="w-4 h-4" /> },
+    // { name: "profile", icon: <User className="w-4 h-4" /> },
+    // { name: "teams", icon: <Users className="w-4 h-4" /> },
+    // { name: "settings", icon: <Settings className="w-4 h-4" /> },
   ];
   const dispath = useDispatch();
   const navigate = useNavigate();
@@ -71,7 +71,7 @@ export default function Sidebar() {
             </div>
           ))}
         </div>
-        <div className="mb-8">
+        {/* <div className="mb-8">
           <h2 className="mb-3 text-sm font-semibold text-light-texts dark:text-dark-texts">
             account
           </h2>
@@ -94,7 +94,7 @@ export default function Sidebar() {
               )}
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
       <div className="flex" onClick={handleLogout}>
         <button className="bg-red-500 w-full text-white px-4 py-2 rounded">
