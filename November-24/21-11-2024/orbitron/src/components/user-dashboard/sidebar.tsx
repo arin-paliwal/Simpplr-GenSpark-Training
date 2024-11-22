@@ -24,41 +24,42 @@ import { RootState } from "../../types";
 
 export function Sidebar() {
   const dispatch = useDispatch();
-  dispatch(setSelectedItem("Today"));
+  dispatch(setSelectedItem("today"));
   const selectedItem = useSelector(
     (state: RootState) => state.sidebar.selectedItem
   );
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const data = {
-    days: ["Today", "Tomorrow", "Next 7 days", "Inbox"],
-    lists: ["Lists", "Work", "Freelance", "Workout", "Learning", "Reading"],
+    days: ["today", "tomorrow", "next 7 days", "inbox"],
+    lists: ["lists", "work", "freelance", "workout", "learning", "reading"],
     tags: ["work", "uxresearch", "inspiration", "meeting", "designteam"],
-    others: ["Completed", "Trash", "Summary"],
+    others: ["completed", "trash", "summary"],
   };
+  
 
   const iconClass = "h-4 w-4";
 
   const icons: Record<string, JSX.Element> = {
-    Today: <CalendarDays className={iconClass} />,
-    Tomorrow: <Heart className={iconClass} />,
-    "Next 7 days": <PieChart className={iconClass} />,
-    Inbox: <Home className={iconClass} />,
-    Lists: <List className={iconClass} />,
-    Work: <Briefcase className={iconClass} />,
-    Freelance: <Folder className={iconClass} />,
-    Workout: <Dumbbell className={iconClass} />,
-    Learning: <GraduationCap className={iconClass} />,
-    Reading: <Book className={iconClass} />,
+    today: <CalendarDays className={iconClass} />,
+    tomorrow: <Heart className={iconClass} />,
+    "next 7 days": <PieChart className={iconClass} />,
+    inbox: <Home className={iconClass} />,
+    lists: <List className={iconClass} />,
     work: <Briefcase className={iconClass} />,
+    freelance: <Folder className={iconClass} />,
+    workout: <Dumbbell className={iconClass} />,
+    learning: <GraduationCap className={iconClass} />,
+    reading: <Book className={iconClass} />,
     uxresearch: <Heart className={iconClass} />,
     inspiration: <Sparkles className={iconClass} />,
     meeting: <Users className={iconClass} />,
     designteam: <Users className={iconClass} />,
-    Completed: <CheckCircle className={iconClass} />,
-    Trash: <Trash2 className={iconClass} />,
-    Summary: <PieChart className={iconClass} />,
+    completed: <CheckCircle className={iconClass} />,
+    trash: <Trash2 className={iconClass} />,
+    summary: <PieChart className={iconClass} />,
   };
+  
 
   useEffect(() => {
     const handleResize = () => {
