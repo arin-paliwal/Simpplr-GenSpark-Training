@@ -7,9 +7,24 @@ const getRemindersByEmail = (email: string): Reminder[] => {
   try {
     const reminders = JSON.parse(localStorage.getItem("reminders") || "[]") as Reminder[];
     return reminders.filter((reminder) => reminder.assignedUser === email);
-  } catch (error) {
-    console.error("Error fetching reminders from localStorage:", error);
+  } catch {
     return [];
+  }
+};
+
+const updateReminderStatusByTitle = (title: string, status: string, email: string) => {
+  try {
+    const reminders = JSON.parse(localStorage.getItem("reminders") || "[]") as Reminder[];
+    const updatedReminders = reminders.map((reminder) => {
+      if (reminder.assignedUser === email && reminder.title === title) {
+        return { ...reminder, status };
+      }
+      return reminder;
+    });
+    localStorage.setItem("reminders", JSON.stringify(updatedReminders));
+    toast.success(`Reminder status updated to "${status}"`);
+  } catch {
+    toast.error("Failed to update reminder status.");
   }
 };
 
@@ -17,23 +32,13 @@ export default function ReminderCards() {
   const [reminders, setReminders] = useState<Reminder[]>([]);
   const [activeMenuIndex, setActiveMenuIndex] = useState<number | null>(null);
   const menuRef = useRef<HTMLDivElement | null>(null);
-  
+
   useEffect(() => {
     const currentUserData = JSON.parse(localStorage.getItem("currentUser") || "{}");
-    
-    if (!currentUserData.email) {
-      console.error("User email is missing.");
-      return;
-    }
-    
+    if (!currentUserData.email) return;
+
     const fetchedReminders = getRemindersByEmail(currentUserData.email);
-    if (fetchedReminders.length) {
-      setReminders(fetchedReminders);
-    } else {
-      // Optional: set some mock reminders if no reminders are found
-      // setReminders(mock_reminders);
-      console.warn("No reminders found for the current user.");
-    }
+    setReminders(fetchedReminders);
 
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -53,35 +58,20 @@ export default function ReminderCards() {
   };
 
   const handleStatusChange = (
-    index: number,
+    title: string,
     status: "assigned" | "in-progress" | "completed" | "review"
   ) => {
-    const fetchAllReminders = JSON.parse(localStorage.getItem("reminders") || "[]") as Reminder[];
-    const currentUser = JSON.parse(localStorage.getItem("currentUser") || "{}");
-    
-    if (!currentUser.email) {
-      console.error("Current user not found or email is missing.");
+    const currentUserData = JSON.parse(localStorage.getItem("currentUser") || "{}");
+    if (!currentUserData.email) {
+      toast.error("User is not logged in!");
       return;
     }
-    
-    const myReminders = fetchAllReminders.filter(
-      (reminder) => reminder.assignedUser === currentUser.email
+    updateReminderStatusByTitle(title, status, currentUserData.email);
+    setReminders((prevReminders) =>
+      prevReminders.map((reminder) =>
+        reminder.title === title ? { ...reminder, status } : reminder
+      )
     );
-  
-    if (myReminders[index]) {
-      myReminders[index].status = status;
-    } else {
-      console.error("Invalid index for user's reminders.");
-      return;
-    }
-  
-    const updatedReminders = fetchAllReminders.map((reminder) =>
-      reminder.assignedUser === currentUser.email
-        ? myReminders.find((r) => r.id === reminder.id) || reminder
-        : reminder
-    );  
-    localStorage.setItem("reminders", JSON.stringify(updatedReminders));
-    toast.success(`Reminder marked as ${status}`);
   };
 
   return (
@@ -90,13 +80,13 @@ export default function ReminderCards() {
       <div className="flex items-center flex-wrap gap-4">
         {reminders.map((reminder, index) => (
           <div
-            key={index}
+            key={reminder.title}
             className="w-[20rem] border-2 border-transparent hover:border-primary duration-300 bg-light-bg dark:bg-dark-bg p-4 rounded-lg cursor-pointer border-gray-200 flex flex-col gap-3"
           >
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <span
-                  className={`text-sm text-purple-700 font-medium px-2 py-1 rounded-md
+                  className={`text-sm font-medium px-2 py-1 rounded-md
                     ${reminder.priority === "low" ? "bg-green-100 text-green-700" : ""}
                     ${reminder.priority === "medium" ? "bg-yellow-100 text-yellow-700" : ""}
                     ${reminder.priority === "high" ? "bg-red-100 text-red-700" : ""}
@@ -104,7 +94,7 @@ export default function ReminderCards() {
                 >
                   {reminder.priority}
                 </span>
-                <span className="text-sm text-purple-700 font-medium px-2 py-1 rounded-md bg-purple-200">
+                <span className="text-sm font-medium px-2 py-1 rounded-md bg-purple-200">
                   {reminder.category}
                 </span>
               </div>
@@ -122,21 +112,21 @@ export default function ReminderCards() {
                   >
                     <button
                       className="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 rounded-lg"
-                      onClick={() => handleStatusChange(index, "in-progress")}
+                      onClick={() => handleStatusChange(reminder.title, "in-progress")}
                     >
                       <Edit className="mr-2" size={16} />
                       Mark as In Progress
                     </button>
                     <button
                       className="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 rounded-lg"
-                      onClick={() => handleStatusChange(index, "completed")}
+                      onClick={() => handleStatusChange(reminder.title, "completed")}
                     >
                       <CheckCircle className="mr-2" size={16} />
                       Mark as Completed
                     </button>
                     <button
                       className="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 rounded-lg"
-                      onClick={() => handleStatusChange(index, "review")}
+                      onClick={() => handleStatusChange(reminder.title, "review")}
                     >
                       <Eye className="mr-2" size={16} />
                       Mark as For Review
