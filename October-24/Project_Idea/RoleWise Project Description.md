@@ -78,7 +78,7 @@ Employees form the core user base, accessing tools for communication, recognitio
 | Dashboards                   | Org-Level Analytics           | Team-Level Analytics          | Task Overview                |  
 | Recognition System           | Oversight & Moderation        | Send & Track Team Recognition | Send Peer Recognition        |  
 | Feedback Mechanism           | Monitor Org Feedback Trends   | Monitor Team Feedback Trends  | Submit Feedback              |  
-| AI Assistant Simulation      | Configure FAQ Responses       | Use Assistant for Queries     | Use Assistant for Queries    |  
+| Assistant Simulation      | Configure FAQ Responses       | Use Assistant for Queries     | Use Assistant for Queries    |  
 | Event Management             | Create & Manage Events        | Organize Team Events          | RSVP to Events               |  
 | Resource Hub                 | Upload & Manage Resources     | Share Resources with Team     | Access Resources             |  
 
