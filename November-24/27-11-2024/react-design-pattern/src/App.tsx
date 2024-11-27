@@ -32,7 +32,7 @@ const App: React.FC = () => {
 
       {/* Render Props Example */}
       <section className="w-full mb-8 bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-2xl font-semibold mb-4">Render Props Pattern</h2>
+        <h2 className="text-2xl font-semibold mb-4">Hooks Pattern</h2>
         <UserList />
       </section>
 
