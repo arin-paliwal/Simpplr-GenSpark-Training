@@ -6,6 +6,7 @@ import withLoading from "./hoc-pattern/withLoading";
 import UserProfile from "./hoc-pattern/userProfile";
 import UserList from "./hooks-pattern/userList";
 import UserListContainer from "./container-presentational/user-list-container";
+import MouseTracker from "./render-props-pattern/MouseTracker";
 
 const App: React.FC = () => {
   const UserProfileWithLoading = withLoading(UserProfile);
@@ -52,6 +53,22 @@ const App: React.FC = () => {
       <section>
         <h1>Container/Presentational Pattern Example</h1>
         <UserListContainer />
+      </section>
+
+      {/* Render Props Pattern */}
+      <section>
+        <h1>Render Props Pattern Example</h1>
+
+        {/* Pass a function as the render prop */}
+        <MouseTracker
+          render={(mousePosition) => (
+            <div>
+              <h2>Mouse Position</h2>
+              <p>X: {mousePosition.x}</p>
+              <p>Y: {mousePosition.y}</p>
+            </div>
+          )}
+        />
       </section>
     </div>
   );
