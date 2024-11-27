@@ -5,6 +5,7 @@ import { ToggleStatus } from "./compound-pattern/ToggleStatus";
 import withLoading from "./hoc-pattern/withLoading";
 import UserProfile from "./hoc-pattern/userProfile";
 import UserList from "./hooks-pattern/userList";
+import UserListContainer from "./container-presentational/user-list-container";
 
 const App: React.FC = () => {
   const UserProfileWithLoading = withLoading(UserProfile);
@@ -16,7 +17,6 @@ const App: React.FC = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh",
         width: "100vw",
         textAlign: "center",
       }}
@@ -46,6 +46,12 @@ const App: React.FC = () => {
       <section>
         <h2>Render Props Pattern</h2>
         <UserList />
+      </section>
+
+      {/* Container-Presentation Pattern */}
+      <section>
+        <h1>Container/Presentational Pattern Example</h1>
+        <UserListContainer />
       </section>
     </div>
   );
