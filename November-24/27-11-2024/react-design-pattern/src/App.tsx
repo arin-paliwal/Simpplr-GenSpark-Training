@@ -12,25 +12,12 @@ const App: React.FC = () => {
   const UserProfileWithLoading = withLoading(UserProfile);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100vw",
-        textAlign: "center",
-      }}
-    >
-      <h1>React Design Patterns</h1>
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
+      <h1 className="text-3xl font-bold mb-6 text-gray-800">React Design Patterns</h1>
 
       {/* Compound Component Pattern */}
-      <section
-        style={{
-          width: "100%",
-        }}
-      >
-        <h2>Compound Component Pattern</h2>
+      <section className="w-full mb-8 bg-white p-6 rounded-lg shadow-md">
+        <h2 className="text-2xl font-semibold mb-4">Compound Component Pattern</h2>
         <Toggle>
           <ToggleButton />
           <ToggleStatus />
@@ -38,34 +25,32 @@ const App: React.FC = () => {
       </section>
 
       {/* HOC Example */}
-      <section>
-        <h2>Higher-Order Component (HOC) Pattern</h2>
+      <section className="w-full mb-8 bg-white p-6 rounded-lg shadow-md">
+        <h2 className="text-2xl font-semibold mb-4">Higher-Order Component (HOC) Pattern</h2>
         <UserProfileWithLoading />
       </section>
 
       {/* Render Props Example */}
-      <section>
-        <h2>Render Props Pattern</h2>
+      <section className="w-full mb-8 bg-white p-6 rounded-lg shadow-md">
+        <h2 className="text-2xl font-semibold mb-4">Render Props Pattern</h2>
         <UserList />
       </section>
 
       {/* Container-Presentation Pattern */}
-      <section>
-        <h1>Container/Presentational Pattern Example</h1>
+      <section className="w-full mb-8 bg-white p-6 rounded-lg shadow-md">
+        <h2 className="text-2xl font-semibold mb-4">Container/Presentational Pattern</h2>
         <UserListContainer />
       </section>
 
       {/* Render Props Pattern */}
-      <section>
-        <h1>Render Props Pattern Example</h1>
-
-        {/* Pass a function as the render prop */}
+      <section className="w-full mb-8 bg-white p-6 rounded-lg shadow-md">
+        <h2 className="text-2xl font-semibold mb-4">Render Props Pattern Example</h2>
         <MouseTracker
           render={(mousePosition) => (
             <div>
-              <h2>Mouse Position</h2>
-              <p>X: {mousePosition.x}</p>
-              <p>Y: {mousePosition.y}</p>
+              <h2 className="text-xl font-medium">Mouse Position</h2>
+              <p className="text-lg">X: {mousePosition.x}</p>
+              <p className="text-lg">Y: {mousePosition.y}</p>
             </div>
           )}
         />
