@@ -4,6 +4,7 @@ import { ToggleButton } from "./compound-pattern/ToggleButton";
 import { ToggleStatus } from "./compound-pattern/ToggleStatus";
 import withLoading from "./hoc-pattern/withLoading";
 import UserProfile from "./hoc-pattern/userProfile";
+import UserList from "./hooks-pattern/userList";
 
 const App: React.FC = () => {
   const UserProfileWithLoading = withLoading(UserProfile);
@@ -39,6 +40,12 @@ const App: React.FC = () => {
       <section>
         <h2>Higher-Order Component (HOC) Pattern</h2>
         <UserProfileWithLoading />
+      </section>
+
+      {/* Render Props Example */}
+      <section>
+        <h2>Render Props Pattern</h2>
+        <UserList />
       </section>
     </div>
   );
