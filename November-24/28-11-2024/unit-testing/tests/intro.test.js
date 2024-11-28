@@ -4,6 +4,11 @@ import { calculateAverage, factorial, fizzBuzz, max } from "../src/intro";
 describe("max", () => {
   it("should return the greater number when the first number is greater", () => {
     expect(max(2, 1)).toBe(2);
+    // const a=2,b=1;
+
+    // const res=max(a,b);
+
+    // expect(res).toBe(2);
   });
   it("should return the greater number when the second number is greater", () => {
     expect(max(1, 2)).toBe(2);
@@ -60,6 +65,6 @@ describe("factorial", () => {
     expect(factorial(5)).toBe(120);
   });
   it("should return undefined when the number is negative", () => {
-    expect(factorial(-4)).toBeUndefined();
+    expect(factorial(-4)).toBeUndefined
   });
 });
