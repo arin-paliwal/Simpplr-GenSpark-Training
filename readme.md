@@ -20,7 +20,8 @@ This repository tracks my progress through the training exercises. To view and t
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/your-username/Simpplr-GenSpark-Training.git
+   git clone [https://github.com/your-username/Simpplr-GenSpark-Training.git](https://github.com/arin-paliwal/Simpplr-GenSpark-Training.git)
+   cd Simpplr-GenSpark-Training
    ```
 
 2. **Install dependencies**:
