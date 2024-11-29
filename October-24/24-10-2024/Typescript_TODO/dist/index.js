@@ -59,3 +59,7 @@ document.getElementById("addTaskButton").addEventListener("click", () => {
     }
 });
 myTodoList.render();
+
+// addition
+// remover
+// renderAll
