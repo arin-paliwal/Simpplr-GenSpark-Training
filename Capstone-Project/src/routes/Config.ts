@@ -1,7 +1,7 @@
 import AdminDashboard from "../pages/admin";
-import LandingPage from "../pages/LandingPage";
-import LoginPage from "../pages/LoginPage";
-import SignupPage from "../pages/SignupPage";
+import LandingPage from "../pages/landing-page";
+import LoginPage from "../pages/login-page";
+import SignupPage from "../pages/signup-page";
 import { RouteConfigInterface } from "../types/routes";
 
 export const routesConfig: RouteConfigInterface[] = [

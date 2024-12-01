@@ -4,7 +4,7 @@ export interface childrenInterface {
   children: ReactNode;
 }
 
-export type AppContextType = {
-  state: string;
-  setState: (state: string) => void;
-};
+export type AppAction =
+  | { type: 'SET_STATE'; payload: string }
+  | { type: 'SET_ADMIN_STATE'; payload: string };
+

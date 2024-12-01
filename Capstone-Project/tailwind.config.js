@@ -30,7 +30,7 @@ module.exports = {
           accentLightBlue: "#315BB0",
         },
         borders: {
-          primary: "#1e1e1e",
+          primary: "#e5e7eb",
           secondary: "#525252",
         },
       },
