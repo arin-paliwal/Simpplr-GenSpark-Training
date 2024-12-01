@@ -1,10 +1,22 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { BarChart3, Users, UserPlus, DollarSign, Calendar, Settings, HelpCircle, ChevronDown, Info, Copy, MoreVertical } from 'lucide-react'
+import { useState } from "react";
+import {
+  BarChart3,
+  Users,
+  UserPlus,
+  DollarSign,
+  Calendar,
+  Settings,
+  HelpCircle,
+  ChevronDown,
+  Info,
+  Copy,
+  MoreVertical,
+} from "lucide-react";
 
 export default function Dashboard() {
-  const [activeNav, setActiveNav] = useState('Dashboard')
+  const [activeNav, setActiveNav] = useState("Dashboard");
 
   return (
     <div className="flex min-h-screen bg-gray-50">
@@ -37,22 +49,24 @@ export default function Dashboard() {
 
         {/* Navigation */}
         <div className="p-2">
-          <div className="text-sm font-medium text-gray-500 px-3 py-2">MAIN MENU</div>
+          <div className="text-sm font-medium text-gray-500 px-3 py-2">
+            MAIN MENU
+          </div>
           <nav className="space-y-1">
             {[
-              { name: 'Dashboard', icon: BarChart3, color: 'text-blue-600' },
-              { name: 'Employee', icon: Users, color: 'text-gray-500' },
-              { name: 'Recruitment', icon: UserPlus, color: 'text-gray-500' },
-              { name: 'Payroll', icon: DollarSign, color: 'text-gray-500' },
-              { name: 'Schedule', icon: Calendar, color: 'text-gray-500' },
+              { name: "Dashboard", icon: BarChart3, color: "text-blue-600" },
+              { name: "Employee", icon: Users, color: "text-gray-500" },
+              { name: "Recruitment", icon: UserPlus, color: "text-gray-500" },
+              { name: "Payroll", icon: DollarSign, color: "text-gray-500" },
+              { name: "Schedule", icon: Calendar, color: "text-gray-500" },
             ].map((item) => (
               <button
                 key={item.name}
                 onClick={() => setActiveNav(item.name)}
                 className={`flex items-center gap-3 w-full px-3 py-2 text-sm rounded-lg ${
                   activeNav === item.name
-                    ? 'bg-blue-50 text-blue-600'
-                    : 'text-gray-700 hover:bg-gray-100'
+                    ? "bg-blue-50 text-blue-600"
+                    : "text-gray-700 hover:bg-gray-100"
                 }`}
               >
                 <item.icon className={`w-5 h-5 ${item.color}`} />
@@ -61,14 +75,16 @@ export default function Dashboard() {
             ))}
           </nav>
 
-          <div className="text-sm font-medium text-gray-500 px-3 py-2 mt-4">DEPARTMENT</div>
+          <div className="text-sm font-medium text-gray-500 px-3 py-2 mt-4">
+            DEPARTMENT
+          </div>
           <nav className="space-y-1">
             {[
-              { name: 'Business and Marketing', color: 'bg-blue-600' },
-              { name: 'Design', color: 'bg-emerald-500' },
-              { name: 'Project Manager', color: 'bg-orange-500' },
-              { name: 'Human Resource', color: 'bg-purple-500' },
-              { name: 'Development', color: 'bg-blue-500' },
+              { name: "Business and Marketing", color: "bg-blue-600" },
+              { name: "Design", color: "bg-emerald-500" },
+              { name: "Project Manager", color: "bg-orange-500" },
+              { name: "Human Resource", color: "bg-purple-500" },
+              { name: "Development", color: "bg-blue-500" },
             ].map((item) => (
               <button
                 key={item.name}
@@ -80,11 +96,13 @@ export default function Dashboard() {
             ))}
           </nav>
 
-          <div className="text-sm font-medium text-gray-500 px-3 py-2 mt-4">OTHER</div>
+          <div className="text-sm font-medium text-gray-500 px-3 py-2 mt-4">
+            OTHER
+          </div>
           <nav className="space-y-1">
             {[
-              { name: 'Setting', icon: Settings },
-              { name: 'Help Center', icon: HelpCircle },
+              { name: "Setting", icon: Settings },
+              { name: "Help Center", icon: HelpCircle },
             ].map((item) => (
               <button
                 key={item.name}
@@ -107,7 +125,9 @@ export default function Dashboard() {
               <h2 className="text-lg font-semibold">Payment Method</h2>
               <Info className="w-4 h-4 text-gray-400" />
             </div>
-            <button className="text-sm text-blue-600">Change Payment Method</button>
+            <button className="text-sm text-blue-600">
+              Change Payment Method
+            </button>
           </div>
           <div className="grid grid-cols-4 gap-4">
             <div>
@@ -142,26 +162,30 @@ export default function Dashboard() {
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-lg font-semibold">What's on in January?</h2>
               <div className="flex gap-2">
-                <button className="px-4 py-1 text-sm bg-gray-50 rounded-full">Time Off</button>
-                <button className="px-4 py-1 text-sm bg-gray-50 rounded-full">Birthday</button>
+                <button className="px-4 py-1 text-sm bg-gray-50 rounded-full">
+                  Time Off
+                </button>
+                <button className="px-4 py-1 text-sm bg-gray-50 rounded-full">
+                  Birthday
+                </button>
               </div>
             </div>
             <div className="space-y-4">
               {[
                 {
-                  name: 'Elanoire Maggie',
-                  role: 'UI UX Designer',
-                  status: 'Sick Leave',
+                  name: "Elanoire Maggie",
+                  role: "UI UX Designer",
+                  status: "Sick Leave",
                 },
                 {
-                  name: 'Kevin Malona',
-                  role: 'UI UX Designer',
-                  status: 'Annual Leave',
+                  name: "Kevin Malona",
+                  role: "UI UX Designer",
+                  status: "Annual Leave",
                 },
                 {
-                  name: 'Jeremy Gemoy',
-                  role: 'Graphic Design',
-                  status: 'Work From Home',
+                  name: "Jeremy Gemoy",
+                  role: "Graphic Design",
+                  status: "Work From Home",
                 },
               ].map((person) => (
                 <div key={person.name} className="flex items-center gap-3">
@@ -190,13 +214,15 @@ export default function Dashboard() {
               </div>
             </div>
             <div className="flex justify-between text-sm text-gray-500 mb-4">
-              {['08:00', '09:00', '09:35', '10:00', '11:00'].map((time) => (
+              {["08:00", "09:00", "09:35", "10:00", "11:00"].map((time) => (
                 <div key={time}>{time}</div>
               ))}
             </div>
             <div className="relative h-40">
               <div className="absolute left-[20%] top-0 w-[30%] h-12 bg-emerald-100 rounded-lg px-3 py-2">
-                <div className="text-sm">Online Interview with UI Candidate</div>
+                <div className="text-sm">
+                  Online Interview with UI Candidate
+                </div>
               </div>
               <div className="absolute left-[60%] top-4 w-[20%] h-10 bg-orange-100 rounded-lg px-3 py-2">
                 <div className="text-sm">Weekly meeting</div>
@@ -228,22 +254,22 @@ export default function Dashboard() {
             <tbody>
               {[
                 {
-                  name: 'Brooklyn Simmons',
-                  email: 'brok-simms@mail.com',
-                  department: 'Design',
-                  role: 'UI Designer',
+                  name: "Brooklyn Simmons",
+                  email: "brok-simms@mail.com",
+                  department: "Design",
+                  role: "UI Designer",
                 },
                 {
-                  name: 'Cody Fisher',
-                  email: 'cody_fisher99@mail.com',
-                  department: 'Development',
-                  role: 'Front-End',
+                  name: "Cody Fisher",
+                  email: "cody_fisher99@mail.com",
+                  department: "Development",
+                  role: "Front-End",
                 },
                 {
-                  name: 'Ralph Edwards',
-                  email: 'ralp_uxdsg@mail.com',
-                  department: 'Design',
-                  role: 'UX Designer',
+                  name: "Ralph Edwards",
+                  email: "ralp_uxdsg@mail.com",
+                  department: "Design",
+                  role: "UX Designer",
                 },
               ].map((employee) => (
                 <tr key={employee.name} className="border-t">
@@ -252,14 +278,20 @@ export default function Dashboard() {
                       <div className="w-10 h-10 bg-gray-200 rounded-full" />
                       <div>
                         <div className="font-medium">{employee.name}</div>
-                        <div className="text-sm text-gray-500">{employee.email}</div>
+                        <div className="text-sm text-gray-500">
+                          {employee.email}
+                        </div>
                       </div>
                     </div>
                   </td>
                   <td>
-                    <span className={`px-3 py-1 text-sm rounded-full ${
-                      employee.department === 'Design' ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700'
-                    }`}>
+                    <span
+                      className={`px-3 py-1 text-sm rounded-full ${
+                        employee.department === "Design"
+                          ? "bg-emerald-100 text-emerald-700"
+                          : "bg-blue-100 text-blue-700"
+                      }`}
+                    >
                       {employee.department}
                     </span>
                   </td>
@@ -282,7 +314,10 @@ export default function Dashboard() {
           <div className="flex items-end justify-between h-48">
             {[24, 28, 32, 24, 28, 20, 16].map((height, i) => (
               <div key={i} className="w-20 flex flex-col items-center gap-2">
-                <div className="w-full bg-blue-600 rounded-t-lg" style={{ height: `${height * 2}px` }} />
+                <div
+                  className="w-full bg-blue-600 rounded-t-lg"
+                  style={{ height: `${height * 2}px` }}
+                />
                 <div className="text-sm text-gray-500">Jan {24 + i}</div>
               </div>
             ))}
@@ -290,6 +325,5 @@ export default function Dashboard() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-
