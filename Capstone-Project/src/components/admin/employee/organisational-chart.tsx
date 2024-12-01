@@ -1,149 +1,155 @@
-import React from 'react'
-import OrgChart from '@dabeng/react-org-chart'
+"use client";
+
+import React from "react";
+import { Tree, TreeNode } from "react-organizational-chart";
+import { ZoomIn, ZoomOut } from "lucide-react";
 
 interface Employee {
-  id: number
-  name: string
-  title: string
-  img: string
-  children?: Employee[]
+  name: string;
+  role: string;
+  image: string;
+  department?: string;
+  children?: Employee[];
 }
 
-const organizationData: Employee = {
-  id: 1,
+const orgData: Employee = {
   name: "Cameron Williamson",
-  title: "Founder - CEO",
-  img: "https://avatar.iran.liara.run/public/4",
+  role: "Founder - CEO",
+  image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
   children: [
     {
-      id: 2,
       name: "Leslie Alexander",
-      title: "Head of Project Manager",
-      img: "https://avatar.iran.liara.run/public/4",
+      role: "Head of Project Manager",
+      image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
+      department: "Business and Marketing",
       children: [
         {
-          id: 5,
           name: "Cody Firmansyah",
-          title: "Senior Project Manager",
-          img: "https://avatar.iran.liara.run/public/4",
+          role: "Senior Project Manager",
+          image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
         },
         {
-          id: 6,
           name: "Jenni William",
-          title: "Project Manager",
-          img: "https://avatar.iran.liara.run/public/4",
-        }
-      ]
+          role: "Project Manager",
+          image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
+        },
+      ],
     },
     {
-      id: 3,
       name: "Brooklyn Simmons",
-      title: "Creative Director",
-      img: "https://avatar.iran.liara.run/public/4",
+      role: "Creative Director",
+      image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
+      department: "Design",
       children: [
         {
-          id: 7,
           name: "Ralph Edwards",
-          title: "Senior UX Designer",
-          img: "https://avatar.iran.liara.run/public/4",
+          role: "Senior UX Designer",
+          image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
         },
         {
-          id: 8,
           name: "Brooklyn Hehe",
-          title: "Senior Graphic Design",
-          img: "https://avatar.iran.liara.run/public/4",
+          role: "Senior Graphic Design",
+          image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
         },
         {
-          id: 9,
-          name: "Vidi Guillerezz",
-          title: "UX Designer",
-          img: "https://avatar.iran.liara.run/public/4",
+          name: "Vidi Gutierrezz",
+          role: "UX Designer",
+          image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
         },
         {
-          id: 10,
           name: "Pablo Hive",
-          title: "Graphic Design",
-          img: "https://avatar.iran.liara.run/public/4",
-        }
-      ]
+          role: "Graphic Design",
+          image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
+        },
+      ],
     },
     {
-      id: 4,
       name: "Cody Fisher",
-      title: "Head of Development",
-      img: "https://avatar.iran.liara.run/public/4",
+      role: "Head of Development",
+      image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
+      department: "Development",
       children: [
         {
-          id: 11,
-          name: "Aathor Mulyani",
-          title: "Senior Front-End",
-          img: "https://avatar.iran.liara.run/public/4",
+          name: "Asther Mulyani",
+          role: "Senior Front-End",
+          image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
         },
         {
-          id: 12,
           name: "Jenny Wilson",
-          title: "QA Engineering",
-          img: "https://avatar.iran.liara.run/public/4",
+          role: "QA Engineering",
+          image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
         },
         {
-          id: 13,
           name: "Eden Khoiruddin",
-          title: "Back-End",
-          img: "https://avatar.iran.liara.run/public/4",
-        }
-      ]
-    }
-  ]
-}
+          role: "Back-End",
+          image: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
+        },
+      ],
+    },
+  ],
+};
 
-const NodeTemplate: React.FC<{ nodeData: Employee }> = ({ nodeData }) => {
-  return (
-    <div className="relative group">
-      <div className="flex flex-col items-center p-2 bg-white dark:bg-darkMode-secondaryBackground border border-borders-primary rounded-lg shadow-sm">
+const getDepartmentColor = (department?: string) => {
+  switch (department) {
+    case "Business and Marketing":
+      return "bg-blue-500";
+    case "Design":
+      return "bg-emerald-500";
+    case "Development":
+      return "bg-blue-400";
+    default:
+      return "bg-gray-200";
+  }
+};
+
+const EmployeeNode: React.FC<{ employee: Employee }> = ({ employee }) => (
+  <div className="flex flex-col items-center">
+    <div className="relative flex flex-col items-center">
+      <div className="flex flex-col items-center justify-center p-3 bg-white rounded-lg border shadow-sm min-w-[200px]">
         <img
-          src={nodeData.img}
-          alt={nodeData.name}
-          width={40}
-          height={40}
-          className="rounded-full mb-2"
+          src={employee.image}
+          alt={employee.name}
+          className="w-10 h-10 rounded-full border-2 border-white"
         />
-        <div className="text-center">
-          <div className="font-medium text-sm text-lightMode-primaryText dark:text-darkMode-primaryText">
-            {nodeData.name}
-          </div>
-          <div className="text-xs text-lightMode-secondaryText dark:text-darkMode-secondaryText">
-            {nodeData.title}
-          </div>
+        <div className="mt-2 text-center">
+          <div className="font-medium text-sm">{employee.name}</div>
+          <div className="text-xs text-gray-500">{employee.role}</div>
         </div>
       </div>
     </div>
-  )
-}
+  </div>
+);
 
-export default function OrganizationChart() {
+const renderTree = (data: Employee): React.ReactNode => (
+  <TreeNode label={<EmployeeNode employee={data} />}>
+    {data.children?.map((child, index) => (
+      <React.Fragment key={index}>{renderTree(child)}</React.Fragment>
+    ))}
+  </TreeNode>
+);
+
+export default function OrganizationalChart() {
   return (
-    <div className="p-6">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-semibold text-lightMode-primaryText dark:text-darkMode-primaryText">
-          Organization Chart
-        </h2>
-        <button className="px-4 py-2 flex items-center gap-2 text-lightMode-primaryText dark:text-darkMode-primaryText border border-borders-primary rounded-lg hover:bg-lightMode-secondaryBackground dark:hover:bg-darkMode-secondaryBackground">
-          Edit Organization
-        </button>
-      </div>
-      
-      <div className="bg-white dark:bg-darkMode-secondaryBackground rounded-lg border border-borders-primary p-8 overflow-x-auto">
-        <div className="min-w-[800px] flex justify-center">
-          <OrgChart
-            datasource={organizationData}
-            chartClass="org-chart"
-            NodeTemplate={NodeTemplate}
-            pan={true}
-            zoom={true}
-          />
-        </div>
+    <div
+      className="flex w-[calc(100vw-19.5rem)]
+    h-[calc(100vh-190px)] overflow-auto componentScroll  
+    bg-dots-pattern border rounded-xl p-8"
+    >
+      <div>
+        <Tree
+          lineWidth={"2px"}
+          lineColor={"#CBD5E0"}
+          lineBorderRadius={"10px"}
+          label={<EmployeeNode employee={orgData} />}
+        >
+          {orgData.children?.map((child, index) => (
+            <React.Fragment key={index}>{renderTree(child)}</React.Fragment>
+          ))}
+        </Tree>
       </div>
     </div>
-  )
+  );
 }
-
+function getRandomNumber(): number {
+  return Math.floor(Math.random() * 100) + 1;
+}

@@ -34,8 +34,8 @@ export default function Employee() {
     },
   ];
   return (
-    <div className="h-screen overflow-auto">
-      <div className="container mx-auto px-6 pt-6">
+    <div className="h-screen flex flex-col">
+      <div className="px-6 pt-6 flex flex-col">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 bg-lightMode-accentBlue dark:bg-darkMode-accentBlue rounded-lg flex items-center justify-center">
@@ -89,7 +89,7 @@ export default function Employee() {
           ))}
         </div>
       </div>
-      <div className="bg-white">
+      <div className="bg-white overflow-x-auto p-6 w-full">
         {tabs.find((tab) => tab.id === activeTab)?.component}
       </div>
     </div>

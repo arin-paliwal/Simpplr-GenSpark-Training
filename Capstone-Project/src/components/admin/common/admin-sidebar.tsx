@@ -16,7 +16,8 @@ export default function Sidebar() {
   const { state, dispatch } = useAppContext();
 
   return (
-    <div className="fixed w-64 border-r h-screen bg-white rounded-md">
+    <div className="fixed w-64 border-r h-screen z-50
+     bg-white rounded-md">
       <div className="p-4 border-b">
         <div className="flex items-center gap-2">
           <img src="/logos/logo-icon.png" alt="logo" className="w-8 h-10" />

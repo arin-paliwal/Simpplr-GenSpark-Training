@@ -10,3 +10,16 @@
   padding: 0;
   box-sizing: border-box;
 }
+.bg-dots-pattern {
+  background-image: radial-gradient(circle, gray .5px, transparent .9px);
+  background-size: 20px 20px;
+}
+.componentScroll {
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.componentScroll::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}

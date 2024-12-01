@@ -82,7 +82,7 @@ const getDepartmentColor = (department: string) => {
 
 export default function ManageEmployee() {
   return (
-    <div className='px-6 py-4'>
+    <div className=''>
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold text-lightMode-primaryText dark:text-darkMode-primaryText">
           Manage Employees
