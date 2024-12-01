@@ -1,3 +1,4 @@
+import AdminDashboard from "../pages/admin";
 import LandingPage from "../pages/LandingPage";
 import LoginPage from "../pages/LoginPage";
 import SignupPage from "../pages/SignupPage";
@@ -7,4 +8,5 @@ export const routesConfig: RouteConfigInterface[] = [
   { path: "/", Component: LandingPage, isPrivate: false },
   { path: "/login", Component: LoginPage, isPrivate: false },
   { path: "/register", Component: SignupPage, isPrivate: false },
+  { path: "/admin/dashboard", Component: AdminDashboard, isPrivate: true },
 ];

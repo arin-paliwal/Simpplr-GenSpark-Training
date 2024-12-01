@@ -5,5 +5,6 @@ export default function PrivateRoute({ children }: { children: ReactNode }) {
   if (token) {
     return children;
   }
-  window.location.href = "/login";
+  // window.location.href = "/login";
+  return children;
 }
