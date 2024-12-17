@@ -11,8 +11,14 @@ employeeRouter.get("/", (req, res) => {
 });
 
 employeeRouter.post("/add", (req, res) => {
-    const { name, role, department, email } = req.body;
-    console.log(name, role, department, email);
+  const newUser= req.body;
+  newUser.id=employees.length+1;
+  employees.push(newUser);
+  res.status(201).json({
+    status: 201,
+    message: "Employee added successfully",
+    data: newUser,
+  });
 });
 
 export default employeeRouter;
