@@ -8,6 +8,22 @@ export const getEmployees = (req, res) => {
   });
 };
 
+export const getSpecificEmployees = (req, res) => {
+  const id = parseInt(req.params.id);
+  const user = employees.find((user) => user.id == id);
+  if (!user) {
+    return res.status(404).json({
+      status: 404,
+      message: "Employee not found",
+    });
+  }
+  res.status(200).json({
+    status: 200,
+    message: "Employee fetched successfully",
+    data: user,
+  });
+}
+
 export const addEmployee = (req, res) => {
   const newUser = req.body;
   newUser.id = employees.length + 1;
