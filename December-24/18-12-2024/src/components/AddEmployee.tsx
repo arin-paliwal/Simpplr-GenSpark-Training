@@ -1,5 +1,3 @@
-'use client'
-
 import React, { useState } from "react"
 import { Employee } from "../types"
 import { BASE_URL } from "../config"
