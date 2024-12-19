@@ -1,28 +1,27 @@
 import { useState } from 'react'
 import {
-  getWeek,
-  set,
-  eachDayOfInterval,
-  getDaysInMonth,
-  nextDay,
-  closestTo,
-  isLeapYear,
-  roundToNearestMinutes,
-  isSameDay,
-  endOfMonth,
-  startOfMonth,
-  addBusinessDays,
-  lastDayOfWeek,
-  isWeekend,
-  getQuarter,
-  differenceInMilliseconds,
-  endOfDay,
-  format,
-  addDays,
-  subMonths,
-  parseISO,
-  isValid,
-  getUnixTime,
+  getWeek, // Gets the ISO week number for the given date
+  set, // Sets specific parts of a date (e.g., hours, minutes, seconds) and returns a new date
+  eachDayOfInterval, // Creates an array of dates for each day within the given interval
+  getDaysInMonth, // Returns the number of days in the month of the given date
+  nextDay, // Returns the next occurrence of a specific day of the week from a given date
+  isLeapYear, // Checks if the year of the given date is a leap year
+  roundToNearestMinutes, // Rounds the given date to the nearest specified number of minutes
+  isSameDay, // Checks if two dates are on the same calendar day
+  endOfMonth, // Gets the last moment of the month for the given date
+  startOfMonth, // Gets the start of the month for the given date
+  addBusinessDays, // Adds the specified number of business days (skipping weekends) to a date
+  lastDayOfWeek, // Gets the last day of the week for the given date
+  isWeekend, // Checks if the given date falls on a weekend (Saturday or Sunday)
+  getQuarter, // Gets the quarter of the year for the given date (1, 2, 3, or 4)
+  differenceInMilliseconds, // Calculates the difference in milliseconds between two dates
+  endOfDay, // Gets the last moment of the day for the given date
+  format, // Formats the given date into a string based on the provided format
+  addDays, // Adds a specific number of days to a date
+  subMonths, // Subtracts a specific number of months from a date
+  parseISO, // Parses a date string in ISO 8601 format into a JavaScript Date object
+  isValid, // Checks if the given date is valid
+  getUnixTime, // Gets the Unix timestamp (seconds since January 1, 1970) for the given date
 } from 'date-fns'
 
 export default function DateFnsShowcase() {
