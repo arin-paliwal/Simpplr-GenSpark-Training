@@ -6,6 +6,7 @@ type ToggleSwitchProps = {
   onChange: (checked: boolean) => void;
   onLabel?: string;
   offLabel?: string;
+  disabled?: boolean;
 };
 
 const ToggleSwitch = ({
@@ -13,9 +14,12 @@ const ToggleSwitch = ({
   onChange,
   onLabel = "On",
   offLabel = "Off",
+  disabled = false,
 }: ToggleSwitchProps) => {
   const handleToggle = (event: ChangeEvent<HTMLInputElement>) => {
-    onChange(event.target.checked);
+    if (!disabled) {
+      onChange(event.target.checked);
+    }
   };
 
   return (
@@ -33,6 +37,7 @@ const ToggleSwitch = ({
         className="toggle-switch__checkbox"
         checked={checked}
         onChange={handleToggle}
+        disabled={disabled}
       />
       <div className="toggle-switch__slider"></div>
     </label>

@@ -6,6 +6,7 @@ type StoryProps = {
   onLabel?: string;
   offLabel?: string;
   onChange: (checked: boolean) => void;
+  disabled?: boolean;
 };
 
 const meta: Meta<StoryProps> = {
@@ -29,6 +30,10 @@ const meta: Meta<StoryProps> = {
       action: 'changed',
       description: 'Function called when the switch state changes',
     },
+    disabled: {
+      control: { type: 'boolean' },
+      description: 'Disables the toggle switch when true',
+    },
   },
 };
 
@@ -40,6 +45,7 @@ const Template: Story = {
   render: (args) => (
     <ToggleSwitch
       {...args}
+      disabled={args.disabled}
       onChange={(newChecked: boolean) => args.onChange(newChecked)}
     />
   ),
@@ -51,6 +57,7 @@ export const ToggleEnabledToggle: Story = {
     checked: true,
     onLabel: 'Enabled',
     offLabel: 'Disabled',
+    disabled: false,
   },
 };
 
@@ -60,6 +67,7 @@ export const ToggleDisabledToggle: Story = {
     checked: false,
     onLabel: 'Enabled',
     offLabel: 'Disabled',
+    disabled: false,
   },
 };
 
@@ -69,6 +77,7 @@ export const DisabledButton: Story = {
     checked: false,
     onLabel: 'Enabled',
     offLabel: 'Disabled',
+    disabled: true,
   },
   parameters: {
     controls: { disabled: true },
