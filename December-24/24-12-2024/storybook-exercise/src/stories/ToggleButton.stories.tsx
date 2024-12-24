@@ -45,7 +45,7 @@ const Template: Story = {
   ),
 };
 
-export const EnabledToggle: Story = {
+export const ToggleEnabledToggle: Story = {
   ...Template,
   args: {
     checked: true,
@@ -54,11 +54,23 @@ export const EnabledToggle: Story = {
   },
 };
 
-export const DisabledToggle: Story = {
+export const ToggleDisabledToggle: Story = {
   ...Template,
   args: {
     checked: false,
     onLabel: 'Enabled',
     offLabel: 'Disabled',
+  },
+};
+
+export const DisabledButton: Story = {
+  ...Template,
+  args: {
+    checked: false,
+    onLabel: 'Enabled',
+    offLabel: 'Disabled',
+  },
+  parameters: {
+    controls: { disabled: true },
   },
 };
