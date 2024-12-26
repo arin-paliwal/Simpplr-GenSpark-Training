@@ -6,7 +6,7 @@ const Home = (props: Props) => {
   const navigate = useNavigate();
 
   const handleNavigation = () => {
-    navigate("/form");
+    navigate("/todolist");
   };
 
   return (

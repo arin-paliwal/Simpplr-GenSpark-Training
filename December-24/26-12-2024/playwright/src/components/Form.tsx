@@ -1,18 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const TodoList = () => {
+const Form = () => {
   const [task, setTask] = useState("");
-  const [timestamp, setTimestamp] = useState("");
-  const [todos, setTodos] = useState<
-    { task: string; timestamp: string; completed: boolean }[]
-  >([]);
+  const [todos, setTodos] = useState<{ task: string; completed: boolean }[]>(
+    JSON.parse(localStorage.getItem("todos") || "[]")
+  );
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const handleAddTodo = (e: React.FormEvent) => {
     e.preventDefault();
-    const newTodo = { task, timestamp, completed: false };
+
+    if (!task) {
+      setError("Please fill out the task.");
+      return;
+    }
+
+    setError("");
+    const newTodo = { task, completed: false };
     setTodos((prevTodos) => [...prevTodos, newTodo]);
     setTask("");
-    setTimestamp("");
   };
 
   const markAsDone = (index: number) => {
@@ -27,11 +37,14 @@ const TodoList = () => {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md bg-white shadow-md rounded-md p-6">
         <h1 className="text-2xl font-bold text-gray-800 text-center mb-6">
-        Todo List
+          Todo List
         </h1>
         <form onSubmit={handleAddTodo} className="space-y-4">
           <div>
-            <label className="block text-gray-700 font-medium mb-2" htmlFor="task">
+            <label
+              className="block text-gray-700 font-medium mb-2"
+              htmlFor="task"
+            >
               Task
             </label>
             <input
@@ -41,22 +54,9 @@ const TodoList = () => {
               onChange={(e) => setTask(e.target.value)}
               className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
               placeholder="Enter your task"
-              required
             />
           </div>
-          <div>
-            <label className="block text-gray-700 font-medium mb-2" htmlFor="timestamp">
-              Deadline
-            </label>
-            <input
-              type="datetime-local"
-              id="timestamp"
-              value={timestamp}
-              onChange={(e) => setTimestamp(e.target.value)}
-              className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
-              required
-            />
-          </div>
+          {error && <p className="text-red-500 text-sm">{error}</p>}
           <button
             type="submit"
             className="w-full py-2 bg-blue-500 text-white font-medium rounded-md hover:bg-blue-600 transition"
@@ -67,7 +67,9 @@ const TodoList = () => {
 
         {todos.length > 0 && (
           <div className="mt-6">
-            <h2 className="text-lg font-semibold text-gray-800 mb-4">To-Do List:</h2>
+            <h2 className="text-lg font-semibold text-gray-800 mb-4">
+              To-Do List:
+            </h2>
             <ul className="space-y-4">
               {todos.map((todo, index) => (
                 <li
@@ -84,14 +86,6 @@ const TodoList = () => {
                         }`}
                       >
                         <span className="font-medium">Task:</span> {todo.task}
-                      </p>
-                      <p
-                        className={`text-gray-700 ${
-                          todo.completed ? "line-through" : ""
-                        }`}
-                      >
-                        <span className="font-medium">Deadline:</span>{" "}
-                        {todo.timestamp}
                       </p>
                     </div>
                     <button
@@ -115,4 +109,4 @@ const TodoList = () => {
   );
 };
 
-export default TodoList;
+export default Form;

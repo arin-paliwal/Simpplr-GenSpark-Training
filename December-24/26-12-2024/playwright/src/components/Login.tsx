@@ -10,7 +10,7 @@ const Login = () => {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     if (username === "user" && password === "password") {
-      navigate("/form");
+      navigate("/todolist");
     } else {
       setError("Invalid username or password");
     }
