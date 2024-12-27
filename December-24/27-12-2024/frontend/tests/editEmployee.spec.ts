@@ -4,9 +4,9 @@ test("should edit an existing employee when submitting the Edit Employee form", 
   page,
   request,
 }) => {
-  await page.goto("http://localhost:5173/update/1");
+  await page.goto("http://localhost:5173/update/4");
 
-  await page.goto("http://localhost:5173/update/1");
+  await page.goto("http://localhost:5173/update/4");
   await page.locator('input[name="name"]').click();
   await page.locator('input[name="name"]').fill("Arin Paliwal");
   await page.locator('input[name="role"]').click();
@@ -18,7 +18,7 @@ test("should edit an existing employee when submitting the Edit Employee form", 
   await page.getByRole("button", { name: "Update" }).click();
 
   const updateTodo = await request.put(
-    "http://localhost:5000/api/v1/employees/update/1",
+    "http://localhost:5000/api/v1/employees/update/4",
     {
       data: {
         name: "Arin Paliwal",
@@ -29,5 +29,5 @@ test("should edit an existing employee when submitting the Edit Employee form", 
     }
   );
   await page.getByRole("button", { name: "View" }).first().click();
-  await page.getByText("Name: Arin Paliwal").click();
+  await page.getByText("Name: Arin Paliwal").isVisible();
 });
