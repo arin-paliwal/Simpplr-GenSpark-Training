@@ -1,65 +1,44 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
+const Login = ({
+  onLogin,
+}: {
+  onLogin: (username: string, password: string) => void;
+}) => {
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (username === "user" && password === "password") {
-      navigate("/todolist");
-    } else {
-      setError("Invalid username or password");
-    }
+  const handleLoginClick = () => {
+    onLogin(username, password);
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-sm bg-white shadow-md rounded-md p-6">
-        <h1 className="text-2xl font-bold text-gray-800 text-center mb-6">Login</h1>
-        <form onSubmit={handleLogin} className="space-y-4">
-          <div>
-            <label className="block text-gray-700 font-medium mb-2" htmlFor="username">
-              Username
-            </label>
-            <input
-              type="text"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
-              placeholder="Enter username"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-gray-700 font-medium mb-2" htmlFor="password">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
-              placeholder="Enter password"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full py-2 bg-blue-500 text-white font-medium rounded-md hover:bg-blue-600 transition"
-          >
-            Login
-          </button>
-          {error && (
-            <p className="mt-4 text-sm text-red-500 text-center">{error}</p>
-          )}
-        </form>
-      </div>
+    <div className="w-full max-w-sm p-6 bg-white rounded-lg shadow-lg">
+      <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">Login Form</h2>
+      <form className="flex flex-col gap-4">
+        <input
+          className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+          type="text"
+          placeholder="Username"
+          name="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+          type="password"
+          placeholder="Password"
+          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button
+          className="mt-4 bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition duration-200 font-semibold"
+          onClick={handleLoginClick}
+        >
+          Login
+        </button>
+      </form>
     </div>
   );
 };

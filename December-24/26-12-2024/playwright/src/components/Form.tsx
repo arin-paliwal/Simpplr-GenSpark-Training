@@ -1,112 +1,83 @@
-import { useState, useEffect } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-const Form = () => {
-  const [task, setTask] = useState("");
-  const [todos, setTodos] = useState<{ task: string; completed: boolean }[]>(
-    JSON.parse(localStorage.getItem("todos") || "[]")
-  );
-  const [error, setError] = useState("");
+type TodoItem = {
+  id: number;
+  value: string;
+};
+
+export default function Form() {
+  const [todos, setTodos] = useState<TodoItem[]>([]);
+  const [newTodo, setNewTodo] = useState<TodoItem | null>(null);
 
   useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
+    fetchToDoData();
+  }, []);
 
-  const handleAddTodo = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!task) {
-      setError("Please fill out the task.");
-      return;
-    }
-
-    setError("");
-    const newTodo = { task, completed: false };
-    setTodos((prevTodos) => [...prevTodos, newTodo]);
-    setTask("");
+  const fetchToDoData = async () => {
+    const response = await axios.get(`http://localhost:5000/todos`);
+    setTodos(response.data);
   };
 
-  const markAsDone = (index: number) => {
-    setTodos((prevTodos) =>
-      prevTodos.map((todo, i) =>
-        i === index ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
+  const handleAddTodo = async () => {
+    if (newTodo && newTodo.value.trim() !== "") {
+      const response = await axios.post(
+        `http://localhost:3500/addToDo`,
+        newTodo,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      setTodos(response.data);
+      setNewTodo(null);
+    }
+  };
+
+  const handleDelete = async (id: number) => {
+    try {
+      const response = await axios.delete(`http://localhost:5000/delete/${id}`);
+      console.log(response);
+      setTodos(response.data);
+    } catch (error) {
+      console.error(`Error detected : `, error);
+    }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md bg-white shadow-md rounded-md p-6">
-        <h1 className="text-2xl font-bold text-gray-800 text-center mb-6">
-          Todo List
-        </h1>
-        <form onSubmit={handleAddTodo} className="space-y-4">
-          <div>
-            <label
-              className="block text-gray-700 font-medium mb-2"
-              htmlFor="task"
-            >
-              Task
-            </label>
-            <input
-              type="text"
-              id="task"
-              value={task}
-              onChange={(e) => setTask(e.target.value)}
-              className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
-              placeholder="Enter your task"
-            />
-          </div>
-          {error && <p className="text-red-500 text-sm">{error}</p>}
-          <button
-            type="submit"
-            className="w-full py-2 bg-blue-500 text-white font-medium rounded-md hover:bg-blue-600 transition"
-          >
-            Add Task
-          </button>
-        </form>
-
-        {todos.length > 0 && (
-          <div className="mt-6">
-            <h2 className="text-lg font-semibold text-gray-800 mb-4">
-              To-Do List:
-            </h2>
-            <ul className="space-y-4">
-              {todos.map((todo, index) => (
-                <li
-                  key={index}
-                  className={`p-4 border rounded-md ${
-                    todo.completed ? "bg-green-100" : "bg-gray-100"
-                  }`}
-                >
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <p
-                        className={`text-gray-700 ${
-                          todo.completed ? "line-through" : ""
-                        }`}
-                      >
-                        <span className="font-medium">Task:</span> {todo.task}
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => markAsDone(index)}
-                      className={`px-4 py-2 text-sm font-medium rounded-md ${
-                        todo.completed
-                          ? "bg-gray-400 text-white"
-                          : "bg-green-500 text-white hover:bg-green-600"
-                      }`}
-                    >
-                      {todo.completed ? "Undo" : "Done"}
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+    <div className="max-w-lg mx-auto p-4 bg-white shadow-md rounded-lg">
+      <h2 className="text-3xl font-semibold mb-6 text-center text-gray-800">Todo List</h2>
+      <div className="flex items-center mb-4">
+        <input
+          className="p-3 flex-1 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+          type="text"
+          placeholder="Add a new todo"
+          value={newTodo?.value ?? ""}
+          onChange={(e) =>
+            setNewTodo({ id: new Date().getTime(), value: e.target.value })
+          }
+        />
+        <button
+          onClick={handleAddTodo}
+          className="ml-3 bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition duration-200"
+        >
+          Add Todo
+        </button>
       </div>
+      <ul className="space-y-3">
+        {todos.map((todo) => {
+          return (
+            <li
+              className="px-4 py-2 bg-gray-100 rounded-lg shadow hover:bg-red-500 hover:text-white transition duration-200 cursor-pointer"
+              key={todo.id}
+              onClick={() => handleDelete(todo.id)}
+            >
+              {todo.value}
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
-};
-
-export default Form;
+}
