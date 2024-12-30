@@ -1,6 +1,6 @@
 {
   "name": "button-testing-library",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/cjs/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -15,6 +15,10 @@
     "component",
     "ui-library"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arin-paliwal/Simpplr-GenSpark-Training/tree/main/December-24/30-12-2024/react-component-library"
+  },
   "types": "dist/index.d.ts",
   "author": "",
   "license": "MIT",
