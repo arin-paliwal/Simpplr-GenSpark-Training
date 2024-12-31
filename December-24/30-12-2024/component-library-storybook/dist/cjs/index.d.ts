@@ -1,2 +1,1 @@
-import"react";
-//# sourceMappingURL=index.d.ts.map
+export * from "./components/Button";

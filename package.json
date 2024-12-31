@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@arin-paliwal/component-library-storybook": "^1.0.6"
+  }
+}
