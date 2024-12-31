@@ -1,39 +1,107 @@
-import resolve from '@rollup/plugin-node-resolve'
-import commonjs from '@rollup/plugin-commonjs'
-import typescript from '@rollup/plugin-typescript'
-import dts from 'rollup-plugin-dts'
+import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import typescript from '@rollup/plugin-typescript';
+import dts from 'rollup-plugin-dts';
+import postcss from 'rollup-plugin-postcss';
+import packageJson from './package.json' with { type: 'json' };
 
-import terser from '@rollup/plugin-terser'
-import peerDepsExternal from 'rollup-plugin-peer-deps-external'
+// export default [
+//   {
+//     input: 'src/index.ts',
+//     output: [
+//       {
+//         file: 'dist/cjs/index.js',
+//         format: 'cjs',
+//         sourcemap: true,
+//       },
+//       {
+//         file: 'dist/esm/index.js',
+//         format: 'esm',
+//         sourcemap: true,
+//       },
+//     ],
+//     plugins: [
+//       resolve(),
+//       commonjs(),
+//       typescript({
+//         tsconfig: './tsconfig.json',
+//         declaration: true,
+//         // declarationDir: 'dist/types',
+//         exclude: ['**/*.test.tsx', '**/*.test.ts', '**/*.stories.ts'],
+//         declarationMap:false 
+//       }),
+        
+//       postcss({ extensions: ['.css'], inject: true, extract: false }),
+//     ],
+//   },
+//   {
+//     input: 'dist/types/esm/index.d.ts',
+//     output: [{ file: 'dist/esm/index.d.ts', format: 'esm' },
+//       { file: 'dist/cjs/index.d.ts', format: 'esm' }
+//     ],
+//     plugins: [dts()],
+//     external: [/\.css$/],
+//   },
+// ];
 
-const packageJson = require('./package.json')
 
 export default [
+  // CommonJS Build
   {
     input: 'src/index.ts',
-    output: [
-      {
-        file: packageJson.main,
-        format: 'esm',
-        sourcemap: true,
-      },
-    ],
+    output: {
+      file: packageJson.main,
+      format: 'cjs',
+      sourcemap: true,
+    },
     plugins: [
-      // NEW
-      typescript(),
-      peerDepsExternal(),
-
       resolve(),
       commonjs(),
-
-      // NEW
-      terser(),
+      typescript({
+        tsconfig: './tsconfig.json',
+        declaration: true,
+        declarationDir: 'dist/cjs',
+      }),
+      postcss({
+        extensions: ['.css'],
+        inject: true,
+        extract: false,
+      }),
     ],
   },
+  // ESM Build
   {
-    input: 'dist/cjs/types/src/index.d.ts',
-    output: [{ file: 'dist/index.d.ts', format: 'esm' }],
-    plugins: [dts.default()],
-    external: [/\.css$/],
+    input: 'src/index.ts',
+    output: {
+      file: packageJson.module,
+      format: 'esm',
+      sourcemap: true,
+    },
+    plugins: [
+      resolve(),
+      commonjs(),
+      typescript({
+        tsconfig: './tsconfig.json',
+        declaration: true,
+        declarationDir: 'dist/esm',
+      }),
+      postcss({
+        extensions: ['.css'],
+        minimize:true,
+        sourceMap:true,
+        modules:true,
+        inject: {insertAt : 'top'}
+      }),
+    ],
   },
-]
+  // DTS Bundler
+  {
+    input: 'dist/esm/index.d.ts', // Use one of the declaration files as input
+    output: {
+      file: 'dist/index.d.ts',
+      format: 'esm',
+    },
+    plugins: [dts()],
+    external: [/\.css$/]
+  },
+];
