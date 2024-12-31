@@ -1,0 +1,43 @@
+{
+  "name": "component-library-storybook",
+  "version": "1.0.0",
+  "main": "dist/cjs/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "rollup": "rollup -c --bundleConfigAsCjs",
+    "dev": "rollup -c --watch"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "button",
+    "react",
+    "component",
+    "ui-library"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arin-paliwal/Simpplr-GenSpark-Training/tree/main/December-24/30-12-2024/react-component-library"
+  },
+  "types": "dist/index.d.ts",
+  "author": "",
+  "license": "MIT",
+  "description": "React component library",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@types/react": "^19.0.2",
+    "@types/rollup-plugin-peer-deps-external": "^2.2.5",
+    "react": "^19.0.0",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "typescript": "^5.7.2"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
