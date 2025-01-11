@@ -1,17 +1,16 @@
-import { useState } from 'react'
-import './App.css'
-import { Button } from '@arin-paliwal/component-library-storybook'
-
+import { useState } from "react";
+import "./App.css";
+import { Button } from "@arin-paliwal/custom-library-button";
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return(
-    <Button
-    variant='primary'
-    >
-      Hello
-    </Button>
-    )
+    <div>
+      <Button variant="primary">
+        Hello World
+      </Button>
+    </div>
+  )
 }
 
-export default App
+export default App;

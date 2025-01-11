@@ -1,0 +1,85 @@
+.app {
+    margin: auto;
+    width: 100%;
+    max-width: 600px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+}
+.header {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+  
+.form-input {
+    font-size: 1rem;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 70%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+.form-input:focus {
+    border-color: #16a34a;
+    box-shadow: 0 0 5px rgba(22, 163, 74, 0.4);
+}
+.form-submit {
+    padding: 10px 15px;
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.form-submit:hover {
+    background-color: #128c3a;
+    transform: scale(1.05);
+}
+.todolist {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0;
+}
+.todo {
+    border-radius: 12px;
+    margin: 10px 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    position: relative;
+    padding: 15px 20px;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.todo:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+.todo-delete {
+    padding: 8px 12px;
+    border: none;
+    background-color: #d32f2f;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.todo-delete:hover {
+    background-color: #b71c1c;
+    transform: scale(1.1);
+}
