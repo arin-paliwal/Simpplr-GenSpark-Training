@@ -27,13 +27,17 @@ module.exports = {
     }),
     new ModuleFederationPlugin({
       name: "FoodHostApp",
-      filename:'remoteEntry.js',
-      remotes:{
-        "DetailCardInHost" : "CardComponent@http://localhost:3001/remoteEntry.js",
-        "ShortCardInHost" : "CardComponent@http://localhost:3001/remoteEntry.js",
-        "TodoAppInHost" : "todoApp@http://localhost:3002/remoteEntry.js"
+      filename: 'remoteEntry.js',
+      remotes: {
+        "DetailCardInHost": "CardComponent@http://localhost:3001/remoteEntry.js",
+        "ShortCardInHost": "CardComponent@http://localhost:3001/remoteEntry.js",
+        "TodoAppInHost": "todoApp@http://localhost:3002/remoteEntry.js"
+      },
+      shared: {
+        react: { singleton: true, eager: true },
+        "react-dom": { singleton: true, eager: true },
       }
-    })
+    })    
   ],
   module: {
     rules: [

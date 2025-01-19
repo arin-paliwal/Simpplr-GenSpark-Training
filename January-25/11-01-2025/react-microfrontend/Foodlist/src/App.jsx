@@ -12,7 +12,7 @@ const App = () => {
       <Header />
       <FoodList />
       <ProductList />
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }

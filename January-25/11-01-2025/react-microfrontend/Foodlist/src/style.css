@@ -1,20 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
 .header {
-    font-size: 25px;
-    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
     text-align: center;
-    padding: 20px;
-    box-shadow: 0 8px 6px -6px #ccc;
+    padding: 24px;
+    background-color: #f9fafb;
+    color: #1f2937;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid #e5e7eb;
+    letter-spacing: 0.5px;
 }
 
 .footer {
-    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
     text-align: center;
-    padding: 10px 0;
-    border-top: 1px solid #ccc;
-    box-shadow: 0px -5px 5px #ccc;
-    width: 99%;
+    padding: 16px;
+    background-color: #ffffff;
+    color: #4b5563;
+    border-top: 1px solid #e5e7eb;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    position: relative;
 }
 
-.short-list-container, .detail-list-container, .todo-list-container {
-    padding: 20px;
+.short-list-container, 
+.detail-list-container, 
+.todo-list-container {
+    padding: 24px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin: 20px auto;
+    /* max-width: 800px; */
+    font-family: 'Poppins', sans-serif;
+    color: #1f2937;
+    line-height: 1.6;
+}
+
+.short-list-container h2, 
+.detail-list-container h2, 
+.todo-list-container h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 16px;
+    text-align: center;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 8px;
 }
